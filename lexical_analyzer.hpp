@@ -5,4 +5,7 @@
 class LexicalAnalyzer{
     private:
     public:
-}
+};
+
+
+#endif
