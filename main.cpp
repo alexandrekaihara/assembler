@@ -4,13 +4,17 @@ Author:
 */
 
 #include <iostream>
-
+#include <string.h>
 
 using namespace std;
 
+#define OPTION_PRE string "-p"
+#define OPTION_OBJ string "-o"
+
 
 void arguments(int argc, char const *argv[]){
-    for (int i=0; i<argc; i++) cout << argv[i] << '\n';    
+    cout << OPTION_PRE << '\n';
+    cout << OPTION_OBJ << '\n';
 }
 
 
