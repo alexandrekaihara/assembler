@@ -15,7 +15,7 @@ Assembler::Assembler(int op, char* filename){
 }
 
 
-string Assembler::read_file(char* filename){
+void Assembler::read_file(char* filename){
     ifstream infile(filename);
     stringstream buffer;
     buffer << infile.rdbuf();
