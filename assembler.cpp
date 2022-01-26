@@ -10,7 +10,7 @@ using namespace std;
 
 Assembler::Assembler(int op, char* filename){
     option = op;
-    text = read_file(filename);
+    read_file(filename);
     cout << text;
 }
 
