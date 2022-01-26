@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "assembler.hpp"
 
 
@@ -15,7 +16,7 @@ Assembler::Assembler(int op, char* filename){
 
 
 string Assembler::read_file(char* filename){
-    ifstream infile(filename));
+    ifstream infile(filename);
     stringstream buffer;
     buffer << infile.rdbuf();
     text = buffer.str();
