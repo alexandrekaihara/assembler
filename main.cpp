@@ -38,12 +38,12 @@ int main(int argc, char const *argv[])
     if(strcmp(argv[1], OPTION_PRE)==0 && argc == 3){
         cout << "option -p chosen\n";
         option = OPTION_PRE_NUM;
-        filename = argv[2];
+        filename = (char*)argv[2];
     }
     else if(strcmp(argv[1], OPTION_OBJ)==0 && argc == 3){
         cout << "option -o chosen\n";
         option = OPTION_OBJ_NUM;
-        filename = argv[2];
+        filename = (char*)argv[2];
     }
     else{
         cout << INSTRUCTIONS;

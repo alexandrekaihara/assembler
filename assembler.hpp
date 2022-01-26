@@ -10,7 +10,7 @@ class Assembler{
     private:
         int option;
         string text;
-        string read_file(char* file_name);
+        string read_file(char* filename);
     public:
         Assembler(int option, char* filename);
         void run();
