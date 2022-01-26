@@ -23,8 +23,6 @@ using namespace std;
 #define INSTRUCTIONS "Assembler - Software Básico\nAlexandre Kaihara - 18/0029690\n\nCommands:\n./montador -p [program_name].asm\n./montador -p [programname].asm\n";
 
 
-
-
 int main(int argc, char const *argv[])
 {
     int option=0;
