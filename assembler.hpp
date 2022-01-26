@@ -1,6 +1,6 @@
 #ifndef ASSEMBLER_HPP_INCLUDED
 #define ASSEMBLER_HPP_INCLUDED
-#include <string.h>
+#include <string>
 
 
 class Assembler{
