@@ -10,7 +10,7 @@ using namespace std;
 
 
 void arguments(int argc, char const *argv[]){
-    for (int i=0; i<argc; i++) cout << argv[i];    
+    for (int i=0; i<argc; i++) cout << argv[i] << '\n';    
 }
 
 
