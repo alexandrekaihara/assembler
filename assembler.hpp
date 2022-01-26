@@ -14,7 +14,7 @@ class Assembler{
     public:
         Assembler(int option, char* filename);
         void run();
-}
+};
 
 
 #endif

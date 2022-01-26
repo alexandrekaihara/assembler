@@ -4,6 +4,7 @@ Author:
 */
 
 #include <iostream>
+#include <string.h>
 #include <string>
 #include "assembler.hpp"
 //#include "lexical_analyzer.hpp"
