@@ -1,7 +1,5 @@
 #ifndef ASSEMBLER_HPP_INCLUDED
 #define ASSEMBLER_HPP_INCLUDED
-
-
 #include <string.h>
 
 
@@ -14,3 +12,6 @@ class Assembler{
         Assembler(int option, char* filename);
         void run();
 }
+
+
+#endif

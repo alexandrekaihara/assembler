@@ -34,18 +34,20 @@ int main(int argc, char const *argv[])
         cout << INSTRUCTIONS;
         exit(0);
     }
-    if(strcmp(argv[1], OPTION_PRE)==0){
+    if(strcmp(argv[1], OPTION_PRE)==0 && argc == 3){
         cout << "option -p chosen\n";
         option = OPTION_PRE_NUM;
-        filename = 
+        filename = argv[2];
     }
-    else if(strcmp(argv[1], OPTION_OBJ)==0){
+    else if(strcmp(argv[1], OPTION_OBJ)==0 && argc == 3){
         cout << "option -o chosen\n";
         option = OPTION_OBJ_NUM;
+        filename = argv[2];
     }
     else{
         cout << INSTRUCTIONS;
         cout << "\nInvalid option. Use one of the options above.\n";
+        exit(0);
     }
 
     Assembler* assembler = new Assembler(option, filename);

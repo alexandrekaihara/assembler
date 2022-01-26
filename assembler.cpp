@@ -23,4 +23,5 @@ string Assembler::read_file(char* file_name){
 
 
 void Assembler::run(){
+    return;
 }
