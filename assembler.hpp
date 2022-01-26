@@ -3,6 +3,9 @@
 #include <string>
 
 
+using namespace std;
+
+
 class Assembler{
     private:
         int option;
