@@ -8,8 +8,8 @@ Author:
 
 using namespace std;
 
-#define OPTION_PRE string "-p"
-#define OPTION_OBJ string "-o"
+#define OPTION_PRE "-p"
+#define OPTION_OBJ "-o"
 
 
 void arguments(int argc, char const *argv[]){
