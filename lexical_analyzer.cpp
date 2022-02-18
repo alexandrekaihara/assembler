@@ -9,11 +9,11 @@ using namespace std;
 LexicalAnalyzer::LexicalAnalyzer(unordered_map<string, int, int> SymbolsTable,\
             unordered_map<string, int, int> DirectivesTable,\
             unordered_map<string, int, int, int> InstructionsTable){
-    ptrSymbolsTable = SymbolsTable;
-    ptrDirectivesTable = DirectivesTable;
-    ptrInstructionsTable = InstructionsTable;
+    this.SymbolsTable = SymbolsTable;
+    this.DirectivesTable = DirectivesTable;
+    this.InstructionsTable = InstructionsTable;
 
-    cout << *ptrSymbolsTable["ZERO"];
-    cout << *ptrDirectivesTable["SPACE"];
-    cout << *ptrInstructionsTable["ADD"];
+    cout << this.SymbolsTable["ZERO"];
+    cout << this.DirectivesTable["SPACE"];
+    cout << this.InstructionsTable["ADD"];
 }
