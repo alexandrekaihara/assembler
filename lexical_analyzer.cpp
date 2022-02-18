@@ -16,7 +16,7 @@ LexicalAnalyzer::LexicalAnalyzer(){
 string LexicalAnalyzer::to_lower(string line){
     locale loc;
     for (string::size_type i=0; i<line.length(); ++i)
-        str[i] = tolower(str[i],loc);
+        line[i] = tolower(line[i],loc);
     return str;
 }
 
