@@ -4,6 +4,7 @@
 
 #include <unordered_map>
 
+
 class LexicalAnalyzer{
     private:
         unordered_map<string, int, int>* ptrSymbolsTable;
