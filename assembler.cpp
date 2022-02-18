@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "etc.hpp"
 #include "assembler.hpp"
 
 
@@ -11,10 +12,8 @@ using namespace std;
 Assembler::Assembler(int op, char* filename){
     option = op;
     read_file(filename);
-    cout << text;
-    SymbolsTable["ZERO"] =  {0, 20};
-    DirectivesTable["SPACE"] = {0, 1};
-    InstructionsTable ["ADD"] = {1, 1, 2};
+    load_directives(DIRECTIVEFILE);
+    load_instructions(INSTRUCTIONFILE);
 }
 
 
@@ -23,9 +22,20 @@ void Assembler::read_file(char* filename){
     stringstream buffer;
     buffer << infile.rdbuf();
     text = buffer.str();
+    cout << "Assembler::read_file(char* filename): " << text;
 }
 
 
 void Assembler::run(){
-    return;
+    cout << "Assembler::run()";
+}
+
+
+void Assembler::load_directives(char* filename){
+    cout << "Assembler::load_directives(char* filename)";
+}
+
+
+void Assembler::load_instructions(char* filename){
+    cout << "Assembler::load_instructions(char* filename)";
 }

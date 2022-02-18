@@ -1,25 +1,16 @@
 /*
 Brief:
 Author: 
+g++ main.cpp assembler.cpp lexical_analyzer.cpp semantic_analyzer.cpp syntatic_analyzer.cpp
 */
 
 #include <iostream>
 #include <string.h>
 #include <string>
 #include "assembler.hpp"
-
+#include "etc.hpp"
 
 using namespace std;
-
-
-// Defines
-#define OPTION_PRE "-p"
-#define OPTION_PRE_NUM 0
-#define OPTION_OBJ "-o"
-#define OPTION_OBJ_NUM 1
-#define OPTION_MAC "-m"
-#define OPTION_MAC_NUM 2
-#define INSTRUCTIONS "Assembler - Software Básico\nAlexandre Kaihara - 18/0029690\n\nCommands:\n./montador -o [program_name].asm [output_name].obj\n./montador -p [program_name].asm [output_name].obj\n./montador -m [program_name].asm [output_name].obj\n"
 
 
 int main(int argc, char const *argv[])
