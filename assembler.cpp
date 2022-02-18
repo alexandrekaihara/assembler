@@ -32,7 +32,7 @@ void Assembler::read_file(char* filename){
 void Assembler::run(){
     cout << "Assembler::run()" << "\n";
     istringstream iss(this->text); 
-    for (string line; getline(iss, line),){
+    for (string line; getline(iss, line);){
         cout << line << " line" << to_string(line_counter) << "\n";
 
     }
