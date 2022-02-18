@@ -20,6 +20,8 @@ using namespace std;
 #define OPTION_PRE_NUM 0
 #define OPTION_OBJ "-o"
 #define OPTION_OBJ_NUM 1
+#define OPTION_MAC "-m"
+#define OPTION_MAC_NUM 2
 #define INSTRUCTIONS "Assembler - Software Básico\nAlexandre Kaihara - 18/0029690\n\nCommands:\n./montador -p [program_name].asm\n./montador -p [programname].asm\n";
 
 
@@ -29,18 +31,23 @@ int main(int argc, char const *argv[])
     char* filename;
 
     // Interprets the program input
-    if(argc<2){
+    if(argc<3){
         cout << INSTRUCTIONS;
         exit(0);
     }
-    if(strcmp(argv[1], OPTION_PRE)==0 && argc == 3){
+    if(strcmp(argv[1], OPTION_PRE)==0 && argc == 4){
         cout << "option -p chosen\n";
         option = OPTION_PRE_NUM;
         filename = (char*)argv[2];
     }
-    else if(strcmp(argv[1], OPTION_OBJ)==0 && argc == 3){
+    else if(strcmp(argv[1], OPTION_OBJ)==0 && argc == 4){
         cout << "option -o chosen\n";
         option = OPTION_OBJ_NUM;
+        filename = (char*)argv[2];
+    }
+    else if(strcmp(argv[1], OPTION_MAC)==0 && argc == 4){
+        cout << "option -o chosen\n";
+        option = OPTION_MAC_NUM;
         filename = (char*)argv[2];
     }
     else{
