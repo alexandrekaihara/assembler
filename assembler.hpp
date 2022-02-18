@@ -43,8 +43,8 @@ class Assembler{
         unordered_map<string, Instruction> InstructionsTable;
 
         void read_file(char* filename);
-        void load_instructions(char* filename);
-        void load_directives(char* filename);
+        void load_instructions(const string filename);
+        void load_directives(const string filename);
     public:
         Assembler(int option, char* filename);
         LexicalAnalyzer* Lex = new LexicalAnalyzer();

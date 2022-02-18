@@ -31,11 +31,11 @@ void Assembler::run(){
 }
 
 
-void Assembler::load_directives(char* filename){
-    cout << "Assembler::load_directives(char* filename)";
+void Assembler::load_directives(const string filename){
+    cout << "Assembler::load_directives(const string filename)";
 }
 
 
-void Assembler::load_instructions(char* filename){
-    cout << "Assembler::load_instructions(char* filename)";
+void Assembler::load_instructions(const string filename){
+    cout << "Assembler::load_instructions(const string filename)";
 }
