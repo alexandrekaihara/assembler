@@ -3,6 +3,9 @@
 #include <string>
 
 
+using namespace std;
+
+
 LexicalAnalyzer::LexicalAnalyzer(unordered_map<string, int, int>* SymbolsTable,\
             unordered_map<string, int, int>* DirectivesTable,\
             unordered_map<string, int, int, int>* InstructionsTable){

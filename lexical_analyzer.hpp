@@ -6,6 +6,9 @@
 #include <string>
 
 
+using namespace std;
+
+
 class LexicalAnalyzer{
     private:
         unordered_map<string, int, int>* ptrSymbolsTable;
