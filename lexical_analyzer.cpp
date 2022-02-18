@@ -1,8 +1,8 @@
 #include "lexical_analyzer.hpp"
 
 
-LexicalAnalyzer::LexicalAnalyzer(unordered_map<string, int, int>* SymbolsTable,
-            unordered_map<string, int, int>* DirectivesTable,
+LexicalAnalyzer::LexicalAnalyzer(unordered_map<string, int, int>* SymbolsTable,\
+            unordered_map<string, int, int>* DirectivesTable,\
             unordered_map<string, int, int, int>* InstructionsTable){
     ptrSymbolsTable = SymbolsTable;
     ptrDirectivesTable = DirectivesTable;
