@@ -5,6 +5,7 @@
 #include "lexical_analyzer.hpp"
 #include "semantic_analyzer.hpp"
 #include "syntatic_analyzer.hpp"
+#include "object_generator.hpp"
 
 
 using namespace std;

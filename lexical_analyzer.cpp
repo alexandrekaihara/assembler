@@ -27,8 +27,10 @@ string LexicalAnalyzer::remove_comments(string line){
 }
 
 
-//
+// Remove all comments, change line into lower case and interprets each token.
+// Returns the line without all commments, to lower case chars and labels. 
 vector<string> LexicalAnalyzer::analyze_tokens_from_line(string line){
     line = this->remove_comments(line);
-
+    line = this->to_lower(line);
+    
 }
