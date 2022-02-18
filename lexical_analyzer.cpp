@@ -1,5 +1,6 @@
 #include "lexical_analyzer.hpp"
 #include <unordered_map>
+#include <string>
 
 
 LexicalAnalyzer::LexicalAnalyzer(unordered_map<string, int, int>* SymbolsTable,\

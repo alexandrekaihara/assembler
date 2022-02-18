@@ -3,11 +3,12 @@
 
 
 #include <unordered_map>
+#include <string>
 
 
 class LexicalAnalyzer{
     private:
-        unordered_map<string, int, int>* ptrSymbolsTable;
+        unordered_map<string, int, int> * ptrSymbolsTable;
         unordered_map<string, int, int>* ptrDirectivesTable;
         unordered_map<string, int, int, int>* ptrInstructionsTable;
 
