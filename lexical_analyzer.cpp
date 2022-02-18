@@ -2,7 +2,8 @@
 #include <unordered_map>
 #include <string>
 #include <iostream>
-
+#include <algorithm>
+#include <cctype>
 
 
 using namespace std;
