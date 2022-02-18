@@ -23,7 +23,7 @@ class Assembler{
         void read_file(char* filename);
     public:
         Assembler(int option, char* filename);
-        LexicalAnalyzer Lex = new LexicalAnalyzer(SymbolsTable, DirectivesTable, InstructionsTable);
+        LexicalAnalyzer* Lex = new LexicalAnalyzer(SymbolsTable, DirectivesTable, InstructionsTable);
         void run();
 };
 
