@@ -10,18 +10,18 @@ using namespace std;
 struct Symbol{
     int defined = 0;
     int last_occurence = -1;
-}
+};
 
 struct Directive {
     int operands = -1;
     int size = -1;
-}
+};
 
 struct Instruction{
     int operands = -1;
     int opcode = -1;
     int size = -1;
-}
+};
 
 class Assembler{
     private:
