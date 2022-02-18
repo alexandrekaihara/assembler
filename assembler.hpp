@@ -7,6 +7,22 @@
 using namespace std;
 
 
+struct Symbol{
+    int defined = 0;
+    int last_occurence = -1;
+}
+
+struct Directive {
+    int operands = -1;
+    int size = -1;
+}
+
+struct Instruction{
+    int operands = -1;
+    int opcode = -1;
+    int size = -1;
+}
+
 class Assembler{
     private:
         int option;
@@ -16,9 +32,9 @@ class Assembler{
         string text;
         string macrodefinition;
 
-        unordered_map<string, int, int> SymbolsTable;
-        unordered_map<string, int, int> DirectivesTable;
-        unordered_map<string, int, int, int> InstructionsTable;
+        unordered_map<string, Symbol> SymbolsTable;
+        unordered_map<string, Directive> DirectivesTable;
+        unordered_map<string, Instruction> InstructionsTable;
 
         void read_file(char* filename);
     public:
