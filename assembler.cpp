@@ -12,9 +12,9 @@ Assembler::Assembler(int op, char* filename){
     option = op;
     read_file(filename);
     cout << text;
-    this.SymbolsTable["ZERO"] = [0, 20];
-    this.DirectivesTable["SPACE"] = [0, 1];
-    this.InstructionsTable ["ADD"] = [1, 1, 2];
+    this->SymbolsTable["ZERO"] = [0, 20];
+    this->DirectivesTable["SPACE"] = [0, 1];
+    this->InstructionsTable ["ADD"] = [1, 1, 2];
 }
 
 
