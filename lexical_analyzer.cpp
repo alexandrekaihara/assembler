@@ -8,9 +8,9 @@
 using namespace std;
 
 
-LexicalAnalyzer::LexicalAnalyzer(unordered_map<string, int, int> SymbolsTable,\
-            unordered_map<string, int, int> DirectivesTable,\
-            unordered_map<string, int, int, int> InstructionsTable){
+LexicalAnalyzer::LexicalAnalyzer(unordered_map SymbolsTable,\
+            unordered_map DirectivesTable,\
+            unordered_map InstructionsTable){
     this->SymbolsTable = SymbolsTable;
     this->DirectivesTable = DirectivesTable;
     this->InstructionsTable = InstructionsTable;
