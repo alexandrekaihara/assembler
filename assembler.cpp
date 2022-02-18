@@ -31,7 +31,7 @@ string Assembler::read_file(char* filename){
     buffer << infile.rdbuf();
     text = buffer.str();
     cout << "Assembler::read_file(char* filename): " << text << "\n";
-    return text
+    return text;
 }
 
 
