@@ -21,7 +21,7 @@ void Assembler::read_file(char* filename){
     ifstream infile(filename);
     stringstream buffer;
     buffer << infile.rdbuf();
-    this.text = buffer.str();
+    this->text = buffer.str();
     cout << "Assembler::read_file(char* filename): " << text << "\n";
 }
 
