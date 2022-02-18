@@ -22,6 +22,9 @@ void Assembler::read_file(char* filename){
     stringstream buffer;
     buffer << infile.rdbuf();
     this->text = buffer.str();
+    this->Lex = new LexicalAnalyzer();
+    this->Syn = new SyntaticAnalyzer();
+    this->Sem = new SemanticAnalyzer();
     cout << "Assembler::read_file(char* filename): " << text << "\n";
 }
 

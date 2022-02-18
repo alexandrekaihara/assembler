@@ -47,8 +47,11 @@ class Assembler{
         void load_directives(const string filename);
     public:
         Assembler(int option, char* filename);
-        LexicalAnalyzer* Lex = new LexicalAnalyzer();
-        SemanticAnalyzer* Sem = new SemanticAnalyzer();
+        
+        LexicalAnalyzer* Lex;
+        SyntaticAnalyzer* Syn;
+        SemanticAnalyzer* Sem;
+
         void run();
 };
 
