@@ -9,11 +9,12 @@
 using namespace std;
 
 
-Assembler::Assembler(int op, char* filename){
-    option = op;
-    read_file(filename);
-    load_directives(DIRECTIVEFILE);
-    load_instructions(INSTRUCTIONFILE);
+Assembler::Assembler(int op, char* inputfile, char* outputfile){
+    this->option = op;
+    this->outputfile = outputfile;
+    this->read_file(inputfile);
+    this->load_directives(DIRECTIVEFILE);
+    this->load_instructions(INSTRUCTIONFILE);
 }
 
 
@@ -33,7 +34,6 @@ void Assembler::run(){
     cout << "Assembler::run()" << "\n";
     istringstream iss(this->text); 
     for (string line; getline(iss, line);){
-        cout << line << " line" << to_string(line_counter) << "\n";
 
     }
 }

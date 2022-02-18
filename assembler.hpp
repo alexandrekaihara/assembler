@@ -36,6 +36,7 @@ class Assembler{
         int position_counter = 0;
         
         string text;
+        string outputfile;
         string macrodefinition;
 
         unordered_map<string, Symbol> SymbolsTable;
@@ -46,7 +47,7 @@ class Assembler{
         void load_instructions(const string filename);
         void load_directives(const string filename);
     public:
-        Assembler(int option, char* filename);
+        Assembler(int option, char* inputfile, char* outputfile);
         
         LexicalAnalyzer* Lex;
         SyntaticAnalyzer* Syn;

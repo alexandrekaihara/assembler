@@ -34,8 +34,9 @@ int main(int argc, char const *argv[])
         exit(0);
     }
 
-    filename = (char*)argv[2];
-    Assembler* assembler = new Assembler(option, filename);
+    inputfile = (char*)argv[2];
+    outputfile = (char*)argv[3];
+    Assembler* assembler = new Assembler(option, inputfile, outputfile);
     assembler->run();
 
     return 0;
