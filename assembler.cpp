@@ -22,20 +22,20 @@ void Assembler::read_file(char* filename){
     stringstream buffer;
     buffer << infile.rdbuf();
     text = buffer.str();
-    cout << "Assembler::read_file(char* filename): " << text << endl;
+    cout << "Assembler::read_file(char* filename): " << text << "\n";
 }
 
 
 void Assembler::run(){
-    cout << "Assembler::run()" << endl;
+    cout << "Assembler::run()" << "\n";
 }
 
 
 void Assembler::load_directives(const string filename){
-    cout << "Assembler::load_directives(const string filename)" << endl;
+    cout << "Assembler::load_directives(const string filename)" << "\n";
 }
 
 
 void Assembler::load_instructions(const string filename){
-    cout << "Assembler::load_instructions(const string filename)" << endl;
+    cout << "Assembler::load_instructions(const string filename)" << "\n";
 }
