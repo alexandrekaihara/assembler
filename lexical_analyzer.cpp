@@ -28,7 +28,7 @@ string LexicalAnalyzer::remove_comments(string line){
 
 
 //
-string LexicalAnalyzer::analyze_tokens_from_line(string line){
+vector<string> LexicalAnalyzer::analyze_tokens_from_line(string line){
     line = this->remove_comments(line);
 
     return line;
