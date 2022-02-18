@@ -5,6 +5,7 @@
 class SemanticAnalyzer{
     private:
     public:
+        SemanticAnalyzer();
 };
 
 

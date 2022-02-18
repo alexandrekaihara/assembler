@@ -5,6 +5,7 @@
 class SyntaticAnalyzer{
     private:
     public:
+    SyntaticAnalyzer();
 };
 
 

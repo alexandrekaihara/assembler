@@ -2,7 +2,10 @@
 #define ASSEMBLER_HPP_INCLUDED
 #include <string>
 #include <unordered_map>
-//#include "lexical_analyzer.hpp"
+#include "lexical_analyzer.hpp"
+#include "semantic_analyzer.hpp"
+#include "syntatic_analyzer.hpp"
+
 
 using namespace std;
 
@@ -42,7 +45,8 @@ class Assembler{
         void read_file(char* filename);
     public:
         Assembler(int option, char* filename);
-        LexicalAnalyzer* Lex = new LexicalAnalyzer(SymbolsTable, DirectivesTable, InstructionsTable);
+        LexicalAnalyzer* Lex = new LexicalAnalyzer();
+        SemanticAnalyzer* Sem = new SemanticAnalyzer();
         void run();
 };
 
