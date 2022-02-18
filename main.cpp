@@ -45,9 +45,6 @@ int main(int argc, char const *argv[])
         cout << "\nInvalid option. Use one of the options above.\n";
         exit(0);
     }
-    
-    // Check if the extensions are correct
-    
 
     filename = (char*)argv[2];
     Assembler* assembler = new Assembler(option, filename);

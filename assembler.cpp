@@ -17,10 +17,6 @@ Assembler::Assembler(int op, char* filename){
 
 void Assembler::read_file(char* filename){
     ifstream infile(filename);
-    if (infile.fail()) {
-        cout << strerror(errno);
-        exit(0)
-    }
     stringstream buffer;
     buffer << infile.rdbuf();
     text = buffer.str();
