@@ -36,7 +36,7 @@ int main(int argc, char const *argv[])
 
     filename = (char*)argv[2];
     Assembler* assembler = new Assembler(option, filename);
-    //assembler->run();
+    assembler->run();
 
     return 0;
 }
