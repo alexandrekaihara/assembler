@@ -2,10 +2,10 @@
 #include <unordered_map>
 #include <string>
 #include <iostream>
-#include <algorithm>
-
+#include <locale>
 
 using namespace std;
+
 
 
 LexicalAnalyzer::LexicalAnalyzer(){
@@ -14,7 +14,10 @@ LexicalAnalyzer::LexicalAnalyzer(){
 
 
 string LexicalAnalyzer::to_lower(string line){
-    return transform(line.begin(), line.end(), line.begin(), ::tolower);
+    locale loc;
+    for (string::size_type i=0; i<line.length(); ++i)
+        str[i] = tolower(str[i],loc);
+    return str;
 }
 
 
