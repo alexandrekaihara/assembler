@@ -15,7 +15,10 @@ LexicalAnalyzer::LexicalAnalyzer(unordered_map<string, int, int> SymbolsTable,\
     this->DirectivesTable = DirectivesTable;
     this->InstructionsTable = InstructionsTable;
 
-    cout << this->SymbolsTable["ZERO"];
-    cout << this->DirectivesTable["SPACE"];
-    cout << this->InstructionsTable["ADD"];
+    for (auto& x: this->SymbolsTable) {
+        std::cout << x.first << ": " << x.second << std::endl;
+    }
+    //cout << this->SymbolsTable["ZERO"];
+    //cout << this->DirectivesTable["SPACE"];
+    //cout << this->InstructionsTable["ADD"];
 }
