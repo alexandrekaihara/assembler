@@ -21,13 +21,14 @@ void Assembler::read_file(char* filename){
     ifstream infile(filename);
     stringstream buffer;
     buffer << infile.rdbuf();
-    text = buffer.str();
+    this.text = buffer.str();
     cout << "Assembler::read_file(char* filename): " << text << "\n";
 }
 
 
 void Assembler::run(){
     cout << "Assembler::run()" << "\n";
+    
 }
 
 
