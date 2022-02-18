@@ -22,7 +22,7 @@ using namespace std;
 #define OPTION_OBJ_NUM 1
 #define OPTION_MAC "-m"
 #define OPTION_MAC_NUM 2
-#define INSTRUCTIONS "Assembler - Software Básico\nAlexandre Kaihara - 18/0029690\n\nCommands:\n./montador -p [program_name].asm\n./montador -p [programname].asm\n";
+#define INSTRUCTIONS "Assembler - Software Básico\nAlexandre Kaihara - 18/0029690\n\nCommands:\n./montador -o [program_name].asm [output_name].obj\n./montador -p [program_name].asm [output_name].obj\n./montador -m [program_name].asm [output_name].obj\n";
 
 
 int main(int argc, char const *argv[])
@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
     char* filename;
 
     // Interprets the program input
-    if(argc<3){
+    if(argc != 4){
         cout << INSTRUCTIONS;
         exit(0);
     }
