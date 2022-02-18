@@ -11,3 +11,22 @@ using namespace std;
 LexicalAnalyzer::LexicalAnalyzer(){
     
 }
+
+
+LexicalAnalyzer::to_lower(string line){
+    return transform(line.begin(), line.end(), line.begin(), [](unsigned char c){ return std::tolower(c); });
+}
+
+
+// Remove comment part from string
+LexicalAnalyzer::remove_comments(string line){
+    return line
+}
+
+
+//
+LexicalAnalyzer::analyze_tokens_from_line(string line){
+    line = this->remove_comments(line);
+
+    return line
+}

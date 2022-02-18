@@ -35,20 +35,24 @@ string Assembler::read_file(char* filename){
 }
 
 
+// This run the algorithm to assemble the file
 void Assembler::run(){
     cout << "Assembler::run()" << "\n";
+    // For each line inside the file
     istringstream iss(this->text); 
     for (string line; getline(iss, line);){
-
+        cout << this->Lex->to_lower(line);
     }
 }
 
 
+// Loads the directives especifications of this assembly language into the DirectivesTable
 void Assembler::load_directives(const string filename){
     cout << "Assembler::load_directives(const string filename)" << "\n";
 }
 
 
+// Loads the instructions especifications of this assembly language into the InstructionsTable
 void Assembler::load_instructions(const string filename){
     cout << "Assembler::load_instructions(const string filename)" << "\n";
 }
