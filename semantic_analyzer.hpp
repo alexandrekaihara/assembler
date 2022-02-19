@@ -2,7 +2,7 @@
 #define SEMANTIC_ANALYZER_HPP_INCLUDED
 
 
-#define <string>
+#include <string>
 
 
 class SemanticAnalyzer{

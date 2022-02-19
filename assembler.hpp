@@ -53,6 +53,7 @@ class Assembler{
         LexicalAnalyzer* Lex;
         SyntaticAnalyzer* Syn;
         SemanticAnalyzer* Sem;
+        ObjectGenerator* ObjGen;
 
         void run();
 };
