@@ -1,5 +1,11 @@
 #include "semantic_analyzer.hpp"
 
 
-SemanticAnalyzer::SemanticAnalyzer(){
+SemanticAnalyzer::SemanticAnalyzer(int option){
+    this->option = option;
+}
+
+
+string SemanticAnalyzer::analyze(string line){
+
 }

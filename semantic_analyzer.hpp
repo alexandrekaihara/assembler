@@ -4,8 +4,10 @@
 
 class SemanticAnalyzer{
     private:
+        int option;
     public:
-        SemanticAnalyzer();
+        SemanticAnalyzer(int option);
+        string analyze(string line);
 };
 
 

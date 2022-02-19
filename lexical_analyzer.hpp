@@ -12,10 +12,11 @@ using namespace std;
 
 class LexicalAnalyzer{
     private:
+        int option;
     public:
         string to_lower(string line);
         string remove_comments(string line);
-        vector<string> analyze_tokens_from_line(string line);
+        string analyze(string line);
         LexicalAnalyzer();
 };
 

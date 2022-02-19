@@ -4,8 +4,10 @@
 
 class ObjectGenerator{
     private:
+        int option;
     public:
         ObjectGenerator();
+        void analyze();
 };
 
 

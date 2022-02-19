@@ -4,8 +4,10 @@
 
 class SyntaticAnalyzer{
     private:
+        int option;
     public:
-    SyntaticAnalyzer();
+    SyntaticAnalyzer(int option);
+    string analyze();
 };
 
 

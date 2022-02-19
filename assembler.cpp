@@ -1,7 +1,8 @@
 #include <string>
-#include <iostream>
+#include <vector>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include "etc.hpp"
 #include "assembler.hpp"
 
@@ -14,9 +15,10 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->option = op;
     this->outputfile = outputfile;
     
-    this->Lex = new LexicalAnalyzer();
-    this->Syn = new SyntaticAnalyzer();
-    this->Sem = new SemanticAnalyzer();
+    this->Lex = new LexicalAnalyzer(this->option);
+    this->Syn = new SyntaticAnalyzer(this->option);
+    this->Sem = new SemanticAnalyzer(this->option);
+    this->ObjGen = new ObjectGenerator(this->option);
 
     this->text = this->read_file(inputfile);
     this->load_directives(DIRECTIVEFILE);
@@ -41,7 +43,10 @@ void Assembler::run(){
     // For each line inside the file
     istringstream iss(this->text); 
     for (string line; getline(iss, line);){
-        cout << this->Lex->to_lower(line);
+        line = this->Lex.analyze(line);
+        line = this->Syn.analyze(line);
+        line = this->Sem.analyze(line);
+        this->ObjGen.analyze(line);
     }
 }
 
