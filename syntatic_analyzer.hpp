@@ -2,9 +2,13 @@
 #define SYNTATIC_ANALYZER_HPP_INCLUDED
 
 
+#include <string>
+
+
 class SyntaticAnalyzer{
     private:
         int option;
+        
     public:
     SyntaticAnalyzer(int option);
     string analyze();

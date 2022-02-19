@@ -2,6 +2,9 @@
 #define SEMANTIC_ANALYZER_HPP_INCLUDED
 
 
+#define <string>
+
+
 class SemanticAnalyzer{
     private:
         int option;

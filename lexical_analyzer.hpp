@@ -17,7 +17,7 @@ class LexicalAnalyzer{
         string to_lower(string line);
         string remove_comments(string line);
         string analyze(string line);
-        LexicalAnalyzer();
+        LexicalAnalyzer(int option);
 };
 
 

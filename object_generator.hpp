@@ -6,7 +6,7 @@ class ObjectGenerator{
     private:
         int option;
     public:
-        ObjectGenerator();
+        ObjectGenerator(int option);
         void analyze();
 };
 

@@ -43,10 +43,10 @@ void Assembler::run(){
     // For each line inside the file
     istringstream iss(this->text); 
     for (string line; getline(iss, line);){
-        line = this->Lex.analyze(line);
-        line = this->Syn.analyze(line);
-        line = this->Sem.analyze(line);
-        this->ObjGen.analyze(line);
+        line = this->Lex->analyze(line);
+        line = this->Syn->analyze(line);
+        line = this->Sem->analyze(line);
+        this->ObjGen->analyze(line);
     }
 }
 
