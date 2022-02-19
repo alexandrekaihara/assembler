@@ -5,13 +5,16 @@
 #include <string>
 
 
+using namespace std;
+
+
 class SyntaticAnalyzer{
     private:
         int option;
         
     public:
     SyntaticAnalyzer(int option);
-    string analyze();
+    string analyze(string line);
 };
 
 

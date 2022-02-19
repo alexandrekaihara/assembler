@@ -32,5 +32,5 @@ string LexicalAnalyzer::remove_comments(string line){
 string LexicalAnalyzer::analyze(string line){
     line = this->remove_comments(line);
     line = this->to_lower(line);
-    return line
+    return line;
 }

@@ -5,6 +5,9 @@
 #include <string>
 
 
+using namespace std;
+
+
 class SemanticAnalyzer{
     private:
         int option;
