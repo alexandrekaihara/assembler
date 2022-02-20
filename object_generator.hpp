@@ -13,7 +13,8 @@ class ObjectGenerator{
         int option;
     public:
         ObjectGenerator(int option);
-        void analyze(string line);
+        bool analyze(string line);
+        void write(string line);
 };
 
 

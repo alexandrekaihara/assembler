@@ -6,6 +6,11 @@ ObjectGenerator::ObjectGenerator(int option){
 }
 
 
+bool ObjectGenerator::analyze(string line){
+    return true;
+}
+
+
 void ObjectGenerator::analyze(string line){
 
 }

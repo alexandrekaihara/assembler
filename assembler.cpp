@@ -7,6 +7,7 @@
 #include "assembler.hpp"
 
 
+
 using namespace std;
 
 
@@ -15,6 +16,7 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->option = op;
     this->outputfile = outputfile;
     
+    this->Err = new ErrorDealer(this->option);
     this->Lex = new LexicalAnalyzer(this->option);
     this->Syn = new SyntaticAnalyzer(this->option);
     this->Sem = new SemanticAnalyzer(this->option);
@@ -46,7 +48,9 @@ void Assembler::run(){
         line = this->Lex->analyze(line);
         line = this->Syn->analyze(line);
         line = this->Sem->analyze(line);
-        this->ObjGen->analyze(line);
+        if (this->ObjGen->analyze(line)){
+            this->ObjGen->write(line);
+        }
     }
 }
 

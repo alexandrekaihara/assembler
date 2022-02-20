@@ -6,6 +6,7 @@
 #include "semantic_analyzer.hpp"
 #include "syntatic_analyzer.hpp"
 #include "object_generator.hpp"
+#include "error_dealer.hpp"
 
 
 using namespace std;
@@ -50,6 +51,7 @@ class Assembler{
     public:
         Assembler(int option, char* inputfile, char* outputfile);
         
+        ErrorDealer* Err;
         LexicalAnalyzer* Lex;
         SyntaticAnalyzer* Syn;
         SemanticAnalyzer* Sem;
