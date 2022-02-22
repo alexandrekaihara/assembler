@@ -6,8 +6,8 @@
 #include <iostream>
 #include <locale>
 
-using namespace std;
 
+using namespace std;
 
 
 LexicalAnalyzer::LexicalAnalyzer(int option, ErrorDealer* Err){
@@ -15,6 +15,13 @@ LexicalAnalyzer::LexicalAnalyzer(int option, ErrorDealer* Err){
     this->Err = Err;
 }
 
+
+// Remove all comments, change line into lower case and interprets each token.
+// Returns the line without all commments, to lower case chars and labels. 
+string LexicalAnalyzer::analyze(string line){
+    line = this->to_lower(line);
+    return line;
+}
 
 // Get all chars and converts them into its lower case form
 string LexicalAnalyzer::to_lower(string line){
@@ -72,9 +79,11 @@ vector<string> LexicalAnalyzer::split(string line){
 }
 
 
-// Remove all comments, change line into lower case and interprets each token.
-// Returns the line without all commments, to lower case chars and labels. 
-string LexicalAnalyzer::analyze(string line){
-    line = this->to_lower(line);
-    return line;
+bool LexicalAnalyzer::is_valid_variable_name(string token){
+    if(token.length() > 99) return false;
+    if(isdigit(token[0])) return false;
+    char c;
+    for (int i=0; i<token.length(); i++)
+        if (!isalpha(token[i]) && !isdigit(token[i]) && token[i] != '_') return false
+    return true;
 }
