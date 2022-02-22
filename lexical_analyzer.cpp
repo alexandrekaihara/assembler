@@ -38,6 +38,7 @@ string LexicalAnalyzer::clean_line(string line){
     int i = 0;
     for(i; i<line.length(); i++) if (line[i] != ' ') break;
     
+    cout << i << " " << j << "\n";
     // Remove all char on pattern
     string pattern = "\t\n", newlinestr = "";
     for(i++; i<=j; i++){
