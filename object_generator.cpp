@@ -1,8 +1,9 @@
 #include "object_generator.hpp"
 
 
-ObjectGenerator::ObjectGenerator(int option){
+ObjectGenerator::ObjectGenerator(int option, ErrorDealer* Err){
     this->option = option;
+    this->Err = Err;
 }
 
 

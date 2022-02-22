@@ -1,8 +1,9 @@
 #include "syntatic_analyzer.hpp"
 
 
-SyntaticAnalyzer::SyntaticAnalyzer(int option){
+SyntaticAnalyzer::SyntaticAnalyzer(int option, ErrorDealer* Err){
     this->option = option;
+    this->Err = Err;
 }
 
 

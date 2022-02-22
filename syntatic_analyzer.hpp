@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include "error_dealer.hpp"
 
 
 using namespace std;
@@ -11,9 +12,9 @@ using namespace std;
 class SyntaticAnalyzer{
     private:
         int option;
-        
+        ErrorDealer* Err;
     public:
-    SyntaticAnalyzer(int option);
+    SyntaticAnalyzer(int option, ErrorDealer* Err);
     string analyze(string line);
 };
 

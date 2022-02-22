@@ -1,8 +1,9 @@
 #include "semantic_analyzer.hpp"
 
 
-SemanticAnalyzer::SemanticAnalyzer(int option){
-    this->option = option;
+SemanticAnalyzer::SemanticAnalyzer(int optio, ErrorDealer* Err){
+    this->option = option;]
+    this->Err = Err;
 }
 
 

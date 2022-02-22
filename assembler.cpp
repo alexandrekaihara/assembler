@@ -7,7 +7,6 @@
 #include "assembler.hpp"
 
 
-
 using namespace std;
 
 
@@ -17,10 +16,10 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->outputfile = outputfile;
     
     this->Err = new ErrorDealer(this->option);
-    this->Lex = new LexicalAnalyzer(this->option);
-    this->Syn = new SyntaticAnalyzer(this->option);
-    this->Sem = new SemanticAnalyzer(this->option);
-    this->ObjGen = new ObjectGenerator(this->option);
+    this->Lex = new LexicalAnalyzer(this->option, this->Err);
+    this->Syn = new SyntaticAnalyzer(this->option, this->Err);
+    this->Sem = new SemanticAnalyzer(this->option, this->Err);
+    this->ObjGen = new ObjectGenerator(this->option, this->Err);
 
     this->text = this->read_file(inputfile);
     this->load_directives(DIRECTIVEFILE);

@@ -8,8 +8,9 @@ using namespace std;
 
 
 
-LexicalAnalyzer::LexicalAnalyzer(int option){
+LexicalAnalyzer::LexicalAnalyzer(int option, ErrorDealer* Err){
     this->option = option;
+    this->Err = Err;
 }
 
 

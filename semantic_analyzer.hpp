@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include "error_dealer.hpp"
 
 
 using namespace std;
@@ -11,8 +12,9 @@ using namespace std;
 class SemanticAnalyzer{
     private:
         int option;
+        ErrorDealer* Err;
     public:
-        SemanticAnalyzer(int option);
+        SemanticAnalyzer(int option, ErrorDealer* Err);
         string analyze(string line);
 };
 

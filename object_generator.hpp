@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include "error_dealer.hpp"
 
 
 using namespace std;
@@ -11,8 +12,9 @@ using namespace std;
 class ObjectGenerator{
     private:
         int option;
+        ErrorDealer* Err;
     public:
-        ObjectGenerator(int option);
+        ObjectGenerator(int option, ErrorDealer* Err);
         bool analyze(string line);
         void write(string line);
 };
