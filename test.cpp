@@ -1,4 +1,6 @@
+//g++ test.cpp assembler.cpp lexical_analyzer.cpp semantic_analyzer.cpp syntatic_analyzer.cpp error_dealer.cpp object_generator.cpp
 #include "test.hpp"
+#include <cassert>
 
 
 void Test::run(){
@@ -12,7 +14,7 @@ void Test::run(){
 
 
 void TestLex::set_up(){
-    this->Lex = new LexicalAnalyzer(OPTION_OBJ, new ErrorDealer(OPTION_OBJ));
+    this->Lex = new LexicalAnalyzer(OPTION_OBJ_NUM, new ErrorDealer(OPTION_OBJ_NUM));
 }
 
 void TestLex::tear_down(){
@@ -45,35 +47,35 @@ void TestLex::test(){
     // Test if it splits commands correctly
     vector<string> tokens = this->Lex->split("COPY A, B");
     vector<string> answer = {"COPY", "A", "B"};
-    for(i=0; i<tokens.length(); i++)
+    for(int int i=0; i<tokens.length(); i++)
         assert(tokens[i] == answer[i]);    
     
     // Test if it splits commands correctly with label
     tokens = this->Lex->split("LABEL: COPY A, B");
     answer = {"LABEL:", "COPY", "A", "B"};
-    for(i=0; i<tokens.length(); i++)
+    for(int i=0; i<tokens.length(); i++)
         assert(tokens[i] == answer[i]);    
 
     // Test if it splits commands correctly with one parameter only
     tokens = this->Lex->split("CONST -48");
     answer = {"CONST", "-48"};
-    for(i=0; i<tokens.length(); i++)
+    for(int i=0; i<tokens.length(); i++)
         assert(tokens[i] == answer[i]);    
 
     // Test if it splits commands correctly with no parameters
     tokens = this->Lex->split("STOP");
     answer = {"STOP"};
-    for(i=0; i<tokens.length(); i++)
+    for(int i=0; i<tokens.length(); i++)
         assert(tokens[i] == answer[i]);    
 
     // Test if it detects if there is more than 99 chars
-    assert(this->Lex->is_valid_variable_name("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA") == false);
+    assert(this->Lex->is_valid_variable_name("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 0) == false);
     // Test if it detects invalid char
-    assert(this->Lex->is_valid_variable_name("!") == false);
+    assert(this->Lex->is_valid_variable_name("!", 0) == false);
     // Test if it detects if starts with number
-    assert(this->Lex->is_valid_variable_name("1a") == false);
+    assert(this->Lex->is_valid_variable_name("1a", 0) == false);
     // Test if accepts a correct name
-    assert(this->Lex->is_valid_variable_name("IAL900_aa"));
+    assert(this->Lex->is_valid_variable_name("IAL900_aa", 0));
 
     // Assert if is a label
     assert(this->Lex->is_label("LABEL:"));
