@@ -28,7 +28,7 @@ string LexicalAnalyzer::to_lower(string line){
 // Remove comment part from string, tabs, line breaks and spaces
 string LexicalAnalyzer::clean_line(string line){
     // Remove all comment part
-    line = line.substr(0, newline.find(';'));
+    line = line.substr(0, line.find(';'));
     
     // Remove all whitespaces from the end
     int i = 0;
@@ -39,14 +39,14 @@ string LexicalAnalyzer::clean_line(string line){
     for(j; j<line.length(); ++j) if (line[j] != ' ') break;
     
     // Remove all char on pattern
-    string pattern = "\t\n", newline = "";
+    string pattern = "\t\n", newlinestr = "";
     for(i++; i<=j; ++i){
         if(pattern.find(line[i]) != -1) continue;
         if(line[i] == ' ') 
-        newline += line[i];
+        newlinestr += line[i];
     }
     
-    return line;
+    return newlinestr;
 }
 
 
@@ -91,7 +91,7 @@ bool LexicalAnalyzer::is_valid_variable_name(string token, int linenumber){
         if (!isalpha(token[i]) && !isdigit(token[i]) && pattern.find(token[i]) != 1)
             err = LEX_ERR_INVALIDCHAR;
     if(err != 0){
-        if(this->option == OPTION_OBJ_NUM) this->Err.register(linenumber, err);
+        if(this->option == OPTION_OBJ_NUM) this->Err->register_err(linenumber, err);
         return false;
     }
     return true;

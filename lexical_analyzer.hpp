@@ -21,7 +21,7 @@ class LexicalAnalyzer{
         string clean_line(string line);
         vector<string> split(string line);
         bool is_valid_variable_name(string token, int linenumber);
-        bool is_label(string token)
+        bool is_label(string token);
 };
 
 
