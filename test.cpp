@@ -4,12 +4,6 @@
 
 
 void Test::run(){
-    TestLex* TLex = new TestLex();
-    TLex->set_up();
-
-    TLex->test();
-
-    TLex->tear_down();
 }
 
 
@@ -47,25 +41,25 @@ void TestLex::test(){
     // Test if it splits commands correctly
     vector<string> tokens = this->Lex->split("COPY A, B");
     vector<string> answer = {"COPY", "A", "B"};
-    for(int int i=0; i<tokens.length(); i++)
+    for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
     
     // Test if it splits commands correctly with label
     tokens = this->Lex->split("LABEL: COPY A, B");
     answer = {"LABEL:", "COPY", "A", "B"};
-    for(int i=0; i<tokens.length(); i++)
+    for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
 
     // Test if it splits commands correctly with one parameter only
     tokens = this->Lex->split("CONST -48");
     answer = {"CONST", "-48"};
-    for(int i=0; i<tokens.length(); i++)
+    for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
 
     // Test if it splits commands correctly with no parameters
     tokens = this->Lex->split("STOP");
     answer = {"STOP"};
-    for(int i=0; i<tokens.length(); i++)
+    for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
 
     // Test if it detects if there is more than 99 chars
@@ -80,8 +74,6 @@ void TestLex::test(){
     // Assert if is a label
     assert(this->Lex->is_label("LABEL:"));
     assert(this->Lex->is_label("LABEL") == false);
-
-    this->state = true;
 }
 
 
@@ -94,7 +86,11 @@ void TestLex::test(){
 
 
 int main(){
-    Test* T = new Test();
-    T->run();
+    TestLex* TLex = new TestLex();
+    TLex->set_up();
+
+    TLex->test();
+
+    TLex->tear_down();
     return 0;
 }

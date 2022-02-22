@@ -16,8 +16,6 @@ using namespace std;
 
 
 class Test{
-protected:
-    bool state = false;
 public:
     virtual void set_up() = 0;
     virtual void tear_down() = 0;
