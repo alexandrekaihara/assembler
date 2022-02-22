@@ -2,11 +2,10 @@
 
 
 SemanticAnalyzer::SemanticAnalyzer(int optio, ErrorDealer* Err){
-    this->option = option;]
+    this->option = option;
     this->Err = Err;
 }
 
 
 string SemanticAnalyzer::analyze(string line){
-
 }

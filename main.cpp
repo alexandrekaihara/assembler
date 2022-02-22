@@ -1,7 +1,7 @@
 /*
 Brief:
 Author: 
-g++ main.cpp assembler.cpp lexical_analyzer.cpp semantic_analyzer.cpp syntatic_analyzer.cpp
+g++ main.cpp assembler.cpp lexical_analyzer.cpp semantic_analyzer.cpp syntatic_analyzer.cpp error_dealer.cpp object_generator.cpp
 */
 
 #include <iostream>

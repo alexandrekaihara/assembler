@@ -10,8 +10,3 @@ ObjectGenerator::ObjectGenerator(int option, ErrorDealer* Err){
 bool ObjectGenerator::analyze(string line){
     return true;
 }
-
-
-void ObjectGenerator::analyze(string line){
-
-}
