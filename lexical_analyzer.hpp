@@ -19,9 +19,9 @@ class LexicalAnalyzer{
         LexicalAnalyzer(int option, ErrorDealer* Err);
         string to_lower(string line);
         string clean_line(string line);
-        string analyze(string line);
         vector<string> split(string line);
-        bool is_valid_variable_name(string line);
+        bool is_valid_variable_name(string token, int linenumber);
+        bool is_label(string token)
 };
 
 

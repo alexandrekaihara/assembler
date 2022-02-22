@@ -13,5 +13,8 @@
 #define DIRECTIVEFILE "directives.txt"
 #define LABELCHAR ':'
 #define SPACECHAR ' '
+#define LEX_ERR_99CHAR 11
+#define LEX_ERR_STARTNUM 12
+#define LEX_ERR_INVALIDCHAR 13
 
 #endif

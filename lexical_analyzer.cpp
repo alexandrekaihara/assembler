@@ -16,13 +16,6 @@ LexicalAnalyzer::LexicalAnalyzer(int option, ErrorDealer* Err){
 }
 
 
-// Remove all comments, change line into lower case and interprets each token.
-// Returns the line without all commments, to lower case chars and labels. 
-string LexicalAnalyzer::analyze(string line){
-    line = this->to_lower(line);
-    return line;
-}
-
 // Get all chars and converts them into its lower case form
 string LexicalAnalyzer::to_lower(string line){
     locale loc;
@@ -34,20 +27,26 @@ string LexicalAnalyzer::to_lower(string line){
 
 // Remove comment part from string, tabs, line breaks and spaces
 string LexicalAnalyzer::clean_line(string line){
-    // Remove all whitespaces from the begginning
+    // Remove all comment part
+    line = line.substr(0, newline.find(';'));
+    
+    // Remove all whitespaces from the end
     int i = 0;
-    for (i; i<line.length(); ++i) if (line[i] != ' ') break;
+    for(i=line.length(); i==0; --i) if (line[i] != ' ') break;
+
+    // Remove all whitespaces from the begginning
+    int j = 0;
+    for(j; j<line.length(); ++j) if (line[j] != ' ') break;
     
     // Remove all char on pattern
     string pattern = "\t\n", newline = "";
-    for (i; i<line.length(); ++i){
+    for(i++; i<=j; ++i){
         if(pattern.find(line[i]) != -1) continue;
         if(line[i] == ' ') 
         newline += line[i];
     }
     
-    // Remove all comment part
-    return line.substr(0, newline.find(';'));
+    return line;
 }
 
 
@@ -79,11 +78,27 @@ vector<string> LexicalAnalyzer::split(string line){
 }
 
 
-bool LexicalAnalyzer::is_valid_variable_name(string token){
-    if(token.length() > 99) return false;
-    if(isdigit(token[0])) return false;
+// Check if the variable name has more than 99 char or starts with number or has a char different from underscore, number and letters
+bool LexicalAnalyzer::is_valid_variable_name(string token, int linenumber){
+    int err = 0;
+    if(token.length() > 99)
+        err = LEX_ERR_99CHAR;
+    if(isdigit(token[0]))
+        err = LEX_ERR_99CHAR;
     char c;
+    string pattern = "+-_";
     for (int i=0; i<token.length(); i++)
-        if (!isalpha(token[i]) && !isdigit(token[i]) && token[i] != '_') return false;
+        if (!isalpha(token[i]) && !isdigit(token[i]) && pattern.find(token[i]) != 1)
+            err = LEX_ERR_INVALIDCHAR;
+    if(err != 0){
+        if(this->option == OPTION_OBJ_NUM) this->Err.register(linenumber, err);
+        return false;
+    }
     return true;
+}
+
+
+bool LexicalAnalyzer::is_label(string token){
+    if(token.find(':') != -1) return true;
+    else return false;
 }

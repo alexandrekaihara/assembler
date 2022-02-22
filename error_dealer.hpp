@@ -13,6 +13,7 @@ class ErrorDealer{
         int option;
     public:
         ErrorDealer(int option);
+        void register_err(int line, int code);
 };
 
 
