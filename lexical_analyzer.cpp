@@ -31,12 +31,12 @@ string LexicalAnalyzer::clean_line(string line){
     line = line.substr(0, line.find(';'));
     
     // Remove all whitespaces from the end
-    int i = 0;
-    for(i=line.length(); i==0; --i) if (line[i] != ' ') break;
+    int j = 0;
+    for(j=line.length(); j==0; --j) if (line[j] != ' ') break;
 
     // Remove all whitespaces from the begginning
-    int j = 0;
-    for(j; j<line.length(); ++j) if (line[j] != ' ') break;
+    int i = 0;
+    for(i; i<line.length(); ++i) if (line[i] != ' ') break;
     
     // Remove all char on pattern
     string pattern = "\t\n", newlinestr = "";

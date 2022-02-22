@@ -1,6 +1,7 @@
 //g++ test.cpp assembler.cpp lexical_analyzer.cpp semantic_analyzer.cpp syntatic_analyzer.cpp error_dealer.cpp object_generator.cpp
 #include "test.hpp"
 #include <cassert>
+#include <iostream>
 
 
 void Test::run(){
