@@ -32,15 +32,15 @@ string LexicalAnalyzer::clean_line(string line){
     
     // Remove all whitespaces from the end
     int j = 0;
-    for(j=line.length(); j==0; --j) if (line[j] != ' ') break;
+    for(j=line.length(); j==0; j++) if (line[j] != ' ') break;
 
     // Remove all whitespaces from the begginning
     int i = 0;
-    for(i; i<line.length(); ++i) if (line[i] != ' ') break;
+    for(i; i<line.length(); i++) if (line[i] != ' ') break;
     
     // Remove all char on pattern
     string pattern = "\t\n", newlinestr = "";
-    for(i++; i<=j; ++i){
+    for(i++; i<=j; i++){
         if(pattern.find(line[i]) != -1) continue;
         if(line[i] == ' ') 
         newlinestr += line[i];
