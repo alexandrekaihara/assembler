@@ -2,6 +2,7 @@
 #define TEST_HPP_INCLUDED
 
 
+#include "etc.hpp"
 #include "error_dealer.hpp"
 #include "lexical_analyzer.hpp"
 #include "object_generator.hpp"
@@ -21,7 +22,7 @@ public:
     virtual void set_up() = 0;
     virtual void tear_down() = 0;
     virtual void test() = 0;
-    int run();
+    void run();
 };
 
 
