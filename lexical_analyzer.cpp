@@ -50,14 +50,14 @@ vector<string> LexicalAnalyzer::split(string line){
             }
             // Do not include the pattern char
             else length = i - lastindex;
-            tokens.insert(line.substr(lastindex, length));
+            tokens.push_back(line.substr(lastindex, length));
             lastindex = i + 1;
             i++;
         }
     }
     // Add the last token
     length = line.length() - lastindex;
-    tokens.insert(line.substr(lastindex, length));
+    tokens.push_back(line.substr(lastindex, length));
     return tokens;
 }
 
