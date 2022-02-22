@@ -42,7 +42,7 @@ string LexicalAnalyzer::clean_line(string line){
     string pattern = "\t\n", newlinestr = "";
     for(i++; i<=j; i++){
         if(pattern.find(line[i]) != -1) continue;
-        while (line[i] == ' ') i++;
+        if (line[i] == ' ') && (line[i+1] == ' ') continue;
         newlinestr += line[i];
     }
     
