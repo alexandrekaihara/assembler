@@ -27,10 +27,20 @@ string LexicalAnalyzer::to_lower(string line){
 
 // Remove comment part from string, tabs, line breaks and spaces
 string LexicalAnalyzer::clean_line(string line){
-    for (string::size_type i=0; i<line.length(); ++i){
-        i++;
+    // Remove all whitespaces from the begginning
+    int i = 0;
+    for (i; i<line.length(); ++i) if (line[i] != ' ') break;
+    
+    // Remove all char on pattern
+    string pattern = "\t\n", newline = "";
+    for (i; i<line.length(); ++i){
+        if(pattern.find(line[i]) != -1) continue;
+        if(line[i] == ' ') 
+        newline += line[i];
     }
-    return line.substr(0, line.find(';'));
+    
+    // Remove all comment part
+    return line.substr(0, newline.find(';'));
 }
 
 
