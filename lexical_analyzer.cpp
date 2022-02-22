@@ -56,7 +56,7 @@ vector<string> LexicalAnalyzer::split(string line){
         }
     }
     // Add the last token
-    length = i - lastindex;
+    length = line.length() - lastindex;
     tokens.insert(line.substr(lastindex, length));
     return tokens;
 }
@@ -65,7 +65,6 @@ vector<string> LexicalAnalyzer::split(string line){
 // Remove all comments, change line into lower case and interprets each token.
 // Returns the line without all commments, to lower case chars and labels. 
 string LexicalAnalyzer::analyze(string line){
-    line = this->remove_comments(line);
     line = this->to_lower(line);
     return line;
 }
