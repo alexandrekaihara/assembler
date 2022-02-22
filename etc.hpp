@@ -11,5 +11,7 @@
 #define INSTRUCTIONS "Assembler - Software Básico\nAlexandre Kaihara - 18/0029690\n\nCommands:\n./montador -o [program_name].asm [output_name].obj\n./montador -p [program_name].asm [output_name].obj\n./montador -m [program_name].asm [output_name].obj\n"
 #define INSTRUCTIONFILE "instructions.txt"
 #define DIRECTIVEFILE "directives.txt"
+#define LABELCHAR ':'
+#define SPACECHAR ' '
 
 #endif
