@@ -91,7 +91,7 @@ bool LexicalAnalyzer::is_valid_variable_name(string token, int linenumber){
         err = LEX_ERR_99CHAR;
     char c;
     for (int i=0; i<token.length()-1; i++)
-        if (!isalpha(token[i]) && !isdigit(token[i]) && token[i] == '_')
+        if (!isalpha(token[i]) && !isdigit(token[i]) && token[i] != '_')
             err = LEX_ERR_INVALIDCHAR;
     if(err != 0){
         if(this->option == OPTION_OBJ_NUM) this->Err->register_err(linenumber, err);

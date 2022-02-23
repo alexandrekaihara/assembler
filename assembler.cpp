@@ -61,15 +61,13 @@ void Assembler::run(){
             }
         }
 
-        
-
         // REMOVER DEPOIS
         for(int i=0; i<tokens.size(); i++)
             cout << tokens[i] << "/"; 
         cout << '\n';
 
+        // Verify if the tokens of the line respects the correct syntax of the language
         bool res = this->Syn->analyze(tokens, this->line_counter);
-        cout << "Status of Syntatic analysis: " << res << "\n"; 
 
         this->line_counter++;
     }
