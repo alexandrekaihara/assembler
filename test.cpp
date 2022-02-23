@@ -26,10 +26,9 @@ void TestLex::test(){
     assert(res.compare("ab") == 0);
     
     // Test if it cleans the first whitespaces
-    res = this->Lex->clean_line("  COPY A, B");
-    for(int i=0; i<res.length(); i++)
-        cout << to_string(i) << " " << +res[i] << "\n";
-    assert(res.compare("COPY A, B\0") == 0);
+    string aux = "  COPY A, B";
+    res = this->Lex->clean_line(aux);
+    assert(res.compare("COPY A, B") == 0);
 
     // Test if it removes the double spaces
     res = this->Lex->clean_line("  COPY  A,      B");
