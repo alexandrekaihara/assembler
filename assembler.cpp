@@ -54,7 +54,14 @@ void Assembler::run(){
             this->Lex->is_valid_variable_name(tokens[0], line_counter);
             label = tokens[0];
             tokens.erase(tokens.begin());
+            // If the line contains only the label, continue the process (it is equal to ignore breaks)
+            if(tokens.size() == 0){
+                this->line_counter++;
+                continue;
+            }
         }
+
+        
 
         // REMOVER DEPOIS
         for(int i=0; i<tokens.size(); i++)

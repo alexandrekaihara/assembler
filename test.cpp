@@ -41,13 +41,13 @@ void TestLex::test(){
 
     // Test if it splits commands correctly
     vector<string> tokens = this->Lex->split("COPY A, B");
-    vector<string> answer = {"COPY", "A", "B"};
+    vector<string> answer = {"COPY", "A, ", "B"};
     for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
     
     // Test if it splits commands correctly with label
     tokens = this->Lex->split("LABEL: COPY A, B");
-    answer = {"LABEL:", "COPY", "A", "B"};
+    answer = {"LABEL:", "COPY", "A, ", "B"};
     for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
 

@@ -11,19 +11,25 @@ SyntaticAnalyzer::SyntaticAnalyzer(int option, ErrorDealer* Err, unordered_map<s
 
 bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
     int err = 0;
-    // If there is the key, so get the diretive or instruction info
-    if (!this->is_directive(tokens[0]) && !this->is_instruction(tokens[0]))
-        err = SIN_ERR_INST_DIR_NOT_FOUND;
 
     if(this->is_directive(tokens[0]))
         Directive data = this->DirectivesTable[tokens[0]];
+        // Check the number of operands
+        if(tokens.size()-1 != data.operands)
+            err = SIN_ERR_INVALID_NUM_OF_PARAM;
+        else if(tokens[0].compare("CONST") == 0 && !isdigit(stoi(tokens[1])))
+            err = SIN_ERR_INVALID_CONST_SYNTAX;
     else if(this->is_instruction(tokens[0]))
         Instruction data = this->InstructionsTable[tokens[0]];
+        // Check the number of operands
+        if(tokens.size()-1 != data.operands)
+            err = SIN_ERR_INVALID_NUM_OF_PARAM;
+        // Check if the COPY instruction has ", "
+        else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(', ') == -1))
+            err = SIN_ERR_INVALID_COPY_SYNTAX;
+        
+    else err = SIN_ERR_INST_DIR_NOT_FOUND;
     
-    // Check the number of operands
-    if(tokens.size()-1 != data.operands)
-        err = SIN_ERR_INVALID_NUM_OF_PARAM;
-
     // Register error if enabled option -o
     if ((err != 0) && (this->option == OPTION_OBJ_NUM))
         this->Err->register_err(line_counter, err);

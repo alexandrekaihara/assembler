@@ -61,9 +61,13 @@ vector<string> LexicalAnalyzer::split(string line){
         // If the current position on the string if one of the char in pattern, add substring
         if(pattern.find(line[i]) != -1){
             // If it has as definition of a label, include the char 
-            if((line[i] == ':') || (line[i] == ',')){
+            if(line[i] == ':')
                 length = i - lastindex + 1;
-            }
+            // In case of having a ',', save the char and check if there is another whitespace after
+            else if (line[i] == ',')
+                if(line[i+1] == ' ')
+                    length = i - lastindex + 2;
+                else length = i - lastindex + 1;
             // Do not include the pattern char
             else length = i - lastindex;
             tokens.push_back(line.substr(lastindex, length));
