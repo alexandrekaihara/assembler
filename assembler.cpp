@@ -80,7 +80,7 @@ void Assembler::load_directives(const string filename){
         for(int i=0; i<line.length(); i++){
             if(line[i] == ' '){
                 int difference = i - lastindex;
-                aux.push_back(lastindex, difference);
+                aux.push_back(line.substr(lastindex, difference));
             }
         }
 
@@ -105,7 +105,7 @@ void Assembler::load_instructions(const string filename){
         for(int i=0; i<line.length(); i++){
             if(line[i] == ' '){
                 int difference = i - lastindex;
-                aux.push_back(lastindex, difference);
+                aux.push_back(line.substr(lastindex, difference));
             }
         }
 
