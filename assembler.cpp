@@ -42,7 +42,7 @@ void Assembler::run(){
     istringstream iss(this->text); 
     for(string line; getline(iss, line);){
         // Clean comments, double whitespaces, tabs, breaklines
-        line = this->Lex->to_lower(line);
+        line = this->Lex->to_upper(line);
         line = this->Lex->clean_line(line);
         
         // Split line into tokens

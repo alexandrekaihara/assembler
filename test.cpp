@@ -17,11 +17,11 @@ void TestLex::tear_down(){
 }
 
 void TestLex::test(){
-    string res = this->Lex->to_lower("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_");
-    assert(res.compare("abcdefghijklmnopqrstuvwxyz1234567890_") == 0);
+    string res = this->Lex->to_upper("abcdefghijklmnopqrstuvwxyz1234567890_");
+    assert(res.compare("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_") == 0);
 
-    res = this->Lex->to_lower("aB");
-    assert(res.compare("ab") == 0);
+    res = this->Lex->to_upper("aB");
+    assert(res.compare("AB") == 0);
     
     // Test if it cleans the first whitespaces
     res = this->Lex->clean_line("  COPY A, B");

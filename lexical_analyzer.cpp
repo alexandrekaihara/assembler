@@ -17,10 +17,10 @@ LexicalAnalyzer::LexicalAnalyzer(int option, ErrorDealer* Err){
 
 
 // Get all chars and converts them into its lower case form
-string LexicalAnalyzer::to_lower(string line){
+string LexicalAnalyzer::to_upper(string line){
     locale loc;
     for (string::size_type i=0; i<line.length(); ++i)
-        line[i] = tolower(line[i],loc);
+        line[i] = toupper(line[i],loc);
     return line;
 }
 
