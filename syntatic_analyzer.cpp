@@ -14,6 +14,7 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
 
     if(this->is_directive(tokens[0]))
         // Check the number of operands
+        cout << tokens[0] << tokens.size() << " " << this->DirectivesTable.at(tokens[0]).operands << "\n";
         if(tokens.size()-1 != this->DirectivesTable.at(tokens[0]).operands)
             err = SIN_ERR_INVALID_NUM_OF_PARAM;
         else if(tokens[0].compare("CONST") == 0 && !isdigit(stoi(tokens[1])))
