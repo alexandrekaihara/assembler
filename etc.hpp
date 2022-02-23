@@ -17,4 +17,24 @@
 #define LEX_ERR_STARTNUM 12
 #define LEX_ERR_INVALIDCHAR 13
 
+
+struct Symbol{
+    int defined = 0;
+    int last_occurence = -1;
+};
+
+
+struct Directive {
+    int operands = -1;
+    int size = -1;
+};
+
+
+struct Instruction{
+    int operands = -1;
+    int opcode = -1;
+    int size = -1;
+};
+
+
 #endif

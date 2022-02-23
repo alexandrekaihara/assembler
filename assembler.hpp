@@ -2,35 +2,16 @@
 #define ASSEMBLER_HPP_INCLUDED
 #include <string>
 #include <unordered_map>
-#include "lexical_analyzer.hpp"
-#include "semantic_analyzer.hpp"
-#include "object_generator.hpp"
 #include "error_dealer.hpp"
+#include "lexical_analyzer.hpp"
+#include "object_generator.hpp"
+#include "semantic_analyzer.hpp"
+#include "syntatic_analyzer.hpp"
 
 
 using namespace std;
 
 
-struct Symbol{
-    int defined = 0;
-    int last_occurence = -1;
-};
-
-
-struct Directive {
-    int operands = -1;
-    int size = -1;
-};
-
-
-struct Instruction{
-    int operands = -1;
-    int opcode = -1;
-    int size = -1;
-};
-
-
-#include "syntatic_analyzer.hpp"
 
 
 class Assembler{

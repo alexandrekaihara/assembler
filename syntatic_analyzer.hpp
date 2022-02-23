@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include "etc.hpp"
 #include "error_dealer.hpp"
 
 
