@@ -201,7 +201,7 @@ void TestSem::test(){
     // May fail because the macro was not used
     assert(this->Sem->end_check_MACRO(5) == false);
     // Will accept because ENDMACRO WAS DEFINED AND MACRO WAS USED
-    this->Sem->macro_used = true;
+    this->Sem->set_macro_used();
     assert(this->Sem->end_check_MACRO(5));
 
 
