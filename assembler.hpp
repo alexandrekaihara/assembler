@@ -6,7 +6,7 @@
 #include "lexical_analyzer.hpp"
 #include "object_generator.hpp"
 #include "semantic_analyzer.hpp"
-#include "syntatic_analyzer.hpp"
+#include "syntactic_analyzer.hpp"
 
 
 using namespace std;
@@ -36,7 +36,7 @@ class Assembler{
 
         ErrorDealer* Err;
         LexicalAnalyzer* Lex;
-        SyntaticAnalyzer* Syn;
+        SyntacticAnalyzer* Syn;
         SemanticAnalyzer* Sem;
         ObjectGenerator* ObjGen;
 

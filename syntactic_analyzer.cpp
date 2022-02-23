@@ -1,7 +1,7 @@
-#include "syntatic_analyzer.hpp"
+#include "syntactic_analyzer.hpp"
 
 
-SyntaticAnalyzer::SyntaticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Directive> DirectivesTable, unordered_map<string, Instruction> InstructionsTable){
+SyntacticAnalyzer::SyntacticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Directive> DirectivesTable, unordered_map<string, Instruction> InstructionsTable){
     this->option = option;
     this->Err = Err;
     this->DirectivesTable = DirectivesTable;
@@ -9,23 +9,23 @@ SyntaticAnalyzer::SyntaticAnalyzer(int option, ErrorDealer* Err, unordered_map<s
 }
 
 
-bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
+bool SyntacticAnalyzer::analyze(vector<string> tokens, int line_counter){
     int err = 0;
 
     if(this->is_directive(tokens[0]))
         // Check the number of operands
         if((tokens.size()-1) != this->DirectivesTable.at(tokens[0]).operands)
-            err = SIN_ERR_INVALID_NUM_OF_PARAM;
+            err = SYN_ERR_INVALID_NUM_OF_PARAM;
         else if(tokens[0].compare("CONST") == 0 && !this->is_number(tokens[1]))
-            err = SIN_ERR_INVALID_CONST_SYNTAX;
+            err = SYN_ERR_INVALID_CONST_SYNTAX;
     else if(this->is_instruction(tokens[0]))
         // Check the number of operands
         if(tokens.size()-1 != this->InstructionsTable.at(tokens[0]).operands)
-            err = SIN_ERR_INVALID_NUM_OF_PARAM;
+            err = SYN_ERR_INVALID_NUM_OF_PARAM;
         // Check if the COPY instruction has ", "
         else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(", ") == -1))
-            err = SIN_ERR_INVALID_COPY_SYNTAX;
-    else err = SIN_ERR_INST_DIR_NOT_FOUND;
+            err = SYN_ERR_INVALID_COPY_SYNTAX;
+    else err = SYN_ERR_INST_DIR_NOT_FOUND;
     
     // Register error if enabled option -o
     if (err != 0){
@@ -37,7 +37,7 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
 }
 
 
-bool SyntaticAnalyzer::is_number(string number){
+bool SyntacticAnalyzer::is_number(string number){
     // If the first char is a negative sign, it is correct
     int i = 0;
     if(number[0] == '-')
@@ -50,14 +50,14 @@ bool SyntaticAnalyzer::is_number(string number){
 }
 
 
-bool SyntaticAnalyzer::is_directive(string token){
+bool SyntacticAnalyzer::is_directive(string token){
     if(this->DirectivesTable.count(token) != 0) 
         return true;
     return false;
 }
 
 
-bool SyntaticAnalyzer::is_instruction(string token){
+bool SyntacticAnalyzer::is_instruction(string token){
     if(this->InstructionsTable.count(token) != 0) 
         return true;
     return false;

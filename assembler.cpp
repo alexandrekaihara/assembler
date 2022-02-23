@@ -17,7 +17,7 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     
     this->Err = new ErrorDealer(this->option);
     this->Lex = new LexicalAnalyzer(this->option, this->Err);
-    this->Syn = new SyntaticAnalyzer(this->option, this->Err, this->DirectivesTable, this->InstructionsTable);
+    this->Syn = new SyntacticAnalyzer(this->option, this->Err, this->DirectivesTable, this->InstructionsTable);
     this->Sem = new SemanticAnalyzer(this->option, this->Err);
     this->ObjGen = new ObjectGenerator(this->option, this->Err);
 

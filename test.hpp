@@ -8,7 +8,7 @@
 #include "lexical_analyzer.hpp"
 #include "object_generator.hpp"
 #include "semantic_analyzer.hpp"
-#include "syntatic_analyzer.hpp"
+#include "syntactic_analyzer.hpp"
 #include <string>
 #include <vector>
 
@@ -38,7 +38,7 @@ class TestLex{
 class TestSyn{
     private:
         Assembler* A;
-        SyntaticAnalyzer* Syn;
+        SyntacticAnalyzer* Syn;
     public:
         void set_up();
         void tear_down();
