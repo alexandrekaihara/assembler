@@ -48,7 +48,7 @@ void Assembler::run(){
         // Split line into tokens
         vector<string> tokens = this->Lex->split(line);
         
-        // If there is a definitions of label
+        // If there is a definition of label
         string label;
         if(this->Lex->is_label(tokens[0])){
             this->Lex->is_valid_variable_name(tokens[0], line_counter);

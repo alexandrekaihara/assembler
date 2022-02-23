@@ -16,7 +16,8 @@
 #define LEX_ERR_99CHAR 11
 #define LEX_ERR_STARTNUM 12
 #define LEX_ERR_INVALIDCHAR 13
-
+#define SIN_ERR_INST_DIR_NOT_FOUND 21
+#define SIN_ERR_INVALID_NUM_OF_PARAM 22
 
 struct Symbol{
     int defined = 0;
