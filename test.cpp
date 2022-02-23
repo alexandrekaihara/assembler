@@ -151,7 +151,7 @@ void TestSyn::test(){
     assert(this->Syn->analyze({"STOP"}, 0));
     // Check if error is detected if number of arguments are invalid
     assert(this->Syn->analyze({"ADD"}, 0) == false);
-    assert(this->Syn->analyze({"STOP", "LABEL"}, 0));
+    assert(this->Syn->analyze({"STOP", "LABEL"}, 0) == false);
     // Check if error is detected if the directive name is wrong
     assert(this->Syn->analyze({"ADDD", "LABEL"}, 0) == false);
     // Check if the error of COPY is identified
