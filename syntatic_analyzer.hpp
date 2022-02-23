@@ -16,9 +16,11 @@ class SyntaticAnalyzer{
     private:
         int option;
         ErrorDealer* Err;
+        unordered_map<string, Directive> DirectivesTable;
+        unordered_map<string, Instruction> InstructionsTable;
     public:
-    SyntaticAnalyzer(int option, ErrorDealer* Err);
-    void analyze(vector<string> tokens, unordered_map<string, Directive> DirectivesTable);
+    SyntaticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Directive> DirectivesTable, unordered_map<string, Instruction> InstructionsTable);
+    void analyze(vector<string> tokens);
 };
 
 
