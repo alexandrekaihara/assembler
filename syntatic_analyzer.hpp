@@ -23,6 +23,7 @@ class SyntaticAnalyzer{
     bool analyze(vector<string> tokens, int line_counter);
     bool is_directive(string token);
     bool is_instruction(string token);
+    bool is_number(string number);
 };
 
 

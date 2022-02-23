@@ -87,6 +87,12 @@ void TestSyn::tear_down(){
 }
 
 void TestSyn::test(){
+    // Verify if a string containing number is detected
+    assert(this->Syn->is_number("-10"));
+    assert(this->Syn->is_number("20"));
+    assert(this->Syn->is_number("-1a") == false);
+    assert(this->Syn->is_number("aa") == false);
+
     // Assert if all directives are detected
     assert(this->Syn->is_directive("SPACE"));
     assert(this->Syn->is_directive("CONST"));
@@ -96,6 +102,7 @@ void TestSyn::test(){
     assert(this->Syn->is_directive("ENDMACRO"));
     assert(this->Syn->is_directive("ASDS") == false);
 
+    // Assert if all instructions are detected
     assert(this->Syn->is_instruction("ADD"));
     assert(this->Syn->is_instruction("SUB"));
     assert(this->Syn->is_instruction("MULT"));
