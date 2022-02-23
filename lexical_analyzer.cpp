@@ -39,7 +39,7 @@ string LexicalAnalyzer::clean_line(string line){
     for(i; i<line.length(); i++) if (line[i] != ' ') break;
     
     // Remove all char on pattern
-    string pattern = "\t\n", newlinestr = "";
+    string pattern = "\t\n", newlinestr;
     for(; i<=j; i++){
         if(pattern.find(line[i]) != -1) continue;
         if ((line[i] == ' ') && (line[i+1] == ' ')) continue;
