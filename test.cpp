@@ -213,5 +213,10 @@ int main(){
     TSyn->set_up();
     TSyn->test();
     TSyn->tear_down();
+
+    TestSem* TSem = new TestSem();
+    TSem->set_up();
+    TSem->test();
+    TSem->tear_down();
     return 0;
 }
