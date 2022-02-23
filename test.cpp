@@ -132,8 +132,8 @@ void TestSyn::test(){
     // Check if error is detected if the directive name is wrong
     assert(this->Syn->analyze({"SPACES", "LABEL"}, 0) == false);
     // Check if the CONST reject non number values
-    assert(this->Syn->analyze({"CONST", "LABEL"}, 0));
-    assert(this->Syn->analyze({"CONST", "-9s"}, 0));
+    assert(this->Syn->analyze({"CONST", "LABEL"}, 0) == false);
+    assert(this->Syn->analyze({"CONST", "-9s"}, 0) == false);
     
     // Test all instructions
     assert(this->Syn->analyze({"ADD", "LABEL"}, 0));
