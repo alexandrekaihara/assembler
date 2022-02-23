@@ -13,14 +13,14 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
     int err = 0;
 
     if(this->is_directive(tokens[0]))
-        Directive dir = this->DirectivesTable.at(tokens[0]);
+        struct Directive dir = this->DirectivesTable.at(tokens[0]);
         // Check the number of operands
         if(tokens.size()-1 != dir.operands)
             err = SIN_ERR_INVALID_NUM_OF_PARAM;
         else if(tokens[0].compare("CONST") == 0 && !isdigit(stoi(tokens[1])))
             err = SIN_ERR_INVALID_CONST_SYNTAX;
     else if(this->is_instruction(tokens[0]))
-        Instruction inst = this->InstructionsTable.at(tokens[0]);
+        struct Instruction inst = this->InstructionsTable.at(tokens[0]);
         // Check the number of operands
         if(tokens.size()-1 != inst.operands)
             err = SIN_ERR_INVALID_NUM_OF_PARAM;
@@ -32,8 +32,6 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
     // Register error if enabled option -o
     if ((err != 0) && (this->option == OPTION_OBJ_NUM))
         this->Err->register_err(line_counter, err);
-
-    return data;
 }
 
 
