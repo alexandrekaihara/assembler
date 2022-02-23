@@ -9,7 +9,7 @@ void Test::run(){
 
 
 void TestLex::set_up(){
-    this->Lex = new LexicalAnalyzer(OPTION_OBJ_NUM, new ErrorDealer(OPTION_OBJ_NUM));
+    this->Lex = new LexicalAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_OBJ_NUM));
 }
 
 void TestLex::tear_down(){
