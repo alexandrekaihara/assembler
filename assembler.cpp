@@ -114,6 +114,6 @@ void Assembler::load_instructions(const string filename){
         int opcode = stoi(aux[2]);
         int size = stoi(aux[3]);
         Instruction inst = {operands, opcode, size};
-        this->DirectivesTable[key] = inst; 
+        this->InstructionsTable[key] = inst; 
     }
 }
