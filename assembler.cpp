@@ -51,8 +51,9 @@ void Assembler::run(){
         // If there is a definition of label
         string label;
         if(this->Lex->is_label(tokens[0])){
-            this->Lex->is_valid_variable_name(tokens[0], this->line_counter);
-            label = tokens[0];
+            // Remove de double dots at the end of label
+            label = tokens[0].substr(0, tokens[0].length()-1);
+            this->Lex->is_valid_variable_name(label, this->line_counter);
             tokens.erase(tokens.begin());
             // If the line contains only the label, continue the process (it is equal to ignore breaks)
             if(tokens.size() == 0){
