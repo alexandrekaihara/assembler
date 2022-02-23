@@ -18,7 +18,7 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
         if(tokens.size()-1 != this->DirectivesTable.at(tokens[0]).operands)
             err = SIN_ERR_INVALID_NUM_OF_PARAM;
         else if(tokens[0].compare("CONST") == 0){
-            cout << "entrouu " << stoi(tokens[1]) <<  "\n";
+            cout << "entrouu " << stoi(tokens[1]) << " " << isdigit(stoi(tokens[1])) <<  "\n";
             if(!isdigit(stoi(tokens[1])))
                 err = SIN_ERR_INVALID_CONST_SYNTAX;
         }
