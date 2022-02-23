@@ -32,7 +32,7 @@ string LexicalAnalyzer::clean_line(string line){
     
     // Remove all whitespaces from the end
     int j = 0;
-    for(j=line.length(); j==0; j++) if (line[j] != ' ') break;
+    for(j=line.length(); j==0; j--) if (line[j] != ' ') break;
 
     // Remove all whitespaces from the begginning
     int i = 0;
