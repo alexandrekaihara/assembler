@@ -79,9 +79,9 @@ bool SemanticAnalyzer::check_IF(vector<string> tokens, int line_counter){
 bool SemanticAnalyzer::check_if_all_labels_defined(){
     for(auto sym : this->SymbolsTable){
         // If any symbol was not defined
-        if(!sym.defined){
+        if(!sym.second.defined){
             if(this->option == OPTION_OBJ_NUM){
-                this->Err->register_err(sym.last_occurence, SEM_ERR_LABEL_NOT_DEFINED);
+                this->Err->register_err(sym.second.last_occurence, SEM_ERR_LABEL_NOT_DEFINED);
                 return false;
             }
         }
@@ -92,9 +92,9 @@ bool SemanticAnalyzer::check_if_all_labels_defined(){
 
 bool SemanticAnalyzer::check_if_all_EQU_used(){
     for(auto equ : this->EQU_definitions){
-        if(!equ.defined){
+        if(!equ.second.defined){
             if(this->option == OPTION_OBJ_NUM){
-                this->Err->register_err(sym.last_occurence, SEM_ERR_EQU_NOT_USED);
+                this->Err->register_err(equ.second.last_occurence, SEM_ERR_EQU_NOT_USED);
                 return false;
             }
         }

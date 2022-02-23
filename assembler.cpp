@@ -73,7 +73,7 @@ void Assembler::run(){
         this->line_counter++;
     }
     // Checks if all labels that were used in code, were defined
-    this->Sem->check_if_all_labels_defined(this->SymbolsTable);
+    this->Sem->check_if_all_labels_defined();
 }
 
 
