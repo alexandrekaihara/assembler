@@ -39,7 +39,6 @@ string Assembler::read_file(char* filename){
 
 // This run the algorithm to assemble the file
 void Assembler::run(){
-    cout << "Assembler::run()" << "\n";
     // For each line inside the file
     istringstream iss(this->text); 
     for(string line; getline(iss, line);){
@@ -59,6 +58,7 @@ void Assembler::run(){
         }
 
         // REMOVER DEPOIS
+        cout << line << "\n";
         for(int i=0; i<tokens.size(); i++)
             cout << tokens[i] << "/"; 
         cout << '\n';
