@@ -69,7 +69,7 @@ void Assembler::run(){
 
 
 // Loads the directives especifications of this assembly language into the DirectivesTable
-void Assembler::load_directives(const string filename){
+void Assembler::load_directives(char* filename){
     string text = this->read_file(filename);
     
     istringstream iss(this->text); 
@@ -94,7 +94,7 @@ void Assembler::load_directives(const string filename){
 
 
 // Loads the instructions especifications of this assembly language into the InstructionsTable
-void Assembler::load_instructions(const string filename){
+void Assembler::load_instructions(char* filename){
     string text = this->read_file(filename);
     
     istringstream iss(this->text); 
