@@ -20,11 +20,28 @@
 #define SYN_ERR_INVALID_NUM_OF_PARAM 22
 #define SYN_ERR_INVALID_COPY_SYNTAX 23
 #define SYN_ERR_INVALID_CONST_SYNTAX 24
+#define SEM_ERR_MISPLACED_EQU_DEF 31
+#define SEM_ERR_MULTIPLE_LABEL_DEF 32
+#define SEM_ERR_IF_WITHOUT_EQU_DEF 33
+#define SEM_ERR_LABEL_NOT_DEFINED 34
+#define SEM_ERR_EQU_NOT_USED 35
+#define SEM_ERR_MULTIPLE_MACRO_DEF 36
+#define SEM_ERR_ENDMACRO_WITHOUT_MACRO_DEF 37
+#define SEM_ERR_MACRO_NOT_USED 38
+#define SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF 39
+
+
+
+struct EQU{
+    string token;
+    bool defined = false;
+};
 
 
 struct Symbol{
-    int defined = 0;
+    bool defined = false;
     int last_occurence = -1;
+    int position = -1;
 };
 
 

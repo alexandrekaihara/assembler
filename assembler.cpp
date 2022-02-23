@@ -18,7 +18,7 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->Err = new ErrorDealer(this->option);
     this->Lex = new LexicalAnalyzer(this->option, this->Err);
     this->Syn = new SyntacticAnalyzer(this->option, this->Err, this->DirectivesTable, this->InstructionsTable);
-    this->Sem = new SemanticAnalyzer(this->option, this->Err);
+    this->Sem = new SemanticAnalyzer(this->option, this->Err, this->SymbolsTable);
     this->ObjGen = new ObjectGenerator(this->option, this->Err);
 
     this->text = this->read_file(inputfile);
@@ -68,10 +68,12 @@ void Assembler::run(){
         cout << '\n';
 
         // Verify if the tokens of the line respects the correct syntax of the language
-        bool res = this->Syn->analyze(tokens, this->line_counter);
+        this->Syn->analyze(tokens, this->line_counter);
 
         this->line_counter++;
     }
+    // Checks if all labels that were used in code, were defined
+    this->Sem->check_if_all_labels_defined(this->SymbolsTable);
 }
 
 

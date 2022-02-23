@@ -47,4 +47,15 @@ class TestSyn{
 };
 
 
+class TestSem{
+    private:
+        Assembler* A;
+        SemanticAnalyzer* Sem;
+    public:
+        void set_up();
+        void tear_down();
+        void test();
+        int run();
+};
+
 #endif

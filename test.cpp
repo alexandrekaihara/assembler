@@ -74,6 +74,7 @@ void TestLex::test(){
 }
 
 
+
 void TestSyn::set_up(){
     char* input =(char*)"factorial.s";
     char* output = (char*)"output";
@@ -158,11 +159,41 @@ void TestSyn::test(){
     assert(this->Syn->analyze({"COPY", "LABEL,", "LABEL"}, 0) == false);
     assert(this->Syn->analyze({"COPY", "LABEL ", "LABEL"}, 0) == false);
     assert(this->Syn->analyze({"COPY", "LABEL", "LABEL"}, 0) == false);
-
-
-    
 }
 
+
+
+void TestSem::set_up(){
+    char* input =(char*)"factorial.s";
+    char* output = (char*)"output";
+    this->A = new Assembler(OPTION_OBJ_NUM, input, output);
+    this->Sem = new SemanticAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM), this->A->SymbolsTable);
+}
+
+void TestSem::tear_down(){
+    delete this->A;
+    delete this->Sem;
+}
+
+void TestSem::test(){
+    // Starts a program with EQU definition
+    assert(this->Sem->check_EQU({"EQU", "1"}, "UM", 1));
+    this->A->SymbolsTable["UM"] = {true, -1, 5};
+    // Second instruction is a ADD
+    assert(this->Sem->check_EQU({"ADD", "DOIS"}, "", 1));
+    this->A->SymbolsTable["DOIS"] = {true, -1, 5};
+    // Try to add a EQU definition after a normal instruction 
+    assert(this->Sem->check_EQU({"EQU", "3"}, "TRES", 1) == false);
+
+    // Check if the IF recognizes the UM: EQU 1 label
+    assert(this->Sem->check_IF({"IF", "UM"}, 3));
+    // check if the IF rejects the TREs label. because it couldn't be defined
+    assert(this->Sem->check_IF({"IF", "TRES"}, 3) == false);
+
+    // Trying to define a defined label, must raise error
+    assert(this->Sem->analyze({"MUL", "AUX"}, "UM", 4) == false);
+    assert(this->Sem->analyze({"MUL", "AUX"}, "FATORIAL", 5) == false);
+}
 
 
 //void TestLex::set_up(){}
