@@ -5,9 +5,6 @@
 #include <string>
 
 
-using namespace std;
-
-
 // Defines
 #define OPTION_PRE "-p"
 #define OPTION_PRE_NUM 0
@@ -40,7 +37,7 @@ using namespace std;
 
 
 struct EQU{
-    string token;
+    std::string token;
     bool defined = false;
 };
 
