@@ -21,6 +21,7 @@
 #define SIN_ERR_INVALID_COPY_SYNTAX 23
 #define SIN_ERR_INVALID_CONST_SYNTAX 24
 
+
 struct Symbol{
     int defined = 0;
     int last_occurence = -1;
