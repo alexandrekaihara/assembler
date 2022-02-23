@@ -33,7 +33,6 @@ string Assembler::read_file(char* filename){
     stringstream buffer;
     buffer << infile.rdbuf();
     text = buffer.str();
-    cout << "Assembler::read_file(char* filename): " << text << "\n";
     return text;
 }
 
@@ -56,10 +55,13 @@ void Assembler::run(){
         for(int i=0; i<tokens.size(); i++)
             if(this->Lex->is_label(tokens[i]))
                 this->Lex->is_valid_variable_name(tokens[i], line_counter);
-    
+
+        // REMOVER DEPOIS
         for(int i=0; i<tokens.size(); i++)
             cout << tokens[i] << "/"; 
         cout << '\n';
+
+
 
         this->line_counter++;
     }
@@ -68,11 +70,50 @@ void Assembler::run(){
 
 // Loads the directives especifications of this assembly language into the DirectivesTable
 void Assembler::load_directives(const string filename){
-    cout << "Assembler::load_directives(const string filename)" << "\n";
+    string text = this->read_file(filename);
+    
+    istringstream iss(this->text); 
+    for (string line; getline(iss, line);){
+        // Split line into tokens separated by whitespace
+        int lastindex = 0;
+        vector<string> aux;
+        for(int i=0; i<line.length(); i++){
+            if(line[i] == ' '){
+                int difference = i - lastindex;
+                aux.push_back(last_index, difference);
+            }
+        }
+
+        string key = aux[0];
+        int operands = stoi(aux[1]);
+        int size = stoi(aux[2]);
+        Directive dir = {operands, size};
+        this->DirectivesTable[key] = dir; 
+    }
 }
 
 
 // Loads the instructions especifications of this assembly language into the InstructionsTable
 void Assembler::load_instructions(const string filename){
-    cout << "Assembler::load_instructions(const string filename)" << "\n";
+    string text = this->read_file(filename);
+    
+    istringstream iss(this->text); 
+    for (string line; getline(iss, line);){
+        // Split line into tokens separated by whitespace
+        int lastindex = 0;
+        vector<string> aux;
+        for(int i=0; i<line.length(); i++){
+            if(line[i] == ' '){
+                int difference = i - lastindex;
+                aux.push_back(last_index, difference);
+            }
+        }
+
+        string key = aux[0];
+        int operands = stoi(aux[1]);
+        int opcode = stoi(aux[2]);
+        int size = stoi(aux[3]);
+        Directive dir = {operands, opcode, size};
+        this->DirectivesTable[key] = dir; 
+    }
 }
