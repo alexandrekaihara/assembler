@@ -2,10 +2,10 @@
 #define ETC_HPP_INCLUDED
 
 
-//#include <string>
+#include <string>
 
 
-//using namespace std;
+using namespace std;
 
 
 // Defines
