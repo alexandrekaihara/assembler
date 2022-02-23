@@ -178,7 +178,7 @@ void TestSem::tear_down(){
 void TestSem::test(){
     // Starts a program with EQU definition
     assert(this->Sem->check_EQU({"EQU", "1"}, "UM", 1));
-    this->A->SymbolsTable["UM"] = {true, -1, 5};
+    this->Sem->SymbolsTable["UM"] = {true, -1, 5};
     // Second instruction is a ADD
     assert(this->Sem->check_EQU({"ADD", "DOIS"}, "", 1));
     this->A->SymbolsTable["DOIS"] = {true, -1, 5};

@@ -13,8 +13,8 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
     bool status = false;
     
     // If the label is already defined, raise error
-    cout << "!label.empty is " << !label.empty() << " " << SymbolsTable.count(label) << "\n";
-    if(!label.empty() && SymbolsTable.count(label) != 0)
+    cout << "!label.empty is " << !label.empty() << " " << this->SymbolsTable.count(label) << "\n";
+    if(!label.empty() && this->SymbolsTable.count(label) != 0)
         err = SEM_ERR_MULTIPLE_LABEL_DEF;
     else{
         status = this->check_EQU(tokens, label, line_counter);
