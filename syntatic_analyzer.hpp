@@ -18,7 +18,7 @@ class SyntaticAnalyzer{
         ErrorDealer* Err;
     public:
     SyntaticAnalyzer(int option, ErrorDealer* Err);
-    void analyze(vector<string> tokens, vector<string, Directive> DirectivesTable);
+    void analyze(vector<string> tokens, unordered_map<string, Directive> DirectivesTable);
 };
 
 
