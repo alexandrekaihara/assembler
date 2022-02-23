@@ -42,7 +42,7 @@ void Assembler::run(){
     cout << "Assembler::run()" << "\n";
     // For each line inside the file
     istringstream iss(this->text); 
-    for (string line; getline(iss, line);){
+    for(string line; getline(iss, line);){
         // Clean comments, double whitespaces, tabs, breaklines
         line = this->Lex->to_lower(line);
         line = this->Lex->clean_line(line);
@@ -50,11 +50,15 @@ void Assembler::run(){
         // Split line into tokens
         vector<string> tokens = this->Lex->split(line);
         
-        // Verify all tokens if they are valid 
-        string token, label;
-        for(int i=0; i<tokens.size(); i++)
-            if(this->Lex->is_label(tokens[i]))
-                this->Lex->is_valid_variable_name(tokens[i], line_counter);
+        // If there is a definitions of label
+        string label;
+        if(this->Lex->is_label(tokens[0])){
+            this->Lex->is_valid_variable_name(tokens[i], line_counter);
+            label = tokens[0];
+            tokens.erase(0);
+        }
+
+
 
         // REMOVER DEPOIS
         for(int i=0; i<tokens.size(); i++)
@@ -94,8 +98,6 @@ void Assembler::load_directives(const string filename){
         Directive dir = {operands, size};
         this->DirectivesTable[key] = dir; 
     }
-    for (auto x : this->DirectivesTable)
-        cout << x.first << " " << x.second.operands << " " << x.second.size << endl;
 }
 
 
@@ -127,6 +129,4 @@ void Assembler::load_instructions(const string filename){
         Instruction inst = {operands, opcode, size};
         this->InstructionsTable[key] = inst; 
     }
-    for (auto x : this->InstructionsTable)
-        cout << x.first << " " << x.second.opcode << " " << x.second.operands << " " << x.second.size << endl;
 }

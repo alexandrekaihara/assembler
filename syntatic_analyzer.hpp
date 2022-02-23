@@ -16,6 +16,7 @@ class SyntaticAnalyzer{
     public:
     SyntaticAnalyzer(int option, ErrorDealer* Err);
     string analyze(string line);
+    bool is_label(string token);
 };
 
 

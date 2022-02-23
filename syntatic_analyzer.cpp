@@ -7,4 +7,12 @@ SyntaticAnalyzer::SyntaticAnalyzer(int option, ErrorDealer* Err){
 }
 
 
-string SyntaticAnalyzer::analyze(string line){}
+string SyntaticAnalyzer::analyze(string token){
+
+}
+
+
+bool SyntaticAnalyzer::is_label(string token){
+    if(token.find(':') != -1) return true;
+    else return false;
+}
