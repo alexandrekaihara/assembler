@@ -12,6 +12,7 @@ SyntacticAnalyzer::SyntacticAnalyzer(int option, ErrorDealer* Err, unordered_map
 bool SyntacticAnalyzer::analyze(vector<string> tokens, int line_counter){
     int err = 0;
 
+    cout << this->is_directive(tokens[0]) << " " << this->is_instruction(tokens[0]) << "\n";
     if(this->is_directive(tokens[0]))
         // Check the number of operands
         if((tokens.size()-1) != this->DirectivesTable.at(tokens[0]).operands)
