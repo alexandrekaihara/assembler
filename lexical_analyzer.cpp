@@ -88,7 +88,7 @@ bool LexicalAnalyzer::is_valid_variable_name(string token, int linenumber){
     if(token.length() > 99)
         err = LEX_ERR_99CHAR;
     if(isdigit(token[0]))
-        err = LEX_ERR_99CHAR;
+        err = LEX_ERR_STARTNUM;
     for (int i=0; i<token.length(); i++)
         if (!isalpha(token[i]) && !isdigit(token[i]) && token[i] != '_')
             err = LEX_ERR_INVALIDCHAR;
