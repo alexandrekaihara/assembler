@@ -89,7 +89,6 @@ void Assembler::load_directives(const string filename){
         aux.push_back(line.substr(lastindex, difference));
                 
         string key = aux[0];
-        cout << aux[1] << "\n";
         int operands = stoi(aux[1]);
         int size = stoi(aux[2]);
         Directive dir = {operands, size};
@@ -113,6 +112,7 @@ void Assembler::load_instructions(const string filename){
             if(line[i] == ' '){
                 int difference = i - lastindex;
                 aux.push_back(line.substr(lastindex, difference));
+                lastindex = i + 1;
             }
         }
         // Get last element
