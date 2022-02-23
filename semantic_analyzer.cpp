@@ -64,7 +64,7 @@ bool SemanticAnalyzer::check_IF(vector<string> tokens, int line_counter){
     // If the directive is IF
     if(tokens[0].compare("IF") == 0)
         // If there is no definition of EQU on first parameter of IF, raise error
-        if (this->EQU_defintions.count(tokens[1]) == 0)
+        if (this->EQU_definitions.count(tokens[1]) == 0)
             err = SEM_ERR_IF_WITHOUT_EQU_DEF;
     
     if(err != 0){
@@ -76,7 +76,7 @@ bool SemanticAnalyzer::check_IF(vector<string> tokens, int line_counter){
 }
 
 
-void SemanticAnalyzer::check_if_all_labels_defined(){
+bool SemanticAnalyzer::check_if_all_labels_defined(){
     for(auto sym : this->SymbolsTable){
         // If any symbol was not defined
         if(!sym.defined){
@@ -90,7 +90,7 @@ void SemanticAnalyzer::check_if_all_labels_defined(){
 }
 
 
-void SemanticAnalyzer::check_if_all_EQU_used(){
+bool SemanticAnalyzer::check_if_all_EQU_used(){
     for(auto equ : this->EQU_definitions){
         if(!equ.defined){
             if(this->option == OPTION_OBJ_NUM){
@@ -131,7 +131,7 @@ bool SemanticAnalyzer::check_MACRO(vector<string> tokens, string label, int line
 }
 
 
-bool SemanticAnalyzer::end_check_MACRO(){
+bool SemanticAnalyzer::end_check_MACRO(int line_counter){
     int err = 0;
 
     if(!this->macro_used)
