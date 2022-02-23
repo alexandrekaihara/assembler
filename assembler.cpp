@@ -90,7 +90,7 @@ void Assembler::load_directives(const string filename){
         Directive dir = {operands, size};
         this->DirectivesTable[key] = dir; 
     }
-    for (auto x : umap)
+    for (auto x : this->DirectivesTable)
         cout << x.first << " " << x.second << endl;
 }
 
@@ -118,6 +118,6 @@ void Assembler::load_instructions(const string filename){
         Instruction inst = {operands, opcode, size};
         this->InstructionsTable[key] = inst; 
     }
-    for (auto x : umap)
+    for (auto x : this->InstructionsTable)
         cout << x.first << " " << x.second << endl;
 }
