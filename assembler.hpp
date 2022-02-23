@@ -24,16 +24,16 @@ class Assembler{
         string outputfile;
         string macrodefinition;
 
-        unordered_map<string, Symbol> SymbolsTable;
-        unordered_map<string, Directive> DirectivesTable;
-        unordered_map<string, Instruction> InstructionsTable;
-
         string read_file(char* filename);
         void load_instructions(const string filename);
         void load_directives(const string filename);
     public:
         Assembler(int option, char* inputfile, char* outputfile);
         
+        unordered_map<string, Symbol> SymbolsTable;
+        unordered_map<string, Directive> DirectivesTable;
+        unordered_map<string, Instruction> InstructionsTable;
+
         ErrorDealer* Err;
         LexicalAnalyzer* Lex;
         SyntaticAnalyzer* Syn;
