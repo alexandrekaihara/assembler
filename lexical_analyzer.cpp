@@ -63,7 +63,7 @@ vector<string> LexicalAnalyzer::split(string line){
             // If it has as definition of a label, include the char 
             if(line[i] == ':')
                 length = i - lastindex + 1;
-            // In case of having a ',', save the char and check if there is another whitespace after
+            // In case of having a ', ', save the char and check if there is another whitespace after
             else if (line[i] == ',')
                 if(line[i+1] == ' ')
                     length = i - lastindex + 2;

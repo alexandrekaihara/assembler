@@ -25,7 +25,7 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
         if(tokens.size()-1 != data.operands)
             err = SIN_ERR_INVALID_NUM_OF_PARAM;
         // Check if the COPY instruction has ", "
-        else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(', ') == -1))
+        else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(", ") == -1))
             err = SIN_ERR_INVALID_COPY_SYNTAX;
         
     else err = SIN_ERR_INST_DIR_NOT_FOUND;
