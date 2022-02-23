@@ -68,7 +68,8 @@ void Assembler::run(){
             cout << tokens[i] << "/"; 
         cout << '\n';
 
-        bool res = this->Syn->analyze(tokens, this->line_counter)
+        bool res = this->Syn->analyze(tokens, this->line_counter);
+        cout << "Status of Syntatic analysis: " << res << "\n"; 
 
         this->line_counter++;
     }
