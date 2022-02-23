@@ -44,11 +44,21 @@ void Assembler::run(){
     // For each line inside the file
     istringstream iss(this->text); 
     for (string line; getline(iss, line);){
-        line = this->Syn->analyze(line);
-        line = this->Sem->analyze(line);
-        if (this->ObjGen->analyze(line)){
-            this->ObjGen->write(line);
-        }
+        // Clean comments, double whitespaces, tabs, breaklines
+        line = this->Lex->to_lower(line);
+        line = this->Lex->clean_line(line);
+        
+        // Split line into tokens
+        vector<string> tokens = this->Lex->split(line);
+        
+        // Verify all tokens if they are valid 
+        string token, label;
+        for(int i=0; i<tokens.size(); i++)
+            this->Lex->is_valid_variable_name(tokens[i]);
+    
+        for(int i=0; i<tokens.size(); i++)
+            cout << tokens[i] << " / "; 
+        cout << '\n';
     }
 }
 
