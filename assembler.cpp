@@ -73,9 +73,9 @@ void Assembler::run(){
 
 // Loads the directives especifications of this assembly language into the DirectivesTable
 void Assembler::load_directives(const string filename){
-    string text = this->read_file((char*)filename.c_str());
+    string aux = this->read_file((char*)filename.c_str());
     
-    istringstream iss(this->text); 
+    istringstream iss(aux); 
     for (string line; getline(iss, line);){
         // Split line into tokens separated by whitespace
         int lastindex = 0;
@@ -102,9 +102,9 @@ void Assembler::load_directives(const string filename){
 
 // Loads the instructions especifications of this assembly language into the InstructionsTable
 void Assembler::load_instructions(const string filename){
-    string text = this->read_file((char*)filename.c_str());
+    string aux = this->read_file((char*)filename.c_str());
     
-    istringstream iss(this->text); 
+    istringstream iss(this->aux); 
     for (string line; getline(iss, line);){
         // Split line into tokens separated by whitespace
         int lastindex = 0;
