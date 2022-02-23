@@ -54,11 +54,13 @@ void Assembler::run(){
         // Verify all tokens if they are valid 
         string token, label;
         for(int i=0; i<tokens.size(); i++)
-            this->Lex->is_valid_variable_name(tokens[i]);
+            this->Lex->is_valid_variable_name(tokens[i], line_counter);
     
         for(int i=0; i<tokens.size(); i++)
             cout << tokens[i] << " / "; 
         cout << '\n';
+
+        this->line_counter++;
     }
 }
 
