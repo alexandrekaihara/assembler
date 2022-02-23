@@ -13,14 +13,14 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
     int err = 0;
 
     if(this->is_directive(tokens[0]))
-        Directive data = this->DirectivesTable[tokens[0]];
+        Directive data = this->DirectivesTable.at(tokens[0]);
         // Check the number of operands
         if(tokens.size()-1 != data.operands)
             err = SIN_ERR_INVALID_NUM_OF_PARAM;
         else if(tokens[0].compare("CONST") == 0 && !isdigit(stoi(tokens[1])))
             err = SIN_ERR_INVALID_CONST_SYNTAX;
     else if(this->is_instruction(tokens[0]))
-        Instruction data = this->InstructionsTable[tokens[0]];
+        Instruction data = this->InstructionsTable.at(tokens[0]);
         // Check the number of operands
         if(tokens.size()-1 != data.operands)
             err = SIN_ERR_INVALID_NUM_OF_PARAM;
