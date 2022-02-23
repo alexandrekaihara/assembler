@@ -57,7 +57,7 @@ void Assembler::run(){
             this->Lex->is_valid_variable_name(tokens[i], line_counter);
     
         for(int i=0; i<tokens.size(); i++)
-            cout << tokens[i] << " / "; 
+            cout << tokens[i] << "/"; 
         cout << '\n';
 
         this->line_counter++;
