@@ -27,8 +27,7 @@ void TestLex::test(){
     
     // Test if it cleans the first whitespaces
     res = this->Lex->clean_line("  COPY A, B");
-    string aux1 = "  COPY A, B", aux2 = "COPY A, B";
-    cout << to_string(aux1.length()) << " " << to_string(aux2.length()) << " " << to_string(res.length()) << " " << "\n";
+    cout << res << "\n";
     assert(res.compare("COPY A, B") == 0);
 
     // Test if it removes the double spaces
@@ -44,6 +43,8 @@ void TestLex::test(){
     // Test if it removes comments
     res = this->Lex->clean_line("  COPY A, B ; askksksdlafkçasl k lçdkfçalkweopiop  0909kdsçla 9012 i00");
     cout << res << "\n";
+    for(int i =0; i<res.length(); i++)
+        cout << i << ' ' << +res[i] << "\n";
     assert(res.compare("COPY A, B") == 0);
 
     // Test if it splits commands correctly
