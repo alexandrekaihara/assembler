@@ -22,8 +22,8 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->ObjGen = new ObjectGenerator(this->option, this->Err);
 
     this->text = this->read_file(inputfile);
-    this->load_directives(DIRECTIVEFILE);
-    this->load_instructions(INSTRUCTIONFILE);
+    this->load_directives(DIRECTIVEFILE.c_str());
+    this->load_instructions(INSTRUCTIONFILE.c_str());
 }
 
 
