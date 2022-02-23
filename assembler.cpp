@@ -69,7 +69,7 @@ void Assembler::run(){
         cout << '\n';
 
 
-
+        cout << DirectivesTable.at(tokens[0]);
 
         this->line_counter++;
     }
