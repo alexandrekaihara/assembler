@@ -12,12 +12,13 @@ SyntacticAnalyzer::SyntacticAnalyzer(int option, ErrorDealer* Err, unordered_map
 bool SyntacticAnalyzer::analyze(vector<string> tokens, int line_counter){
     int err = 0;
 
-    if(this->is_directive(tokens[0]))
+    if(this->is_directive(tokens[0])){
         // Check the number of operands
         if((tokens.size()-1) != this->DirectivesTable.at(tokens[0]).operands)
             err = SYN_ERR_INVALID_NUM_OF_PARAM;
         else if(tokens[0].compare("CONST") == 0 && !this->is_number(tokens[1]))
             err = SYN_ERR_INVALID_CONST_SYNTAX;
+    }
     else if(this->is_instruction(tokens[0])){
         // Check the number of operands
         if(tokens.size()-1 != this->InstructionsTable.at(tokens[0]).operands)
