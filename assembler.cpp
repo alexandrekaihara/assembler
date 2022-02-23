@@ -69,7 +69,7 @@ void Assembler::run(){
         cout << '\n';
 
 
-        cout << DirectivesTable.at(tokens[0]);
+        cout << tokens[0] << " " << DirectivesTable.at(tokens[0]).operands << " " << DirectivesTable.at(tokens[0]).size;
 
         this->line_counter++;
     }
