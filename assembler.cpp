@@ -84,9 +84,10 @@ void Assembler::load_directives(const string filename){
             }
         }
 
+        string::size_type sz;
         string key = aux[0];
-        int operands = stoi(aux[1], size_t);
-        int size = stoi(aux[2], size_t);
+        int operands = stoi(aux[1], &sz);
+        int size = stoi(aux[2], &sz);
         Directive dir = {operands, size};
         this->DirectivesTable[key] = dir; 
     }
@@ -110,11 +111,12 @@ void Assembler::load_instructions(const string filename){
                 aux.push_back(line.substr(lastindex, difference));
             }
         }
-
+        
+        string::size_type sz;
         string key = aux[0];
-        int operands = stoi(aux[1], size_t);
-        int opcode = stoi(aux[2], size_t);
-        int size = stoi(aux[3], size_t);
+        int operands = stoi(aux[1], &sz);
+        int opcode = stoi(aux[2], &sz);
+        int size = stoi(aux[3], &sz);
         Instruction inst = {operands, opcode, size};
         this->InstructionsTable[key] = inst; 
     }
