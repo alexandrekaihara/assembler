@@ -191,17 +191,17 @@ void TestSem::test(){
     assert(this->Sem->check_IF({"IF", "TRES"}, 3) == false);
 
     // Define a ENDMACRO without macro is illegal
-    assert(this->Sem->check_MACRO({"ENDMACRO"}, 4) == false);
+    assert(this->Sem->check_MACRO({"ENDMACRO"}, "", 4) == false);
     // Define macro
-    assert(this->Sem->check_MACRO({"MACRO"}, 4));
+    assert(this->Sem->check_MACRO({"MACRO"}, "", 4));
     // Will fail because the ENDMACRO was not defined
     assert(this->Sem->end_check_MACRO(0) == false);
     // Test it gives no error after defining ENDMACRO correctly
-    assert(this->Sem->check_MACRO({"ENDMACRO"}));
+    assert(this->Sem->check_MACRO({"ENDMACRO"}, "", 5));
 
     // Trying to define a defined label, must raise error
-    assert(this->Sem->analyze({"MUL", "AUX"}, "UM", 4) == false);
-    assert(this->Sem->analyze({"MUL", "AUX"}, "FATORIAL", 5) == false);
+    assert(this->Sem->analyze({"MUL", "AUX"}, "UM", 6) == false);
+    assert(this->Sem->analyze({"MUL", "AUX"}, "FATORIAL", 7) == false);
 }
 
 
