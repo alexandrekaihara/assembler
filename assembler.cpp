@@ -81,6 +81,7 @@ void Assembler::load_directives(const string filename){
             if(line[i] == ' '){
                 int difference = i - lastindex;
                 aux.push_back(line.substr(lastindex, difference));
+                lastindex = i + 1;
             }
         }
 
