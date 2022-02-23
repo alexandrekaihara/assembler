@@ -29,8 +29,9 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
     else err = SIN_ERR_INST_DIR_NOT_FOUND;
     
     // Register error if enabled option -o
-    if ((err != 0) && (this->option == OPTION_OBJ_NUM)){
-        this->Err->register_err(line_counter, err);
+    if (err != 0){
+        if (this->option == OPTION_OBJ_NUM)
+            this->Err->register_err(line_counter, err);
         return false;
     }
     return true;
