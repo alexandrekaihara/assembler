@@ -135,10 +135,10 @@ bool SemanticAnalyzer::end_check_MACRO(int line_counter){
     int err = 0;
 
     if(!this->macro_used)
-        err = SEM_ERR_MACRO_NOT_USED;
+        this->Err->register_err(line_counter, SEM_ERR_MACRO_NOT_USED);
 
     if(this->waiting_for_ENDMACRO)
-        err = SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF;
+        this->Err->register_err(line_counter, SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF);
     
     if(err != 0){
         if(this->option == OPTION_MAC_NUM)

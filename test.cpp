@@ -190,6 +190,12 @@ void TestSem::test(){
     // check if the IF rejects the TREs label. because it couldn't be defined
     assert(this->Sem->check_IF({"IF", "TRES"}, 3) == false);
 
+    // Define a ENDMACRO without macro is illegal
+    assert(this->Sem->check_MACRO({"ENDMACRO"}, 4) == false);
+    // Define macro
+    assert(this->Sem->check_MACRO({"MACRO"}, 4));
+
+
     // Trying to define a defined label, must raise error
     assert(this->Sem->analyze({"MUL", "AUX"}, "UM", 4) == false);
     assert(this->Sem->analyze({"MUL", "AUX"}, "FATORIAL", 5) == false);
