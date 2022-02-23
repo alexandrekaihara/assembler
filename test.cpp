@@ -120,6 +120,7 @@ void TestSyn::test(){
     assert(this->Syn->analyze({"MACRO"}, 0));
     assert(this->Syn->analyze({"ENDMACRO"}, 0));
     // Check if error is detected if number of arguments are invalid
+    cout << this->Syn->analyze({"SPACE", "LABEL"}, 0) << "\n";
     assert(this->Syn->analyze({"SPACE", "LABEL"}, 0) == false);
     assert(this->Syn->analyze({"EQU"}, 0) == false);
     // Check if error is detected if the directive name is wrong
