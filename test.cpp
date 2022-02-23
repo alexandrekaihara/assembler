@@ -29,7 +29,7 @@ void TestLex::test(){
     res = this->Lex->clean_line("  COPY A, B");
     stringstream ss;
     ss << res.compare("COPY A, B"); 
-    cout << res << " " << aa.str() <<  "\n";
+    cout << res << " " << ss.str() <<  "\n";
     assert(res.compare("COPY A, B") == 0);
 
     // Test if it removes the double spaces
