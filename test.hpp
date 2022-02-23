@@ -3,6 +3,7 @@
 
 
 #include "etc.hpp"
+#include "assembler.hpp"
 #include "error_dealer.hpp"
 #include "lexical_analyzer.hpp"
 #include "object_generator.hpp"
@@ -20,13 +21,24 @@ public:
     virtual void set_up() = 0;
     virtual void tear_down() = 0;
     virtual void test() = 0;
-    void run();
 };
 
 
 class TestLex{
     private:
         LexicalAnalyzer* Lex;
+    public:
+        void set_up();
+        void tear_down();
+        void test();
+        int run();
+};
+
+
+class TestSyn{
+    private:
+        Assembler* A;
+        SyntaticAnalyzer* Syn;
     public:
         void set_up();
         void tear_down();

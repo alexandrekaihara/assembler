@@ -4,10 +4,6 @@
 #include <iostream>
 
 
-void Test::run(){
-}
-
-
 void TestLex::set_up(){
     this->Lex = new LexicalAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_OBJ_NUM));
 }
@@ -78,6 +74,87 @@ void TestLex::test(){
 }
 
 
+void TestSyn::set_up(){
+    this->A = new Assembler(OPTION_MAC_NUM, "factorial.s", "outputfile");
+    this->Syn = new SyntaticAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_OBJ_NUM), this->A->DirectivesTable, this->A->InstructionsTable);
+}
+
+void TestSyn::tear_down(){
+    delete this->A;
+    delete this->Syn;
+}
+
+void TestSyn::test(){
+    // Assert if all directives are detected
+    assert(this->Syn->is_directive("SPACE"));
+    assert(this->Syn->is_directive("CONST"));
+    assert(this->Syn->is_directive("EQU"));
+    assert(this->Syn->is_directive("IF"));
+    assert(this->Syn->is_directive("MACRO"));
+    assert(this->Syn->is_directive("ENDMACRO"));
+    assert(this->Syn->is_directive("ASDS") == false);
+
+    assert(this->Syn->is_instruction("ADD"));
+    assert(this->Syn->is_instruction("SUB"));
+    assert(this->Syn->is_instruction("MULT"));
+    assert(this->Syn->is_instruction("DIV"));
+    assert(this->Syn->is_instruction("JMP"));
+    assert(this->Syn->is_instruction("JMPN"));
+    assert(this->Syn->is_instruction("JMPP"));
+    assert(this->Syn->is_instruction("JMPZ"));
+    assert(this->Syn->is_instruction("COPY"));
+    assert(this->Syn->is_instruction("STORE"));
+    assert(this->Syn->is_instruction("INPUT"));
+    assert(this->Syn->is_instruction("OUTPUT"));
+    assert(this->Syn->is_instruction("STOP"));
+    assert(this->Syn->is_instruction("AAAAA") == false);
+
+    // Test if all commands are detected
+    assert(this->Syn->analyze({"SPACE"}, 0));
+    assert(this->Syn->analyze({"CONST", "40"}, 0));
+    assert(this->Syn->analyze({"CONST", "-40"}, 0));
+    assert(this->Syn->analyze({"EQU", "LABEL"}, 0));
+    assert(this->Syn->analyze({"IF", "LABEL"}, 0));
+    assert(this->Syn->analyze({"MACRO"}, 0));
+    assert(this->Syn->analyze({"ENDMACRO"}, 0));
+    // Check if error is detected if number of arguments are invalid
+    assert(this->Syn->analyze({"SPACE", "LABEL"}, 0) == false);
+    assert(this->Syn->analyze({"EQU"}, 0) == false);
+    // Check if error is detected if the directive name is wrong
+    assert(this->Syn->analyze({"SPACES", "LABEL"}, 0) == false);
+    // Check if the CONST reject non number values
+    assert(this->Syn->analyze({"CONST", "LABEL"}, 0));
+    assert(this->Syn->analyze({"CONST", "-9s"}, 0));
+    
+    // Test all instructions
+    assert(this->Syn->analyze({"ADD", "LABEL"}, 0));
+    assert(this->Syn->analyze({"SUB", "LABEL"}, 0));
+    assert(this->Syn->analyze({"MULT", "LABEL"}, 0));
+    assert(this->Syn->analyze({"DIV", "LABEL"}, 0));
+    assert(this->Syn->analyze({"JMP", "LABEL"}, 0));
+    assert(this->Syn->analyze({"JMPN", "LABEL"}, 0));
+    assert(this->Syn->analyze({"JMPP", "LABEL"}, 0));
+    assert(this->Syn->analyze({"JMPZ", "LABEL"}, 0));
+    assert(this->Syn->analyze({"COPY", "LABEL, ", "LABEL"}, 0));
+    assert(this->Syn->analyze({"STORE", "LABEL"}, 0));
+    assert(this->Syn->analyze({"INPUT", "LABEL"}, 0));
+    assert(this->Syn->analyze({"OUTPUT", "LABEL"}, 0));
+    assert(this->Syn->analyze({"STOP"}, 0));
+    // Check if error is detected if number of arguments are invalid
+    assert(this->Syn->analyze({"ADD"}, 0) == false);
+    assert(this->Syn->analyze({"STOP", "LABEL"}, 0));
+    // Check if error is detected if the directive name is wrong
+    assert(this->Syn->analyze({"ADDD", "LABEL"}, 0) == false);
+    // Check if the error of COPY is identified
+    assert(this->Syn->analyze({"COPY", "LABEL,", "LABEL"}, 0) == false);
+    assert(this->Syn->analyze({"COPY", "LABEL ", "LABEL"}, 0) == false);
+    assert(this->Syn->analyze({"COPY", "LABEL", "LABEL"}, 0) == false);
+
+
+    
+}
+
+
 
 //void TestLex::set_up(){}
 
@@ -89,9 +166,12 @@ void TestLex::test(){
 int main(){
     TestLex* TLex = new TestLex();
     TLex->set_up();
-
     TLex->test();
-
     TLex->tear_down();
+
+    TestSyn* TSyn = new TestSyn();
+    TSyn->set_up();
+    TSyn->test();
+    TSyn->tear_down();
     return 0;
 }
