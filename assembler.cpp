@@ -22,8 +22,8 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->ObjGen = new ObjectGenerator(this->option, this->Err);
 
     this->text = this->read_file(inputfile);
-    //this->load_directives(DIRECTIVEFILE);
-    //this->load_instructions(INSTRUCTIONFILE);
+    this->load_directives(DIRECTIVEFILE);
+    this->load_instructions(INSTRUCTIONFILE);
 }
 
 
@@ -32,8 +32,7 @@ string Assembler::read_file(char* filename){
     ifstream infile(filename);
     stringstream buffer;
     buffer << infile.rdbuf();
-    text = buffer.str();
-    return text;
+    return buffer.str();
 }
 
 
@@ -58,7 +57,6 @@ void Assembler::run(){
         }
 
         // REMOVER DEPOIS
-        cout << line << "\n";
         for(int i=0; i<tokens.size(); i++)
             cout << tokens[i] << "/"; 
         cout << '\n';
