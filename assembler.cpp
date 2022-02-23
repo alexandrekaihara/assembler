@@ -80,7 +80,7 @@ void Assembler::load_directives(const string filename){
         for(int i=0; i<line.length(); i++){
             if(line[i] == ' '){
                 int difference = i - lastindex;
-                aux.push_back(last_index, difference);
+                aux.push_back(lastindex, difference);
             }
         }
 
@@ -105,7 +105,7 @@ void Assembler::load_instructions(const string filename){
         for(int i=0; i<line.length(); i++){
             if(line[i] == ' '){
                 int difference = i - lastindex;
-                aux.push_back(last_index, difference);
+                aux.push_back(lastindex, difference);
             }
         }
 
@@ -113,7 +113,7 @@ void Assembler::load_instructions(const string filename){
         int operands = stoi(aux[1]);
         int opcode = stoi(aux[2]);
         int size = stoi(aux[3]);
-        Directive dir = {operands, opcode, size};
-        this->DirectivesTable[key] = dir; 
+        Instruction inst = {operands, opcode, size};
+        this->DirectivesTable[key] = inst; 
     }
 }
