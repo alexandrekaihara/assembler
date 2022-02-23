@@ -55,7 +55,7 @@ void Assembler::run(){
         if(this->Lex->is_label(tokens[0])){
             this->Lex->is_valid_variable_name(tokens[0], line_counter);
             label = tokens[0];
-            tokens.erase(0);
+            tokens.erase(tokens.begin());
         }
 
         // REMOVER DEPOIS
