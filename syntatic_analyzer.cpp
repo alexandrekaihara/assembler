@@ -33,14 +33,14 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
 
 
 bool SyntaticAnalyzer::is_directive(string token){
-    if(this->DirectivesTable.count(tokens[0]) != 0) 
+    if(this->DirectivesTable.count(token) != 0) 
         return true;
     return false;
 }
 
 
 bool SyntaticAnalyzer::is_instruction(string token){
-    if(this->InstructionsTable.count(tokens[0]) != 0) 
+    if(this->InstructionsTable.count(token) != 0) 
         return true;
     return false;
 }
