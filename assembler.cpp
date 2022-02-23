@@ -104,7 +104,7 @@ void Assembler::load_directives(const string filename){
 void Assembler::load_instructions(const string filename){
     string aux = this->read_file((char*)filename.c_str());
     
-    istringstream iss(this->aux); 
+    istringstream iss(aux); 
     for (string line; getline(iss, line);){
         // Split line into tokens separated by whitespace
         int lastindex = 0;
