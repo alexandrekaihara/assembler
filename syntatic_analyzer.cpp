@@ -12,14 +12,14 @@ SyntaticAnalyzer::SyntaticAnalyzer(int option, ErrorDealer* Err, unordered_map<s
 bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
     int err = 0;
     // If there is the key, so get the diretive or instruction info
-    if(this->DirectivesTable.count(tokens[0]) != 0)
-        Directive data = this->DirectivesTable[tokens[0]];
-    else if(this->InstructionsTable.count(tokens[0]) != 0)
-        Instruction data = this->InstructionsTable[tokens[0]];
-    else{
+    if (!this->is_directive(tokens[0]) && !this->is_instruction(tokens[0]))
         err = SIN_ERR_INST_DIR_NOT_FOUND;
-    } 
 
+    if(this->is_directive(tokens[0]))
+        Directive data = this->DirectivesTable[tokens[0]];
+    if(this->is_instruction(tokens[0]))
+        Instruction data = this->InstructionsTable[tokens[0]];
+    
     // Check the number of operands
     if(tokens.size()-1 != data.operands)
         err = SIN_ERR_INVALID_NUM_OF_PARAM;
@@ -32,3 +32,15 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
 }
 
 
+bool SyntaticAnalyzer::is_directive(string token){
+    if(this->DirectivesTable.count(tokens[0]) != 0) 
+        return true;
+    return false;
+}
+
+
+bool SyntaticAnalyzer::is_instruction(string token){
+    if(this->InstructionsTable.count(tokens[0]) != 0) 
+        return true;
+    return false;
+}
