@@ -68,8 +68,7 @@ void Assembler::run(){
             cout << tokens[i] << "/"; 
         cout << '\n';
 
-
-        cout << tokens[0] << " " << DirectivesTable.at(tokens[0]).operands << " " << DirectivesTable.at(tokens[0]).size;
+        cout << tokens[0] << " " << InstructionsTable.at(tokens[0]).operands << " " << InstructionsTable.at(tokens[0]).size;
 
         this->line_counter++;
     }
