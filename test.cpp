@@ -18,31 +18,25 @@ void TestLex::tear_down(){
 
 void TestLex::test(){
     string res = this->Lex->to_lower("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_");
-    cout << res << "\n";
     assert(res.compare("abcdefghijklmnopqrstuvwxyz1234567890_") == 0);
 
     res = this->Lex->to_lower("aB");
-    cout << res << "\n";
     assert(res.compare("ab") == 0);
     
     // Test if it cleans the first whitespaces
     res = this->Lex->clean_line("  COPY A, B");
-    cout << res << "\n";
     assert(res.compare("COPY A, B") == 0);
 
     // Test if it removes the double spaces
     res = this->Lex->clean_line("  COPY  A,      B");
-    cout << res << "\n";
     assert(res.compare("COPY A, B") == 0);
 
     // Test if it removes tabs and breaklines
     res = this->Lex->clean_line("  \t\tCOPY A, \tB");
-    cout << res << "\n";
     assert(res.compare("COPY A, B") == 0);
 
     // Test if it removes comments
     res = this->Lex->clean_line("  COPY A, B ; askksksdlafkçasl k lçdkfçalkweopiop  0909kdsçla 9012 i00");
-    cout << res << "\n";
     assert(res.compare("COPY A, B") == 0);
 
     // Test if it splits commands correctly
