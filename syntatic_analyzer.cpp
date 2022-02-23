@@ -7,12 +7,9 @@ SyntaticAnalyzer::SyntaticAnalyzer(int option, ErrorDealer* Err){
 }
 
 
-string SyntaticAnalyzer::analyze(string token){
-
-}
-
-
-bool SyntaticAnalyzer::is_label(string token){
-    if(token.find(':') != -1) return true;
-    else return false;
+void SyntaticAnalyzer::analyze(vector<string> tokens, vector<string, Directives> ){
+    for(int i=0; i<tokens; i++){
+        try:
+            this->
+    }
 }

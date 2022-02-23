@@ -4,7 +4,6 @@
 #include <unordered_map>
 #include "lexical_analyzer.hpp"
 #include "semantic_analyzer.hpp"
-#include "syntatic_analyzer.hpp"
 #include "object_generator.hpp"
 #include "error_dealer.hpp"
 
@@ -29,6 +28,9 @@ struct Instruction{
     int opcode = -1;
     int size = -1;
 };
+
+
+#include "syntatic_analyzer.hpp"
 
 
 class Assembler{

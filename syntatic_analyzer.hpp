@@ -15,8 +15,7 @@ class SyntaticAnalyzer{
         ErrorDealer* Err;
     public:
     SyntaticAnalyzer(int option, ErrorDealer* Err);
-    string analyze(string line);
-    bool is_label(string token);
+    void analyze(vector<string> tokens);
 };
 
 

@@ -58,13 +58,12 @@ void Assembler::run(){
             tokens.erase(0);
         }
 
-
-
         // REMOVER DEPOIS
         for(int i=0; i<tokens.size(); i++)
             cout << tokens[i] << "/"; 
         cout << '\n';
 
+        
 
 
         this->line_counter++;
