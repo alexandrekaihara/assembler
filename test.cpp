@@ -204,11 +204,10 @@ void TestSem::test(){
     this->Sem->set_macro_used();
     assert(this->Sem->end_check_MACRO(5));
 
-
-
     // Trying to define a defined label, must raise error
     assert(this->Sem->analyze({"MUL", "AUX"}, "UM", 6) == false);
-    assert(this->Sem->analyze({"MUL", "AUX"}, "FATORIAL", 7) == false);
+    // Case in which the label is not defined    
+    assert(this->Sem->analyze({"MUL", "AUX"}, "FATORIAL", 7));
 }
 
 
