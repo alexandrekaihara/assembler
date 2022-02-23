@@ -181,7 +181,7 @@ void TestSem::test(){
     this->Sem->SymbolsTable["UM"] = {true, -1, 5};
     // Second instruction is a ADD
     assert(this->Sem->check_EQU({"ADD", "DOIS"}, "", 1));
-    this->A->SymbolsTable["DOIS"] = {true, -1, 5};
+    this->Sem->SymbolsTable["DOIS"] = {true, -1, 5};
     // Try to add a EQU definition after a normal instruction 
     assert(this->Sem->check_EQU({"EQU", "3"}, "TRES", 1) == false);
 

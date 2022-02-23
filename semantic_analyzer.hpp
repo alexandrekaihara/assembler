@@ -20,9 +20,9 @@ class SemanticAnalyzer{
         bool macro_used = false;
         string macro_label;
         ErrorDealer* Err;
+    public:
         unordered_map<string, EQU> EQU_definitions;
         unordered_map<string, Symbol> SymbolsTable;
-    public:
         SemanticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Symbol> SymbolsTable);
         bool analyze(vector<string> tokens, string label, int line_counter);
         bool check_EQU(vector<string> tokens, string label, int line_counter);
