@@ -53,7 +53,7 @@ void Assembler::run(){
         // If there is a definitions of label
         string label;
         if(this->Lex->is_label(tokens[0])){
-            this->Lex->is_valid_variable_name(tokens[i], line_counter);
+            this->Lex->is_valid_variable_name(tokens[0], line_counter);
             label = tokens[0];
             tokens.erase(0);
         }
@@ -63,7 +63,7 @@ void Assembler::run(){
             cout << tokens[i] << "/"; 
         cout << '\n';
 
-        
+
 
 
         this->line_counter++;
