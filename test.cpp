@@ -75,9 +75,7 @@ void TestLex::test(){
 
 
 void TestSyn::set_up(){
-    const string input = "factorial.s";
-    const string output = "output";
-    this->A = new Assembler(OPTION_MAC_NUM, input, output);
+    this->A = new Assembler(OPTION_MAC_NUM, TESTFILE_INPUT, TESTFILE_OUTPUT);
     this->Syn = new SyntaticAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_OBJ_NUM), this->A->DirectivesTable, this->A->InstructionsTable);
 }
 
