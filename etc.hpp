@@ -1,6 +1,13 @@
 #ifndef ETC_HPP_INCLUDED
 #define ETC_HPP_INCLUDED
 
+
+#include <string>
+
+
+using namespace std;
+
+
 // Defines
 #define OPTION_PRE "-p"
 #define OPTION_PRE_NUM 0
