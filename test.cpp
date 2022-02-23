@@ -5,7 +5,7 @@
 
 
 void TestLex::set_up(){
-    this->Lex = new LexicalAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_OBJ_NUM));
+    this->Lex = new LexicalAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM));
 }
 
 void TestLex::tear_down(){
@@ -78,7 +78,7 @@ void TestSyn::set_up(){
     char* input =(char*)"factorial.s";
     char* output = (char*)"output";
     this->A = new Assembler(OPTION_OBJ_NUM, input, output);
-    this->Syn = new SyntaticAnalyzer(OPTION_OBJ_NUM, new ErrorDealer(OPTION_OBJ_NUM), this->A->DirectivesTable, this->A->InstructionsTable);
+    this->Syn = new SyntaticAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM), this->A->DirectivesTable, this->A->InstructionsTable);
 }
 
 void TestSyn::tear_down(){
@@ -127,7 +127,6 @@ void TestSyn::test(){
     assert(this->Syn->analyze({"MACRO"}, 0));
     assert(this->Syn->analyze({"ENDMACRO"}, 0));
     // Check if error is detected if number of arguments are invalid
-    cout << this->Syn->analyze({"SPACE", "LABEL"}, 0) << "\n";
     assert(this->Syn->analyze({"SPACE", "LABEL"}, 0) == false);
     assert(this->Syn->analyze({"EQU"}, 0) == false);
     // Check if error is detected if the directive name is wrong
