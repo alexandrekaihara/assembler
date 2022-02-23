@@ -20,8 +20,6 @@
 #define SIN_ERR_INVALID_NUM_OF_PARAM 22
 #define SIN_ERR_INVALID_COPY_SYNTAX 23
 #define SIN_ERR_INVALID_CONST_SYNTAX 24
-#define TESTFILE_INPUT "factorial.s"
-#define TESTFILE_OUTPUT "output"
 
 
 struct Symbol{
