@@ -13,6 +13,7 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
     bool status = false;
     
     // If the label is already defined, raise error
+    cout << "!label.empty is " << !label.empty() << "\n";
     if(!label.empty() && SymbolsTable.count(label) != 0)
         err = SEM_ERR_MULTIPLE_LABEL_DEF;
     else{
@@ -119,6 +120,8 @@ bool SemanticAnalyzer::check_MACRO(vector<string> tokens, string label, int line
         // If there was not defined a MACRO before ENDMACRO, raise error
         if(!this->waiting_for_ENDMACRO)
             err = SEM_ERR_ENDMACRO_WITHOUT_MACRO_DEF;
+        else
+            this->waiting_for_ENDMACRO = false;
     }
     
     // If an error was encountered, register
@@ -135,15 +138,19 @@ bool SemanticAnalyzer::end_check_MACRO(int line_counter){
     int err = 0;
 
     if(!this->macro_used)
-        this->Err->register_err(line_counter, SEM_ERR_MACRO_NOT_USED);
+        if(this->option == OPTION_MAC_NUM){
+            this->Err->register_err(line_counter, SEM_ERR_MACRO_NOT_USED);
+            err = SEM_ERR_MACRO_NOT_USED;
+        }
 
     if(this->waiting_for_ENDMACRO)
-        this->Err->register_err(line_counter, SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF);
-    
-    if(err != 0){
-        if(this->option == OPTION_MAC_NUM)
-            this->Err->register_err(line_counter, err);
-        return false;
+        if(this->option == OPTION_MAC_NUM){
+            this->Err->register_err(line_counter, SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF);
+            err = SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF;
+        }
     }
+
+    if(err != 0)
+        return false;
     return true;
 }
