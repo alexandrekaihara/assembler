@@ -21,13 +21,13 @@ class SemanticAnalyzer{
         string macro_label;
         ErrorDealer* Err;
         unordered_map<string, EQU> EQU_definitions;
-        unordered_map<string, string> SymbolsTable;
+        unordered_map<string, Symbol> SymbolsTable;
     public:
         SemanticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Symbol> SymbolsTable);
         bool analyze(vector<string> tokens, string label, int line_counter);
         bool check_EQU(vector<string> tokens, string label, int line_counter);
         bool check_IF(vector<string> tokens, int line_counter);
-        bool check_MACRO(vector<string> tokens, string label, int line_counter){
+        bool check_MACRO(vector<string> tokens, string label, int line_counter);
         bool check_if_all_labels_defined();
         bool check_if_all_EQU_used();
         bool end_check_MACRO(int line_counter);

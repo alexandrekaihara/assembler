@@ -22,7 +22,7 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
     // Verificar se IF tem uma declaração de EQU anterior
     status = this->check_IF(tokens, line_counter);
 
-    status = this->check_MACRO(tokens, line_counter);
+    status = this->check_MACRO(tokens, label, line_counter);
 
     // If an error was encountered, register
     if(err != 0){
