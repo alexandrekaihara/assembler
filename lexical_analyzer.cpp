@@ -28,7 +28,7 @@ string LexicalAnalyzer::to_lower(string line){
 // Remove comment part from string, tabs, line breaks and spaces
 string LexicalAnalyzer::clean_line(string line){
     // Remove all comment part
-    line = line.substr(0, line.find(';'));
+    line = line.substr(0, line.find(';')-1);
     
     // Remove all whitespaces from the end
     int j = 0;
