@@ -17,7 +17,7 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
 
     if(this->is_directive(tokens[0]))
         Directive data = this->DirectivesTable[tokens[0]];
-    if(this->is_instruction(tokens[0]))
+    else if(this->is_instruction(tokens[0]))
         Instruction data = this->InstructionsTable[tokens[0]];
     
     // Check the number of operands
