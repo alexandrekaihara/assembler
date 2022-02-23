@@ -19,7 +19,7 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
             err = SIN_ERR_INVALID_NUM_OF_PARAM;
         else if(tokens[0].compare("CONST") == 0){
             cout << "entrouu" << "\n";
-            if(!isdigit(stoi(tokens[1]))
+            if(!isdigit(stoi(tokens[1])))
                 err = SIN_ERR_INVALID_CONST_SYNTAX;
         }
     else if(this->is_instruction(tokens[0]))
