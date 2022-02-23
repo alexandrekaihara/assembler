@@ -94,7 +94,7 @@ bool SemanticAnalyzer::check_if_all_EQU_used(){
     for(auto equ : this->EQU_definitions){
         if(!equ.second.defined){
             if(this->option == OPTION_OBJ_NUM){
-                this->Err->register_err(equ.second.last_occurence, SEM_ERR_EQU_NOT_USED);
+                this->Err->register_err(-1, SEM_ERR_EQU_NOT_USED);
                 return false;
             }
         }
