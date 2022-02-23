@@ -28,7 +28,7 @@ void TestLex::test(){
     // Test if it cleans the first whitespaces
     res = this->Lex->clean_line("  COPY A, B");
     string aux = "COPY A, B";
-    assert(res.compare(answer) == 0);
+    assert(res.compare(aux) == 0);
 
     // Test if it removes the double spaces
     res = this->Lex->clean_line("  COPY  A,      B");
