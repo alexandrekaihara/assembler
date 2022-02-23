@@ -22,8 +22,8 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->ObjGen = new ObjectGenerator(this->option, this->Err);
 
     this->text = this->read_file(inputfile);
-    this->load_directives(DIRECTIVEFILE.c_str());
-    this->load_instructions(INSTRUCTIONFILE.c_str());
+    this->load_directives(DIRECTIVEFILE);
+    this->load_instructions(INSTRUCTIONFILE);
 }
 
 
@@ -69,8 +69,8 @@ void Assembler::run(){
 
 
 // Loads the directives especifications of this assembly language into the DirectivesTable
-void Assembler::load_directives(char* filename){
-    string text = this->read_file(filename);
+void Assembler::load_directives(const string filename){
+    string text = this->read_file(filename.c_str());
     
     istringstream iss(this->text); 
     for (string line; getline(iss, line);){
@@ -94,8 +94,8 @@ void Assembler::load_directives(char* filename){
 
 
 // Loads the instructions especifications of this assembly language into the InstructionsTable
-void Assembler::load_instructions(char* filename){
-    string text = this->read_file(filename);
+void Assembler::load_instructions(const string filename){
+    string text = this->read_file(filename.c_str());
     
     istringstream iss(this->text); 
     for (string line; getline(iss, line);){
