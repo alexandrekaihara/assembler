@@ -28,8 +28,11 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
     else err = SIN_ERR_INST_DIR_NOT_FOUND;
     
     // Register error if enabled option -o
-    if ((err != 0) && (this->option == OPTION_OBJ_NUM))
+    if ((err != 0) && (this->option == OPTION_OBJ_NUM)){
         this->Err->register_err(line_counter, err);
+        return false;
+    }
+    return true;
 }
 
 
@@ -45,42 +48,3 @@ bool SyntaticAnalyzer::is_instruction(string token){
         return true;
     return false;
 }
-
-/*
-bool SyntaticAnalyzer::check_directive(vector<string> tokens, int line_counter){
-    int err = 0;
-    Directive data = (Directive)this->DirectivesTable.at(tokens[0]);
-    // Check the number of operands
-    if(tokens.size()-1 != data.operands)
-        err = SIN_ERR_INVALID_NUM_OF_PARAM;
-    else if(tokens[0].compare("CONST") == 0 && !isdigit(stoi(tokens[1])))
-        err = SIN_ERR_INVALID_CONST_SYNTAX;
-
-    if (err != 0){
-        if (this->option == OPTION_OBJ_NUM)
-            this->Err->register_err(line_counter, err);
-        return false;
-    }
-    else
-        return true;
-}
-
-
-bool SyntaticAnalyzer::check_instruction(vector<string> tokens, int line_counter){
-    int err = 0;
-    Instruction data = (Instruction)this->InstructionsTable.at(tokens[0]);
-    // Check the number of operands
-    if(tokens.size()-1 != data.operands)
-        err = SIN_ERR_INVALID_NUM_OF_PARAM;
-    // Check if the COPY instruction has ", "
-    else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(", ") == -1))
-        err = SIN_ERR_INVALID_COPY_SYNTAX;
-        
-    if (err != 0){
-        if (this->option == OPTION_OBJ_NUM)
-            this->Err->register_err(line_counter, err);
-        return false;
-    }
-    else
-        return true;
-}*/

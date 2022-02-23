@@ -51,7 +51,7 @@ void Assembler::run(){
         // If there is a definition of label
         string label;
         if(this->Lex->is_label(tokens[0])){
-            this->Lex->is_valid_variable_name(tokens[0], line_counter);
+            this->Lex->is_valid_variable_name(tokens[0], this->line_counter);
             label = tokens[0];
             tokens.erase(tokens.begin());
             // If the line contains only the label, continue the process (it is equal to ignore breaks)
@@ -68,7 +68,7 @@ void Assembler::run(){
             cout << tokens[i] << "/"; 
         cout << '\n';
 
-        cout << tokens[0] << " " << InstructionsTable.at(tokens[0]).operands << " " << InstructionsTable.at(tokens[0]).size;
+        bool res = this->Syn->analyze(tokens, this->line_counter)
 
         this->line_counter++;
     }
