@@ -38,7 +38,7 @@ bool SyntaticAnalyzer::analyze(vector<string> tokens, int line_counter){
 }
 
 
-bool is_number(string number){
+bool SyntaticAnalyzer::is_number(string number){
     // If the first char is a negative sign, it is correct
     int i = 0;
     if(number[0] == '-')
