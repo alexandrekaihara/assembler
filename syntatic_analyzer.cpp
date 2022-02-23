@@ -62,7 +62,7 @@ bool SyntaticAnalyzer::check_directive(vector<string> tokens, int line_counter){
         err = SIN_ERR_INVALID_CONST_SYNTAX;
 
     if (err != 0){
-        if (this->option == OPTION_OBJ_NUM))
+        if (this->option == OPTION_OBJ_NUM)
             this->Err->register_err(line_counter, err);
         return false;
     }
@@ -82,7 +82,7 @@ bool SyntaticAnalyzer::check_instruction(vector<string> tokens, int line_counter
         err = SIN_ERR_INVALID_COPY_SYNTAX;
         
     if (err != 0){
-        if (this->option == OPTION_OBJ_NUM))
+        if (this->option == OPTION_OBJ_NUM)
             this->Err->register_err(line_counter, err);
         return false;
     }
