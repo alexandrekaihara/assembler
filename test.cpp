@@ -30,6 +30,10 @@ void TestLex::test(){
     res = this->Lex->clean_line("  COPY A, B");
     assert(res.compare("COPY A, B") == 0);
 
+    // Test if it cleans the last whitespaces
+    res = this->Lex->clean_line("COPY A, B  ");
+    assert(res.compare("COPY A, B") == 0);
+
     // Test if it removes the double spaces
     res = this->Lex->clean_line("  COPY  A,      B");
     assert(res.compare("COPY A, B") == 0);
