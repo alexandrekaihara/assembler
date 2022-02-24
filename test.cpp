@@ -167,7 +167,7 @@ void TestSem::set_up(){
     char* input =(char*)"factorial.s";
     char* output = (char*)"output";
     this->A = new Assembler(OPTION_OBJ_NUM, input, output);
-    this->Sem = new SemanticAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM), this->A->SymbolsTable);
+    this->Sem = new SemanticAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM), &this->A->SymbolsTable);
 }
 
 void TestSem::tear_down(){
@@ -178,10 +178,10 @@ void TestSem::tear_down(){
 void TestSem::test(){
     // Starts a program with EQU definition
     assert(this->Sem->check_EQU({"EQU", "1"}, "UM", 1));
-    this->Sem->SymbolsTable["UM"] = {true, -1, 5};
+    this->A->SymbolsTable["UM"] = {true, -1, 5};
     // Second instruction is a ADD
     assert(this->Sem->check_EQU({"ADD", "DOIS"}, "", 1));
-    this->Sem->SymbolsTable["DOIS"] = {true, -1, 5};
+    this->A->SymbolsTable["DOIS"] = {true, -1, 5};
     // Try to add a EQU definition after a normal instruction 
     assert(this->Sem->check_EQU({"EQU", "3"}, "TRES", 1) == false);
 
