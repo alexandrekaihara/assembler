@@ -195,14 +195,14 @@ void TestSem::test(){
     // Define macro
     assert(this->Sem->check_MACRO({"MACRO"}, "", 4));
     // Will fail because the ENDMACRO was not defined
-    assert(this->Sem->end_check_MACRO(0) == false);
+    assert(this->Sem->end_check_MACRO() == false);
     // Test it gives no error after defining ENDMACRO correctly
     assert(this->Sem->check_MACRO({"ENDMACRO"}, "", 5));
     // May fail because the macro was not used
-    assert(this->Sem->end_check_MACRO(5) == false);
+    assert(this->Sem->end_check_MACRO() == false);
     // Will accept because ENDMACRO WAS DEFINED AND MACRO WAS USED
     this->Sem->set_macro_used();
-    assert(this->Sem->end_check_MACRO(5));
+    assert(this->Sem->end_check_MACRO());
 
     // Trying to define a defined label, must raise error
     assert(this->Sem->analyze({"MUL", "AUX"}, "UM", 6) == false);
