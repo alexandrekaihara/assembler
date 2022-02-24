@@ -67,6 +67,7 @@ struct Instruction{
 struct Space{
     string name;
     int value = 0;
-}
+};
+
 
 #endif

@@ -45,7 +45,7 @@ class ObjectGenerator{
         int get_directive_size(string token);
         void further_reference_dealer(string label);
         bool analyze(string line);
-        string resolve_equ_definitions(string tokens);
+        string resolve_equ_definitions(string token);
         bool is_equ_definition(string token);
         bool add_space_definition(string label, int value);
         bool add_spaces_to_objectfile();

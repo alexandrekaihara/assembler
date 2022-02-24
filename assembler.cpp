@@ -19,7 +19,7 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->Lex = new LexicalAnalyzer(this->option, this->Err);
     this->Syn = new SyntacticAnalyzer(this->option, this->Err, &this->DirectivesTable, &this->InstructionsTable);
     this->Sem = new SemanticAnalyzer(this->option, this->Err, &this->SymbolsTable);
-    this->ObjGen = new ObjectGenerator(this->option, this->Err, &this->DirectivesTable, &this->InstructionsTable);
+    this->ObjGen = new ObjectGenerator(this->option, this->Err, &this->DirectivesTable, &this->InstructionsTable, &this->SymbolsTable);
 
     this->text = this->read_file(inputfile);
     this->load_directives(DIRECTIVEFILE);
@@ -145,7 +145,7 @@ void Assembler::run(){
         // If there is a label definition, then add it to the symbols table
         if(!label.empty()){
             // If the label is already defined, resolve all pending references
-            if(this->ObjGen->is_symbol_defined()){
+            if(this->ObjGen->is_symbol_defined(label)){
                 this->ObjGen->further_reference_dealer(label);
                 this->ObjGen->update_symbol(label, true, -1, this->position_counter);
             }
@@ -194,13 +194,13 @@ void Assembler::run(){
             this->ObjGen->add_line_mac_option(line);
         }
         else if(this->Syn->is_instruction(command)){
-            this->ObjGen->add_to_objectfile(this->ObjGen->get_opcode(command)));
+            this->ObjGen->add_to_objectfile(this->ObjGen->get_opcode(command));
 
             // Analyze each token
             for(int j=1; j<tokens.size(); j++){
                 // If the token is defined as EQU, substitute it
                 if(this->ObjGen->is_equ_definition(tokens[j]))
-                    tokens[j] = this->ObjGen->resolve_equ_definitions();
+                    tokens[j] = this->ObjGen->resolve_equ_definitions(tokens[j]);
                 // If the symbol is defined, then add it to the object file
                 if(this->ObjGen->symbol_exists(tokens[j])){
                     Symbol sym = this->ObjGen->get_symbol(tokens[j]);

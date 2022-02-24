@@ -35,7 +35,7 @@ void ObjectGenerator::add_equ_definition(string equlabel, string token, bool use
         
 
 // Returns an existing EQU object
-EQU ObjectGenerator::get_equ(string equlabel);
+EQU ObjectGenerator::get_equ(string equlabel){}
 
         
 // Set the used value to true on a EQU definition
@@ -47,7 +47,7 @@ int ObjectGenerator::get_opcode(string token){}
 
 
 // Updates a vale of a specific position of the object file
-void ObjectGenerator::update_objectfile(int value, int position);
+void ObjectGenerator::update_objectfile(int value, int position){}
 
 
 // Add a value to the object file
@@ -68,7 +68,7 @@ void ObjectGenerator::further_reference_dealer(string label){}
 
 
 // Resolves all EQU definitions
-string ObjectGenerator::resolve_equ_definitions(string tokens){
+string ObjectGenerator::resolve_equ_definitions(string token){
 }
 
 
