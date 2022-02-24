@@ -13,7 +13,7 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
     bool status = false;
     
     // If the label is already defined, raise error
-    if(!label.empty() && this->SymbolsTable.count(label) != 0)
+    if(!label.empty() && this->SymbolsTable->count(label) != 0)
         err = SEM_ERR_MULTIPLE_LABEL_DEF;
     else{
         status = this->check_EQU(tokens, label, line_counter);
@@ -77,7 +77,7 @@ bool SemanticAnalyzer::check_IF(vector<string> tokens, int line_counter){
 
 
 bool SemanticAnalyzer::check_if_all_labels_defined(){
-    for(auto sym : this->SymbolsTable){
+    for(auto sym : *this->SymbolsTable){
         // If any symbol was not defined
         if(!sym.second.defined){
             if(this->option == OPTION_OBJ_NUM){
