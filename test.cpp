@@ -13,6 +13,12 @@ void TestLex::tear_down(){
 }
 
 void TestLex::test(){
+    // Test if it can detect correctly the 
+    assert(this->Lex->is_empty_line(" "));
+    assert(this->Lex->is_empty_line(" \t"));
+    assert(this->Lex->is_empty_line(" \t;Teste"));
+    assert(this->Lex->is_empty_line(";Teste"));
+
     string res = this->Lex->to_upper("abcdefghijklmnopqrstuvwxyz1234567890_");
     assert(res.compare("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_") == 0);
 

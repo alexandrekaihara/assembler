@@ -25,8 +25,8 @@ class Assembler{
         string macrodefinition;
 
         string read_file(char* filename);
-        void load_instructions(const string filename);
         void load_directives(const string filename);
+        void load_instructions(const string filename);
     public:
         Assembler(int option, char* inputfile, char* outputfile);
         
@@ -40,7 +40,9 @@ class Assembler{
         SemanticAnalyzer* Sem;
         ObjectGenerator* ObjGen;
 
-        void run();
+        void obj_op();
+        void mac_op();
+        void pre_op();
 };
 
 

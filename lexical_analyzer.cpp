@@ -104,3 +104,11 @@ bool LexicalAnalyzer::is_label(string token){
     if(token.find(':') != -1) return true;
     else return false;
 }
+
+
+bool LexicalAnalyzer::is_empty_line(string line){
+    line = this->clean_line(line);
+    if(line.empty())
+        return true;
+    return false;
+}

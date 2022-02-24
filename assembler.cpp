@@ -36,48 +36,6 @@ string Assembler::read_file(char* filename){
 }
 
 
-// This run the algorithm to assemble the file
-void Assembler::run(){
-    // For each line inside the file
-    istringstream iss(this->text); 
-    string auxline;
-    for(string line; getline(iss, line);){
-        // Clean comments, double whitespaces, tabs, breaklines
-        auxline = this->Lex->to_upper(line);
-        auxline = this->Lex->clean_line(auxline);
-        
-        // Split line into tokens
-        vector<string> tokens = this->Lex->split(auxline);
-        
-        // If there is a definition of label
-        string label;
-        if(this->Lex->is_label(tokens[0])){
-            // Remove de double dots at the end of label
-            label = tokens[0].substr(0, tokens[0].length()-1);
-            this->Lex->is_valid_variable_name(label, this->line_counter);
-            tokens.erase(tokens.begin());
-            // If the line contains only the label, continue the process (it is equal to ignore breaks)
-            if(tokens.size() == 0){
-                this->line_counter++;
-                continue;
-            }
-        }
-        
-        // Verify if the tokens of the line respects the correct syntax of the language
-        this->Syn->analyze(tokens, this->line_counter);
-
-        // Verify if the labels are correctly used and declared
-        this->Sem->analyze(tokens, label, this->line_counter);
-
-        this->line_counter++;
-    }
-    // Checks if all labels that were used in code, were defined
-    this->Sem->check_if_all_labels_defined();
-    this->Sem->check_if_all_EQU_used();
-    this->Sem->end_check_MACRO();
-}
-
-
 // Loads the directives especifications of this assembly language into the DirectivesTable
 void Assembler::load_directives(const string filename){
     string aux = this->read_file((char*)filename.c_str());
@@ -135,4 +93,80 @@ void Assembler::load_instructions(const string filename){
         Instruction inst = {operands, opcode, size};
         this->InstructionsTable[key] = inst; 
     }
+}
+
+
+// This run the algorithm to assemble the file
+void Assembler::obj_op(){
+    // For each line inside the file
+    istringstream iss(this->text); 
+    string auxline, label;
+    for(string line; getline(iss, line);){
+        // Clean comments, double whitespaces, tabs, breaklines
+        auxline = this->Lex->to_upper(line);
+        auxline = this->Lex->clean_line(auxline);
+        
+        // Split line into tokens
+        vector<string> tokens = this->Lex->split(auxline);
+        
+        // If there is a definition of label
+        if(this->Lex->is_label(tokens[0])){
+            // Remove de double dots at the end of label
+            label = tokens[0].substr(0, tokens[0].length()-1);
+            this->Lex->is_valid_variable_name(label, this->line_counter);
+            tokens.erase(tokens.begin());
+            // If the line contains only the label, continue the process (it is equal to ignore breaks)
+            if(tokens.size() == 0){
+                this->line_counter++;
+                continue;
+            }
+        }
+        
+        // Verify if the tokens of the line respects the correct syntax of the language
+        this->Syn->analyze(tokens, this->line_counter);
+
+        // Verify if the labels are correctly used and declared
+        this->Sem->analyze(tokens, label, this->line_counter);
+
+        this->line_counter++;
+        // Limpar a definição de label 
+        label.clear()
+    }
+    // Checks if all labels that were used in code, were defined
+    this->Sem->check_if_all_labels_defined();
+    this->Sem->check_if_all_EQU_used();
+    this->Sem->end_check_MACRO();
+}
+
+
+void Assembler::mac_op(){
+    istringstream iss(this->text); 
+    string auxline, label;
+    for(string line; getline(iss, line);){
+        // Clean comments, double whitespaces, tabs, breaklines
+        auxline = this->Lex->to_upper(line);
+        auxline = this->Lex->clean_line(auxline);
+
+        // Split line into tokens
+        vector<string> tokens = this->Lex->split(auxline);
+        
+        // If there is a definition of label
+        if(this->Lex->is_label(tokens[0])){
+            // Remove de double dots at the end of label
+            label = tokens[0].substr(0, tokens[0].length()-1);
+            this->Lex->is_valid_variable_name(label, this->line_counter);
+            tokens.erase(tokens.begin());
+            // If the line contains only the label, continue the process (it is equal to ignore breaks)
+            if(tokens.size() == 0){
+                this->line_counter++;
+                continue;
+            }
+        }
+        
+    }
+}
+
+
+void Assembler::pre_op(){
+    
 }
