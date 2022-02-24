@@ -27,15 +27,16 @@ string LexicalAnalyzer::to_upper(string line){
 
 // Remove comment part from string, tabs, line breaks and spaces
 string LexicalAnalyzer::clean_line(string line){
+    int i = 0;
+    int j = 0;
+
     // Remove all comment part
     line = line.substr(0, line.find(';'));
     
     // Remove all whitespaces from the end
-    int j = 0;
     for(j=line.length()-1; j==0; j--) if (line[j] != ' ') break;
 
     // Remove all whitespaces from the begginning
-    int i = 0;
     for(i; i<line.length(); i++) if (line[i] != ' ') break;
     
     // Remove all char on pattern
@@ -45,7 +46,7 @@ string LexicalAnalyzer::clean_line(string line){
         if ((line[i] == ' ') && (line[i+1] == ' ')) continue;
         newlinestr += line[i];
     }
-    cout << "|" << newlinestr << "|\n";
+    cout << "|" << newlinestr << "| " << i << " " << j << "\n";
     return newlinestr;
 }
 
