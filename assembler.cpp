@@ -118,7 +118,7 @@ void Assembler::first_pass(){
 
 // This run the algorithm to assemble the file
 void Assembler::run(){
-    string auxline, label;
+    string auxline, label, line;
     // For each line inside the file
     for(int i=0; i<this->lines.size(); i++){
         line = lines[i];
@@ -153,7 +153,7 @@ void Assembler::run(){
 
         // If there is a label definition, then add it to the symbols table
         if(!label.empty())
-            this->ObjGen->add_label();
+            this->ObjGen->add_label(label);
         // If the instruction is a macro, add it to the macro definition
         if(tokens[0].compare("MACRO") == 0){
             this->save_macro_lines = true;
@@ -164,7 +164,7 @@ void Assembler::run(){
             this->save_macro_lines = false;
         // If it is any other instruction
         else{
-            for(int j=1; j<tokens.size; j++){
+            for(int j=1; j<tokens.size(); j++){
                 j++;
             }
         }
