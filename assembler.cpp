@@ -185,7 +185,7 @@ void Assembler::run(){
 
 void Assembler::obj_op(vector<string> tokens, string label, int line_counter, string line){
     if(!label.empty())
-        this->ObjGen->add_label(label);
+        this->ObjGen->add_label(tokens, label);
 
 
 
