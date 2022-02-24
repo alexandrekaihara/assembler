@@ -1,7 +1,7 @@
 #include "object_generator.hpp"
 
 
-ObjectGenerator::ObjectGenerator(int option, ErrorDealer* Err, unordered_map<string, Directive> DirectivesTable, unordered_map<string, Instruction> InstructionsTable){
+ObjectGenerator::ObjectGenerator(int option, ErrorDealer* Err, unordered_map<string, Directive>* DirectivesTable, unordered_map<string, Instruction>* InstructionsTable){
     this->option = option;
     this->Err = Err;
     this->DirectivesTable = DirectivesTable;

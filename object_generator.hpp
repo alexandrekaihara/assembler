@@ -20,7 +20,7 @@ class ObjectGenerator{
         unordered_map<string, Directive>* DirectivesTable;
         unordered_map<string, Instruction>* InstructionsTable;
     public:
-        ObjectGenerator(int option, ErrorDealer* Err, unordered_map<string, Directive> DirectivesTable, unordered_map<string, Instruction> InstructionsTable);
+        ObjectGenerator(int option, ErrorDealer* Err, unordered_map<string, Directive>* DirectivesTable, unordered_map<string, Instruction>* InstructionsTable);
         bool analyze(string line);
         // Get the size of the instruction by its instruction name
         int get_instruction_size(string token);
