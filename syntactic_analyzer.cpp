@@ -1,7 +1,7 @@
 #include "syntactic_analyzer.hpp"
 
 
-SyntacticAnalyzer::SyntacticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Directive> DirectivesTable, unordered_map<string, Instruction> InstructionsTable){
+SyntacticAnalyzer::SyntacticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Directive>* DirectivesTable, unordered_map<string, Instruction>* InstructionsTable){
     this->option = option;
     this->Err = Err;
     this->DirectivesTable = DirectivesTable;
@@ -14,7 +14,7 @@ bool SyntacticAnalyzer::analyze(vector<string> tokens, int line_counter){
 
     if(this->is_directive(tokens[0])){
         // Check the number of operands
-        if((tokens.size()-1) != this->DirectivesTable.at(tokens[0]).operands)
+        if((tokens.size()-1) != this->DirectivesTable->at(tokens[0]).operands)
             err = SYN_ERR_INVALID_NUM_OF_PARAM;
         else if(tokens[0].compare("CONST") == 0 && !this->is_number(tokens[1]))
             err = SYN_ERR_INVALID_CONST_SYNTAX;
@@ -53,7 +53,7 @@ bool SyntacticAnalyzer::is_number(string number){
 
 
 bool SyntacticAnalyzer::is_directive(string token){
-    if(this->DirectivesTable.count(token) != 0) 
+    if(this->DirectivesTable->count(token) != 0) 
         return true;
     return false;
 }

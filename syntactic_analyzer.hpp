@@ -16,10 +16,10 @@ class SyntacticAnalyzer{
     private:
         int option;
         ErrorDealer* Err;
-        unordered_map<string, Directive> DirectivesTable;
-        unordered_map<string, Instruction> InstructionsTable;
+        unordered_map<string, Directive>* DirectivesTable;
+        unordered_map<string, Instruction>* InstructionsTable;
     public:
-    SyntacticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Directive> DirectivesTable, unordered_map<string, Instruction> InstructionsTable);
+    SyntacticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Directive>* DirectivesTable, unordered_map<string, Instruction>* InstructionsTable);
     bool analyze(vector<string> tokens, int line_counter);
     bool is_directive(string token);
     bool is_instruction(string token);

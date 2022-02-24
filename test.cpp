@@ -79,7 +79,7 @@ void TestSyn::set_up(){
     char* input =(char*)"factorial.s";
     char* output = (char*)"output";
     this->A = new Assembler(OPTION_OBJ_NUM, input, output);
-    this->Syn = new SyntacticAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM), this->A->DirectivesTable, this->A->InstructionsTable);
+    this->Syn = new SyntacticAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM), &this->A->DirectivesTable, &this->A->InstructionsTable);
 }
 
 void TestSyn::tear_down(){
