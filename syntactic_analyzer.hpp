@@ -15,6 +15,7 @@ using namespace std;
 class SyntacticAnalyzer{
     private:
         int option;
+        string macroname;
         ErrorDealer* Err;
         unordered_map<string, Directive>* DirectivesTable;
         unordered_map<string, Instruction>* InstructionsTable;
@@ -24,6 +25,7 @@ class SyntacticAnalyzer{
     bool is_directive(string token);
     bool is_instruction(string token);
     bool is_number(string number);
+    void set_macro_name(string name){ this->macroname = name; };
 };
 
 

@@ -23,12 +23,11 @@ class Assembler{
         string text;
         string outputfile;
         string macrolabel;
-        string macrodefinition;
 
         bool save_macro_lines = false;
 
         vector<string> lines;
-        vector<vector<string>> text_tokens;
+        vector<string> macrodefinition;
         
         string read_file(char* filename);
         void load_directives(const string filename);
@@ -46,12 +45,7 @@ class Assembler{
         SemanticAnalyzer* Sem;
         ObjectGenerator* ObjGen;
 
-        void first_pass();
-        void second_pass();
         void run();
-        void obj_op(vector<string> tokens, string label, int line_counter, string line);
-        void mac_op(vector<string> tokens, string label, int line_counter, string line);
-        void pre_op(vector<string> tokens, string label, int line_counter, string line);
 };
 
 

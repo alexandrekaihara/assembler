@@ -15,6 +15,7 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
     // If the label is already defined, raise error
     if(!label.empty() && this->SymbolsTable->count(label) != 0)
         err = SEM_ERR_MULTIPLE_LABEL_DEF;
+    // If label was not defined
     else{
         status = this->check_EQU(tokens, label, line_counter);
     }
@@ -62,10 +63,15 @@ bool SemanticAnalyzer::check_IF(vector<string> tokens, int line_counter){
     int err = 0;
 
     // If the directive is IF
-    if(tokens[0].compare("IF") == 0)
+    if(tokens[0].compare("IF") == 0){
         // If there is no definition of EQU on first parameter of IF, raise error
         if (this->EQU_definitions.count(tokens[1]) == 0)
             err = SEM_ERR_IF_WITHOUT_EQU_DEF;
+        else{
+            EQU equ = this->EQU_definitions[tokens[1]];
+            if(stoi(equ.token) > 1 || stoi(equ.token) < 0) err = SEM_ERR_IF_WITH_INCORRECT_EQU_VAL;
+        }
+    }
     
     if(err != 0){
         if(this->option == OPTION_OBJ_NUM)  
@@ -92,7 +98,7 @@ bool SemanticAnalyzer::check_if_all_labels_defined(){
 
 bool SemanticAnalyzer::check_if_all_EQU_used(){
     for(auto equ : this->EQU_definitions){
-        if(!equ.second.defined){
+        if(!equ.second.used){
             if(this->option == OPTION_OBJ_NUM){
                 this->Err->register_err(-1, SEM_ERR_EQU_NOT_USED);
                 return false;

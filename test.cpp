@@ -190,6 +190,10 @@ void TestSem::test(){
     // Starts a program with EQU definition
     assert(this->Sem->check_EQU({"EQU", "1"}, "UM", 1));
     this->A->SymbolsTable["UM"] = {true, -1, 5};
+    assert(this->Sem->check_EQU({"EQU", "TESTE"}, "TESTE", 1));
+    this->A->SymbolsTable["TESTE"] = {true, -1, 5};
+    assert(this->Sem->check_EQU({"EQU", "20"}, "VINTE", 1));
+    this->A->SymbolsTable["VINTE"] = {true, -1, 5};
     // Second instruction is a ADD
     assert(this->Sem->check_EQU({"ADD", "DOIS"}, "", 1));
     this->A->SymbolsTable["DOIS"] = {true, -1, 5};
@@ -200,6 +204,10 @@ void TestSem::test(){
     assert(this->Sem->check_IF({"IF", "UM"}, 3));
     // check if the IF rejects the TREs label. because it couldn't be defined
     assert(this->Sem->check_IF({"IF", "TRES"}, 3) == false);
+    // Must fail because IF does not support string values
+    assert(this->Sem->check_IF({"IF", "TESTE"}, 3));
+    // Must fail because it may not support numbers different from 1 and 0
+    assert(this->Sem->check_IF({"IF", "VINTE"}, 3));
 
     // Define a ENDMACRO without macro is illegal
     assert(this->Sem->check_MACRO({"ENDMACRO"}, "", 4) == false);
