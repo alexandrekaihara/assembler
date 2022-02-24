@@ -34,14 +34,18 @@ string LexicalAnalyzer::clean_line(string line){
     line = line.substr(0, line.find(';'));
     
     // Remove all whitespaces from the end
-    for(j=line.length()-1; j==0; j--) if (line[j] != ' ') break;
+    for(j=line.length()-1; j==0; j--){ 
+        if (line[j] != ' ') break;
+    }
 
     // Remove all whitespaces from the begginning
-    for(i; i<line.length(); i++) if (line[i] != ' ') break;
+    for(i; i<line.length(); i++){ 
+        if (line[i] != ' ') break;
+    }
     
     // Remove all char on pattern
     string pattern = "\t\n", newlinestr;
-    for(; i<j; i++){
+    for(; i<=j; i++){
         // Ignore if finds a tab or newline
         if(pattern.find(line[i]) != -1) continue;
         newlinestr += line[i];
