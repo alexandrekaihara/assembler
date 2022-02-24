@@ -19,7 +19,7 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->Lex = new LexicalAnalyzer(this->option, this->Err);
     this->Syn = new SyntacticAnalyzer(this->option, this->Err, this->DirectivesTable, this->InstructionsTable);
     this->Sem = new SemanticAnalyzer(this->option, this->Err, this->SymbolsTable);
-    this->ObjGen = new ObjectGenerator(this->option, this->Err);
+    this->ObjGen = new ObjectGenerator(this->option, this->Err, &this->DirectivesTable, &this->InstructionsTable);
 
     this->text = this->read_file(inputfile);
     this->load_directives(DIRECTIVEFILE);
