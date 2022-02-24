@@ -153,7 +153,7 @@ void Assembler::run(){
 
         // If there is a label definition, then add it to the symbols table
         if(!label.empty())
-            this->ObjGen->add_label(label);
+            this->ObjGen->add_label(tokens, label);
         // If the instruction is a macro, add it to the macro definition
         if(tokens[0].compare("MACRO") == 0){
             this->save_macro_lines = true;
