@@ -69,7 +69,8 @@ bool SemanticAnalyzer::check_IF(vector<string> tokens, int line_counter){
             err = SEM_ERR_IF_WITHOUT_EQU_DEF;
         else{
             EQU equ = this->EQU_definitions[tokens[1]];
-            if(stoi(equ.token) > 1 || stoi(equ.token) < 0) err = SEM_ERR_IF_WITH_INCORRECT_EQU_VAL;
+            try if(stoi(equ.token) > 1 || stoi(equ.token) < 0) err = SEM_ERR_IF_WITH_INCORRECT_EQU_VAL;
+            catch err = SEM_ERR_IF_WITH_NON_NUMERICAL_ARG;
         }
     }
     
