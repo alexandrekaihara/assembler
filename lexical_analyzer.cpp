@@ -108,7 +108,6 @@ bool LexicalAnalyzer::is_label(string token){
 
 bool LexicalAnalyzer::is_empty_line(string line){
     line = this->clean_line(line);
-    cout << '|' << line << "|\n";
     if(line.empty())
         return true;
     return false;
