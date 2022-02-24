@@ -209,7 +209,7 @@ void TestSem::test(){
     // Must fail because IF does not support string values
     assert(this->Sem->check_IF({"IF", "TESTE"}, 3) == false);
     // Must fail because it may not support numbers different from 1 and 0
-    assert(this->Sem->check_IF({"IF", "VINTE"}, 3));
+    assert(this->Sem->check_IF({"IF", "VINTE"}, 3) == false);
 
     // Define a ENDMACRO without macro is illegal
     assert(this->Sem->check_MACRO({"ENDMACRO"}, "", 4) == false);
