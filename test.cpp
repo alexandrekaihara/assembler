@@ -207,7 +207,7 @@ void TestSem::test(){
     // check if the IF rejects the TREs label. because it couldn't be defined
     assert(this->Sem->check_IF({"IF", "TRES"}, 3) == false);
     // Must fail because IF does not support string values
-    assert(this->Sem->check_IF({"IF", "TESTE"}, 3));
+    assert(this->Sem->check_IF({"IF", "TESTE"}, 3) == false);
     // Must fail because it may not support numbers different from 1 and 0
     assert(this->Sem->check_IF({"IF", "VINTE"}, 3));
 
