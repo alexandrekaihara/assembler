@@ -102,6 +102,9 @@ void Assembler::obj_op(){
     istringstream iss(this->text); 
     string auxline, label;
     for(string line; getline(iss, line);){
+        // Ignoring comments and etc, if line is empty, goes to the next
+        if(this->Lex->is_empty_line(line)) continue;
+
         // Clean comments, double whitespaces, tabs, breaklines
         auxline = this->Lex->to_upper(line);
         auxline = this->Lex->clean_line(auxline);
@@ -127,6 +130,8 @@ void Assembler::obj_op(){
 
         // Verify if the labels are correctly used and declared
         this->Sem->analyze(tokens, label, this->line_counter);
+
+        
 
         this->line_counter++;
         // Limpar a definição de label 

@@ -56,7 +56,6 @@ string LexicalAnalyzer::clean_line(string line){
         else first_space = false;
         newlinestr += line[i];
     }
-    cout << "|" << newlinestr << "| " << i << " " << j << "\n";
     return newlinestr;
 }
 
