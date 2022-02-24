@@ -23,7 +23,7 @@ int ObjectGenerator::get_directive_size(string token){}
 
 
 // Add label to the SymbolsTable
-bool ObjectGenerator::add_label(vector<string> tokens, label){}
+bool ObjectGenerator::add_label(vector<string> tokens, string label){}
 
 
 // Add a new line to the macro definition

@@ -27,7 +27,7 @@ class ObjectGenerator{
         // Get the size of the directive by its directive name
         int get_directive_size(string token);
         // Add label to the SymbolsTable
-        bool add_label(vector<string> tokens, label);
+        bool add_label(vector<string> tokens, string label);
         // Add a new line to the macro definition
         bool add_line_macro(string line);
         // If finds a name of a macro, substitute the current line for the lines of the macro
