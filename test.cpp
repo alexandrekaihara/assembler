@@ -142,7 +142,9 @@ void TestSyn::test(){
     assert(this->Syn->analyze({"SPACE", "LABEL"}, 0) == false);
     assert(this->Syn->analyze({"EQU"}, 0) == false);
     // Check if error is detected if the directive name is wrong
+    this->Syn->set_macro_name("TESTE");
     assert(this->Syn->analyze({"SPACES", "LABEL"}, 0) == false);
+    assert(this->Syn->analyze({"TESTE"}, 0));
     // Check if the CONST reject non number values
     assert(this->Syn->analyze({"CONST", "LABEL"}, 0) == false);
     assert(this->Syn->analyze({"CONST", "-9s"}, 0) == false);
