@@ -42,8 +42,8 @@ string LexicalAnalyzer::clean_line(string line){
     // Remove all char on pattern
     string pattern = "\t\n", newlinestr;
     for(; i<=j; i++){
+        // Ignore if finds a tab or newline
         if(pattern.find(line[i]) != -1) continue;
-        if ((line[i] == ' ') && (line[i+1] == ' ')) continue;
         newlinestr += line[i];
     }
     cout << "|" << newlinestr << "| " << i << " " << j << "\n";
