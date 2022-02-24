@@ -27,7 +27,7 @@ bool SyntacticAnalyzer::analyze(vector<string> tokens, int line_counter){
         else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(", ") == -1))
             err = SYN_ERR_INVALID_COPY_SYNTAX;
     }
-    else if(this->macroname.compare(this->macroname) != 0)
+    else if(this->macroname.compare(tokens[0]) != 0)
         err = SYN_ERR_INST_DIR_NOT_FOUND;
     
     // Register error if enabled option -o
