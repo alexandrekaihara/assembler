@@ -24,6 +24,11 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->text = this->read_file(inputfile);
     this->load_directives(DIRECTIVEFILE);
     this->load_instructions(INSTRUCTIONFILE);
+
+    // Split text into lines
+    istringstream iss(this->text); 
+    for(string line; getline(iss, line);)
+        this->lines.push_back(line);
 }
 
 
@@ -96,12 +101,27 @@ void Assembler::load_instructions(const string filename){
 }
 
 
-// This run the algorithm to assemble the file
-void Assembler::obj_op(){
+void Assembler::first_pass(){
     // For each line inside the file
     istringstream iss(this->text); 
     string auxline, label;
     for(string line; getline(iss, line);){
+        // Ignoring comments and etc, if line is empty, goes to the next
+        if(this->Lex->is_empty_line(line)) continue;
+
+        // Clean comments, double whitespaces, tabs, breaklines
+        auxline = this->Lex->to_upper(line);
+        auxline = this->Lex->clean_line(auxline);
+        
+    }
+}
+
+// This run the algorithm to assemble the file
+void Assembler::run(){
+    string auxline, label;
+    // For each line inside the file
+    for(int i=0; i<this->lines.size(); i++){
+        line = lines[i];
         // Ignoring comments and etc, if line is empty, goes to the next
         if(this->Lex->is_empty_line(line)) continue;
 
@@ -125,13 +145,32 @@ void Assembler::obj_op(){
             }
         }
         
-        // Verify if the tokens of the line respects the correct syntax of the language
+        // Make Syntactic analysis
         this->Syn->analyze(tokens, this->line_counter);
 
-        // Verify if the labels are correctly used and declared
+        // Make Semantic analysis
         this->Sem->analyze(tokens, label, this->line_counter);
 
+        // If there is a label definition, then add it to the symbols table
+        if(!label.empty())
+            this->ObjGen->add_label();
+        // If the instruction is a macro, add it to the macro definition
+        if(tokens[0].compare("MACRO") == 0){
+            this->save_macro_lines = true;
+            this->macrolabel = label;
+        }
+        // If finds the ENDMACRO, stop adding lines
+        else if(tokens[0].compare("ENDMACRO") == 0)
+            this->save_macro_lines = false;
+        // If it is any other instruction
+        else{
+            for(int j=1; j<tokens.size; j++){
+                j++;
+            }
+        }
         
+        if(this->save_macro_lines)
+            this->macrodefinition += line + '\n'; 
 
         this->line_counter++;
         // Limpar a definição de label 
@@ -144,34 +183,19 @@ void Assembler::obj_op(){
 }
 
 
-void Assembler::mac_op(){
-    istringstream iss(this->text); 
-    string auxline, label;
-    for(string line; getline(iss, line);){
-        // Clean comments, double whitespaces, tabs, breaklines
-        auxline = this->Lex->to_upper(line);
-        auxline = this->Lex->clean_line(auxline);
-
-        // Split line into tokens
-        vector<string> tokens = this->Lex->split(auxline);
-        
-        // If there is a definition of label
-        if(this->Lex->is_label(tokens[0])){
-            // Remove de double dots at the end of label
-            label = tokens[0].substr(0, tokens[0].length()-1);
-            this->Lex->is_valid_variable_name(label, this->line_counter);
-            tokens.erase(tokens.begin());
-            // If the line contains only the label, continue the process (it is equal to ignore breaks)
-            if(tokens.size() == 0){
-                this->line_counter++;
-                continue;
-            }
-        }
-        
-    }
-}
+void Assembler::obj_op(vector<string> tokens, string label, int line_counter, string line){
+    if(!label.empty())
+        this->ObjGen->add_label(label);
 
 
-void Assembler::pre_op(){
+
     
 }
+
+
+void Assembler::mac_op(vector<string> tokens, string label, int line_counter, string line){
+    
+}
+
+
+void Assembler::pre_op(vector<string> tokens, string label, int line_counter, string line){}

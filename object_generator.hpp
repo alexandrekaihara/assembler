@@ -17,6 +17,7 @@ class ObjectGenerator{
         int option;
         int waiting_for_ENDMACRO = false;
         ErrorDealer* Err;
+        vector<int> objectfile;
         unordered_map<string, Directive>* DirectivesTable;
         unordered_map<string, Instruction>* InstructionsTable;
     public:
