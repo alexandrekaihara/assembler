@@ -130,7 +130,7 @@ void Assembler::obj_op(){
 
         this->line_counter++;
         // Limpar a definição de label 
-        label.clear()
+        label.clear();
     }
     // Checks if all labels that were used in code, were defined
     this->Sem->check_if_all_labels_defined();
