@@ -40,7 +40,7 @@ void TestLex::test(){
 
     // Test if it removes comments
     res = this->Lex->clean_line("  COPY A, B ; askksksdlafkçasl k lçdkfçalkweopiop  0909kdsçla 9012 i00");
-    cout << res << "\n";
+    cout << "|" << res << "|\n";
     assert(res.compare("COPY A, B") == 0);
 
     // Test if it splits commands correctly
