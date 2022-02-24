@@ -18,7 +18,7 @@ Assembler::Assembler(int op, char* inputfile, char* outputfile){
     this->Err = new ErrorDealer(this->option);
     this->Lex = new LexicalAnalyzer(this->option, this->Err);
     this->Syn = new SyntacticAnalyzer(this->option, this->Err, this->DirectivesTable, this->InstructionsTable);
-    this->Sem = new SemanticAnalyzer(this->option, this->Err, this->SymbolsTable);
+    this->Sem = new SemanticAnalyzer(this->option, this->Err, &this->SymbolsTable);
     this->ObjGen = new ObjectGenerator(this->option, this->Err, &this->DirectivesTable, &this->InstructionsTable);
 
     this->text = this->read_file(inputfile);
@@ -40,13 +40,14 @@ string Assembler::read_file(char* filename){
 void Assembler::run(){
     // For each line inside the file
     istringstream iss(this->text); 
+    string auxline;
     for(string line; getline(iss, line);){
         // Clean comments, double whitespaces, tabs, breaklines
-        line = this->Lex->to_upper(line);
-        line = this->Lex->clean_line(line);
+        auxline = this->Lex->to_upper(line);
+        auxline = this->Lex->clean_line(auxline);
         
         // Split line into tokens
-        vector<string> tokens = this->Lex->split(line);
+        vector<string> tokens = this->Lex->split(auxline);
         
         // If there is a definition of label
         string label;
@@ -61,19 +62,19 @@ void Assembler::run(){
                 continue;
             }
         }
-
-        // REMOVER DEPOIS
-        for(int i=0; i<tokens.size(); i++)
-            cout << tokens[i] << "/"; 
-        cout << '\n';
-
+        
         // Verify if the tokens of the line respects the correct syntax of the language
         this->Syn->analyze(tokens, this->line_counter);
+
+        // Verify if the labels are correctly used and declared
+        this->Sem->analyze(tokens, label, this->line_counter);
 
         this->line_counter++;
     }
     // Checks if all labels that were used in code, were defined
     this->Sem->check_if_all_labels_defined();
+    this->Sem->check_if_all_EQU_used();
+    this->Sem->end_check_MACRO();
 }
 
 

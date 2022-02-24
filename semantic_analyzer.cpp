@@ -1,7 +1,7 @@
 #include "semantic_analyzer.hpp"
 
 
-SemanticAnalyzer::SemanticAnalyzer(int optio, ErrorDealer* Err, unordered_map<string, Symbol> SymbolsTable){
+SemanticAnalyzer::SemanticAnalyzer(int optio, ErrorDealer* Err, unordered_map<string, Symbol>* SymbolsTable){
     this->option = option;
     this->Err = Err;
     this->SymbolsTable = SymbolsTable;
@@ -133,19 +133,19 @@ bool SemanticAnalyzer::check_MACRO(vector<string> tokens, string label, int line
 }
 
 
-bool SemanticAnalyzer::end_check_MACRO(int line_counter){
+bool SemanticAnalyzer::end_check_MACRO(){
     int err = 0;
 
     if(!this->macro_used){
         if(this->option == OPTION_MAC_NUM){
-            this->Err->register_err(line_counter, SEM_ERR_MACRO_NOT_USED);
+            this->Err->register_err(-1, SEM_ERR_MACRO_NOT_USED);
         }
         err = SEM_ERR_MACRO_NOT_USED;
     }
 
     if(this->waiting_for_ENDMACRO){
         if(this->option == OPTION_MAC_NUM){
-            this->Err->register_err(line_counter, SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF);
+            this->Err->register_err(-1, SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF);
         }
         err = SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF;
     }
