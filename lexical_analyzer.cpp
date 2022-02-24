@@ -41,9 +41,19 @@ string LexicalAnalyzer::clean_line(string line){
     
     // Remove all char on pattern
     string pattern = "\t\n", newlinestr;
+    bool first_space = false;
     for(; i<=j; i++){
         // Ignore if finds a tab or newline
         if(pattern.find(line[i]) != -1) continue;
+        // Consider the first whitespace, and ignores all others
+        else if(line[i] == ' '){
+            if(first_space == false)
+                first_space = true;
+            else{
+                continue;
+            }
+        } 
+        else first_space = false;
         newlinestr += line[i];
     }
     cout << "|" << newlinestr << "| " << i << " " << j << "\n";
