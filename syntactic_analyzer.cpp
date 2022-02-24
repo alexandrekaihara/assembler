@@ -21,7 +21,7 @@ bool SyntacticAnalyzer::analyze(vector<string> tokens, int line_counter){
     }
     else if(this->is_instruction(tokens[0])){
         // Check the number of operands
-        if(tokens.size()-1 != this->InstructionsTable.at(tokens[0]).operands)
+        if(tokens.size()-1 != this->InstructionsTable->at(tokens[0]).operands)
             err = SYN_ERR_INVALID_NUM_OF_PARAM;
         // Check if the COPY instruction has ", "
         else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(", ") == -1))
@@ -60,7 +60,7 @@ bool SyntacticAnalyzer::is_directive(string token){
 
 
 bool SyntacticAnalyzer::is_instruction(string token){
-    if(this->InstructionsTable.count(token) != 0) 
+    if(this->InstructionsTable->count(token) != 0) 
         return true;
     return false;
 }
