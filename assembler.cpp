@@ -126,7 +126,7 @@ void Assembler::run(){
         
         // Split line into tokens
         vector<string> tokens = this->Lex->split(auxline);
-        
+        cout << "seg fault is not on split";
         // If there is a definition of label
         if(this->Lex->is_label(tokens[0])){
             // In case of two labels been defined on different lines but without any commands
