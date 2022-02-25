@@ -254,7 +254,7 @@ void TestObjGen::test(){
         assert(this->ObjGen->is_symbol_defined("TESTE"));
         assert(this->ObjGen->is_symbol_defined("ALHO") == false);
 
-        this->ObjGen->update_symbol("TESTE", false, 3, -1);
+        this->ObjGen->update_symbol("TESTE", false, 3, 5);
         assert(this->ObjGen->is_symbol_defined("TESTE") == false);
         
         Symbol sym = this->ObjGen->get_symbol("TESTE");
