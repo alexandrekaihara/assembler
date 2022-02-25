@@ -58,4 +58,17 @@ class TestSem{
         int run();
 };
 
+
+class TestObjGen{
+    private:
+        Assembler* A;
+        ObjectGenerator* ObjGen;
+    public:
+        void set_up();
+        void tear_down();
+        void test();
+        int run();
+};
+
+
 #endif

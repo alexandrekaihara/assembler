@@ -232,6 +232,122 @@ void TestSem::test(){
 }
 
 
+void TestObjGen::set_up(){
+    char* input =(char*)"factorial.s";
+    char* output = (char*)"output";
+    this->A = new Assembler(OPTION_MAC_NUM, input, output);
+    this->ObjGen = new ObjectGenerator(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM), &this->A->DirectivesTable, &this->A->InstructionsTable, &this->A->SymbolsTable);
+}
+
+void TestObjGen::tear_down(){
+    delete this->A;
+    delete this->ObjGen;
+}
+
+void TestObjGen::test(){
+        this->ObjGen->add_symbol("TESTE", true, -1, 5);
+        assert(this->ObjGen->SymbolsTable->count("TESTE") != 0;);
+
+        assert(this->ObjGen->symbol_exists("TESTE"));
+        assert(this->ObjGen->symbol_exists("ALHO") == false);
+
+        assert(this->ObjGen->is_symbol_defined("TESTE"));
+        assert(this->ObjGen->is_symbol_defined("ALHO") == false);
+
+        this->ObjGen->update_symbol("TESTE", false, 3, -1);
+        assert(this->ObjGen->is_symbol_defined("TESTE") == false);
+        
+        Symbol sym = this->ObjGen->get_symbol("TESTE");
+        assert(sym.last_occurence == 3);
+
+        assert(this->ObjGen->get_last_occurence_symbol("TESTE") == 3);
+
+        this->ObjGen->add_equ_definition("ONE", "1", false);
+        assert(this->ObjGen->EQU_definitions["ONE"].token.compare("1") == 0);
+        
+        assert(this->ObjGen->resolve_equ_definitions("ONE").compare("1") == 0);
+        
+        assert(this->ObjGen->is_equ_definition("ONE"));
+        assert(this->ObjGen->is_equ_definition("TWO") == false);
+
+        EQU equ = this->ObjGen->get_equ("ONE");
+        assert(equ.token.compare("1") == 0);
+
+        this->ObjGen->set_equ_used("ONE");
+        assert(this->ObjGen->EQU_definitions["ONE"].used == true);
+
+        assert(this->ObjGen->get_opcode("ADD") == 1);
+        
+        this->ObjGen->add_to_objectfile(10);
+        assert(this->ObjGen->objectfile[0] == 10);
+
+        this->ObjGen->update_objectfile(20, 0);
+        assert(this->ObjGen->objectfile[0] == 20);
+
+        assert(this->ObjGen->get_instruction_size("ADD") == 2);
+        assert(this->ObjGen->get_instruction_size("COPY") == 3);
+
+        assert(this->ObjGen->get_directive_size("SPACE") == 1);
+        assert(this->ObjGen->get_directive_size("EQU") == 0);
+
+        // Creating scenerio to test further reference resolv
+        this->ObjGen->add_space_definition("AUX", 0);
+        assert(this->ObjGen->spacedefinition[0].name.compare("AUX") == 0);
+        assert(this->ObjGen->spacedefinition[0].value == 0);
+        this->ObjGen->add_space_definition("AUX2", 2);
+        assert(this->ObjGen->spacedefinition[1].name.compare("AUX2") == 0);
+        this->ObjGen->add_space_definition("TEMP", 0);
+        assert(this->ObjGen->spacedefinition[2].name.compare("TEMP") == 0);
+
+        this->ObjGen->add_symbol("AUX", true, -1, -1);
+        this->ObjGen->add_symbol("AUX2", true, -1, -1);
+        this->ObjGen->add_symbol("TEMP", true, -1, -1);
+        
+        int position_counter = 1;
+        this->ObjGen->add_to_objectfile(-1); // pos 1 / AUX: -1
+        position_counter++;
+        this->ObjGen->add_to_objectfile(-1); // pos 2 / AUX2: -1
+        position_counter++;
+        this->ObjGen->add_to_objectfile(-1); // pos 3 / TEMP: -1
+        position_counter++;
+        this->ObjGen->add_to_objectfile(1); // pos 4 / AUX: -1/1
+        position_counter++;
+        this->ObjGen->add_to_objectfile(2); // pos 5 / AUX2: -1/2
+        position_counter++;
+        this->ObjGen->add_to_objectfile(-1); // pos 6 / TESTE: -1
+        position_counter++;
+        this->ObjGen->add_to_objectfile(3); // pos 7 / TEMP: -1/3
+        position_counter++;
+        this->ObjGen->add_to_objectfile(4); // pos 8 / AUX: -1/1/4
+        position_counter++;
+        this->ObjGen->add_to_objectfile(6); // pos 9 / TESTE: -1/6
+        position_counter++;
+
+        this->ObjGen->further_reference_dealer("TESTE", 9);
+        assert(this->ObjGen->objectfile[9] == 5);
+        assert(this->ObjGen->objectfile[6] == 5);
+
+        this->ObjGen->add_spaces_to_objectfile(position_counter);
+        // Check AUX references
+        assert(this->ObjGen->objectfile[8] == 10);
+        assert(this->ObjGen->objectfile[4] == 10);
+        assert(this->ObjGen->objectfile[1] == 10);
+        // Check AUX2 references
+        assert(this->ObjGen->objectfile[5] == 11);
+        assert(this->ObjGen->objectfile[2] == 11);
+        // Check AUX2 references
+        assert(this->ObjGen->objectfile[7] == 12);
+        assert(this->ObjGen->objectfile[3] == 12);
+        
+        // Test if the content is the right one and the file is created
+        this->ObjGen->generate_objectfile("test.out");
+        string file = this->A->read_file("test.out");
+        string outfile = "10 10 11 12 10 11 5 12 10 5 0 2 0";
+        assert(file.compare(outfile) == 0);
+        
+}
+
+
 //void TestLex::set_up(){}
 
 //void TestLex::tear_down(){}

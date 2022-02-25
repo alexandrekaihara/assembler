@@ -110,7 +110,6 @@ void Assembler::run(){
         // This variable represents when a IF directive is set to false
         if(ignore_next_line && this->option != OPTION_MAC_NUM) continue;
 
-        status = false;
         ignore_next_line = false;
 
         // As the line counter starts in 1, so subtract its value when acessing the current line
@@ -137,17 +136,18 @@ void Assembler::run(){
         }
         
         // Make Syntactic analysis
-        status = this->Syn->analyze(tokens, this->line_counter);
+        status |= this->Syn->analyze(tokens, this->line_counter);
 
         // Make Semantic analysis
-        status = this->Sem->analyze(tokens, label, this->line_counter);
+        status |= this->Sem->analyze(tokens, label, this->line_counter);
 
         // If there is a label definition, then add it to the symbols table
         if(!label.empty()){
             // If the label is already defined, resolve all pending references
             if(this->ObjGen->is_symbol_defined(label)){
-                this->ObjGen->further_reference_dealer(label);
+                int lastoccurence = this->ObjGen->get_last_occurence_symbol(label);
                 this->ObjGen->update_symbol(label, true, -1, this->position_counter);
+                this->ObjGen->further_reference_dealer(label, lastoccurence);
             }
             // Else, if the symbol is not defined, simply add it to the table
             else this->ObjGen->add_symbol(label, true, -1, this->position_counter);
@@ -237,9 +237,11 @@ void Assembler::run(){
         // Limpar a definição de label 
         label.clear();
     }
-    this->ObjGen->add_spaces_to_objectfile();
+    this->ObjGen->add_spaces_to_objectfile(this->position_counter);
     // Checks if all labels that were used in code, were defined
-    this->Sem->check_if_all_labels_defined();
-    this->Sem->check_if_all_EQU_used();
-    this->Sem->end_check_MACRO();
+    status |= this->Sem->check_if_all_labels_defined();
+    status |= this->Sem->check_if_all_EQU_used();
+    status |= this->Sem->end_check_MACRO();
+    
+    if(!status && this->option == OPTION_OBJ_NUM) this->ObjGen->generate_objectfile(this->outputfile);
 }
