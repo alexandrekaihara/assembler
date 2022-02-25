@@ -132,7 +132,6 @@ void Assembler::run(){
         if(this->Lex->is_label(tokens[0])){
             // In case of two labels been defined on different lines but without any commands
             if(!label.empty()){
-                cout << "nao era pra entrar0";
                 this->Err->register_err(this->line_counter, SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE);
                 status = true;
             }
@@ -277,5 +276,5 @@ void Assembler::run(){
     for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
     cout << "\n";
     cout << status << "\n";
-    if(!status && (this->option == OPTION_OBJ_NUM)) this->ObjGen->generate_objectfile(this->outputfile);
+    if(status && (this->option == OPTION_OBJ_NUM)) this->ObjGen->generate_objectfile(this->outputfile);
 }
