@@ -53,61 +53,61 @@ void ErrorDealer::print_error(int line, int code){
     switch (code)
     {
     case LEX_ERR_99CHAR:
-        cout << "Lexical error on line " << line << ": Variable with more than 99 char\n";
+        cout << "Error on line " << line << ": Variable with more than 99 char (Lexical)\n";
         break;
     case LEX_ERR_STARTNUM:
-        cout << "Lexical error on line " << line << ": Illegal variable name starting with number\n";
+        cout << "Error on line " << line << ": Illegal variable name starting with number (Lexical)\n";
         break;
     case LEX_ERR_INVALIDCHAR:
-        cout << "Lexical error on line " << line << ": Illegal variable name. Only numeric, alphabetic and undescore permitted\n";
+        cout << "Error on line " << line << ": Illegal variable name. Only numeric, alphabetic and undescore permitted (Lexical)\n";
         break;
     case SYN_ERR_INST_DIR_NOT_FOUND:
-        cout << "Syntactic error on line " << line << ": Incorrect Instruction or Directive name\n";
+        cout << "Error on line " << line << ": Incorrect Instruction or Directive name (Syntactic)\n";
         break;
     case SYN_ERR_INVALID_NUM_OF_PARAM:
-        cout << "Syntactic error on line " << line << ": Invalid number of parameters\n";
+        cout << "Error on line " << line << ": Invalid number of parameters (Syntactic)\n";
         break;
     case SYN_ERR_INVALID_COPY_SYNTAX:
-        cout << "Syntactic error on line " << line << ": COPY syntax expects two parameters separated by comma and space\n";
+        cout << "Error on line " << line << ": COPY syntax expects two parameters separated by comma and space (Syntactic)\n";
         break;
     case SYN_ERR_INVALID_CONST_SYNTAX:
-        cout << "Syntactic error on line " << line << ": CONST expects a numerical argument\n";
+        cout << "Error on line " << line << ": CONST expects a numerical argument (Syntactic)\n";
         break;
     case SEM_ERR_MISPLACED_EQU_DEF:
-        cout << "Semantic error on line " << line << ": All EQU definitions must be declared at the top of the file ONLY\n";
+        cout << "Error on line " << line << ": All EQU definitions must be declared at the top of the file ONLY (Semantic)\n";
         break;
     case SEM_ERR_MULTIPLE_LABEL_DEF:
-        cout << "Semantic error on line " << line << ": Label already defined\n";
+        cout << "Error on line " << line << ": Label already defined (Semantic)\n";
         break;
     case SEM_ERR_IF_WITHOUT_EQU_DEF:
-        cout << "Semantic error on line " << line << ": IF expects only a EQU definition as argument\n";
+        cout << "Error on line " << line << ": IF expects only a EQU definition as argument (Semantic)\n";
         break;
     case SEM_ERR_LABEL_NOT_DEFINED:
-        cout << "Semantic error on line " << line << ": Label definition  not found\n";
+        cout << "Error on line " << line << ": Label definition  not found (Semantic)\n";
         break;
     case SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE:
-        cout << "Semantic error on line " << line << ": Multiple label definition for the same line. Only supported ona label for each line\n";
+        cout << "Error on line " << line << ": Multiple label definition for the same line. Only supported ona label for each line (Semantic)\n";
         break;
     case SEM_ERR_EQU_NOT_USED:
-        cout << "Semantic error on line " << line << "EQU not used\n";
+        cout << "Error on line " << line << "EQU not used (Semantic)\n";
         break;
     case SEM_ERR_IF_WITH_INCORRECT_EQU_VAL:
-        cout << "Semantic error on line " << line << "IF directive expects as value only 1 or 0\n";
+        cout << "Error on line " << line << "IF directive expects as value only 1 or 0 (Semantic)\n";
         break;
     case SEM_ERR_IF_WITH_NON_NUMERICAL_ARG:
-        cout << "Semantic error on line " << line << "IF directive accept only numerical arguments. Non-numerical given\n";
+        cout << "Error on line " << line << "IF directive accept only numerical arguments. Non-numerical given (Semantic)\n";
         break;
     case SEM_ERR_MULTIPLE_MACRO_DEF:
-        cout << "Semantic error on line " << line << ": Multiple MACRO definitions. Only one supported by program\n";
+        cout << "Error on line " << line << ": Multiple MACRO definitions. Only one supported by program (Semantic)\n";
         break;
     case SEM_ERR_ENDMACRO_WITHOUT_MACRO_DEF:
-        cout << "Semantic error on line " << line << ": Definition of ENDMACRO without MACRO declaration\n";
+        cout << "Error on line " << line << ": Definition of ENDMACRO without MACRO declaration (Semantic)\n";
         break;
     case SEM_ERR_MACRO_NOT_USED:
-        cout << "Semantic error on line " << line << ": MACRO defined but not used\n";
+        cout << "Error on line " << line << ": MACRO defined but not used (Semantic)\n";
         break;
     case SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF:
-        cout << "Semantic error on line " << line << ": Definition of MACRO without ENDMACRO declaration\n";
+        cout << "Error on line " << line << ": Definition of MACRO without ENDMACRO declaration (Semantic)\n";
         break;
     default:
         break;
