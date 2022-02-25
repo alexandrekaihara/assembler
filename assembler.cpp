@@ -129,6 +129,9 @@ void Assembler::run(){
         // If there is a definition of label
         if(this->Lex->is_label(tokens[0])){
             // Remove de double dots at the end of label
+            cout << tokens.size() << "\n";
+            cout << tokens[0] << "\n";
+
             label = tokens[0].substr(0, tokens[0].length()-1);
             status = this->Lex->is_valid_variable_name(label, this->line_counter);
             cout << tokens.size() << "\n";
@@ -136,7 +139,6 @@ void Assembler::run(){
             
             tokens.erase(tokens.begin());
             // If the line contains only the label, continue the process (it is equal to ignore breaks)
-            cout << tokens.size() << "\n";
             cout << tokens[1] << "\n";
             if(tokens.size() == 0) {
                 cout << "entrando" << "\n";
