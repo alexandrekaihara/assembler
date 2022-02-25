@@ -173,7 +173,10 @@ void Assembler::run(){
                 this->ObjGen->add_space_definition(label, 0);
             else if(command.compare("CONST") == 0)
                 this->ObjGen->add_space_definition(label, stoi(tokens[1]));
-            this->position_counter += this->ObjGen->get_directive_size(command);
+            
+            // SPACE and CONST will be added on position counter at the end of execution
+            if(!(command.compare("SPACE") == 0) && !(command.compare("CONST") == 0))
+                this->position_counter += this->ObjGen->get_directive_size(command);
             this->ObjGen->add_line_mac_option(line);
         }
 
