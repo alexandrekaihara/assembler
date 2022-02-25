@@ -323,17 +323,18 @@ void TestObjGen::test(){
         this->ObjGen->add_to_objectfile(6); // pos 9 / TESTE: -1/6
         position_counter++;
 
-        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
-        cout << "\n";
-        cout << this->ObjGen->get_symbol("TESTE").position << "\n";
         this->ObjGen->further_reference_dealer("TESTE", 9);
-        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
-        cout << "\n";
-        cout << this->ObjGen->get_symbol("TESTE").position << "\n";
         assert(this->ObjGen->objectfile[9] == 5);
         assert(this->ObjGen->objectfile[6] == 5);
 
+        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
+        cout << "\n";
+        cout << this->ObjGen->get_symbol("TESTE").position << "\n";
         this->ObjGen->add_spaces_to_objectfile(position_counter);
+        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
+        cout << "\n";
+        cout << this->ObjGen->get_symbol("TESTE").position << "\n";
+
         // Check AUX references
         assert(this->ObjGen->objectfile[8] == 10);
         assert(this->ObjGen->objectfile[4] == 10);
