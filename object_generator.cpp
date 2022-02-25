@@ -96,7 +96,7 @@ void ObjectGenerator::further_reference_dealer(string label, int lastoccurence){
     sym.last_occurence = lastoccurence;
     int val;
     // While it doesn't find the -1, resolve the references with the position value of the label
-    cout << label << " resolving: \n";
+    cout << label << " last occured at " << lastoccurence << " and label defined at position " << sym.position << " resolving: \n";
     while(lastoccurence != -1){
         sym.last_occurence = this->objectfile[lastoccurence];
         cout << sym.last_occurence << " " << sym.position << '\n';
