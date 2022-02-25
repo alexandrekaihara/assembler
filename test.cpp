@@ -345,7 +345,6 @@ void TestObjGen::test(){
         string file = this->A->read_file((char*)filename.c_str());
         string outfile = "10 10 11 12 10 11 5 12 10 5 0 2 0";
         assert(file.compare(outfile) == 0);
-        
 }
 
 
@@ -371,5 +370,10 @@ int main(){
     TSem->set_up();
     TSem->test();
     TSem->tear_down();
+
+    TestObjGen* TObjGen = new TestObjGen();
+    TObjGen->set_up();
+    TObjGen->test();
+    TObjGen->tear_down();
     return 0;
 }
