@@ -204,6 +204,7 @@ void Assembler::run(){
 
         if(this->Syn->is_instruction(command)){
             this->ObjGen->add_to_objectfile(this->ObjGen->get_opcode(command));
+            position_counter++;
 
             // Analyze each token
             for(int j=1; j<tokens.size(); j++){
@@ -235,8 +236,8 @@ void Assembler::run(){
                     this->ObjGen->add_symbol(tokens[j], false, this->position_counter+1, -1);
                     this->ObjGen->add_to_objectfile(-1);
                 }
+                position_counter++;
             }
-            this->position_counter += this->ObjGen->get_instruction_size(command);
             this->ObjGen->add_line_mac_option(line);
         }
         // If is not a directive or a instruction, it must be a MACRO definition
