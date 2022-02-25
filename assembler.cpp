@@ -105,10 +105,7 @@ void Assembler::load_instructions(const string filename){
 void Assembler::run(){
     string auxline, label, line;
     bool status, ignore_next_line = false;
-    for(int i = 0; i<this->lines.size(); i++)
-        cout << this->lines[i] << "\n";
-
-
+    
     // For each line inside the file
     for(; this->line_counter<this->lines.size(); this->line_counter++){
         cout << this->lines[this->line_counter] << "\n";
@@ -241,6 +238,9 @@ void Assembler::run(){
 
         // Limpar a definição de label 
         label.clear();
+        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
+        cout << "\n";
+    
     }
     this->ObjGen->add_spaces_to_objectfile(this->position_counter);
     // Checks if all labels that were used in code, were defined
