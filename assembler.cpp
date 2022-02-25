@@ -129,6 +129,11 @@ void Assembler::run(){
         
         // If there is a definition of label
         if(this->Lex->is_label(tokens[0])){
+            // In case of two labels been defined on different lines but without any commands
+            if(!label.empty()){
+                this->Err->register_err(this->line_counter, SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE);
+                status = true;
+            }
             // Remove de double dots at the end of label
             label = tokens[0].substr(0, tokens[0].length()-1);
             status = this->Lex->is_valid_variable_name(label, this->line_counter);
@@ -213,6 +218,11 @@ void Assembler::run(){
 
             // Analyze each token
             for(int j=1; j<tokens.size(); j++){
+                // If any further token is a label definition and already has been identifyed a label, só there is multiple label def
+                if(this->Lex->is_label(tokens[j]) && !label.empty()){
+                    this->Err->register_err(this->line_counter, SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE);
+                    status = true;
+                }
                 // If the token is defined as EQU, substitute it
                 if(this->ObjGen->is_equ_definition(tokens[j]))
                     tokens[j] = this->ObjGen->resolve_equ_definitions(tokens[j]);
