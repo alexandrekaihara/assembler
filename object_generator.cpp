@@ -163,7 +163,9 @@ int ObjectGenerator::get_last_occurence_symbol(string label){
 void ObjectGenerator::generate_objectfile(string filename){
     string objecttext;
     for(int i=0; i<this->objectfile.size(); i++){
-        objecttext += to_string(this->objectfile[i]) + " ";
+        objecttext += to_string(this->objectfile[i]);
+        if(i<this->objectfile.size()-1)
+            objecttext += " ";
     }
     std::ofstream outfile (filename);
     outfile << objecttext;
