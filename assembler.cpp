@@ -140,11 +140,7 @@ void Assembler::run(){
             
             tokens.erase(tokens.begin());
             // If the line contains only the label, continue the process (it is equal to ignore breaks)
-            cout << tokens[1] << "\n";
-            if(tokens.size() == 0) {
-                cout << "entrando" << "\n";
-                continue;
-            }
+            if(tokens.size() == 0) continue;
         }
         
         // Make Syntactic analysis

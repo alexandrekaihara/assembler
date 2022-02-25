@@ -65,9 +65,10 @@ vector<string> LexicalAnalyzer::split(string line){
     int lastindex = 0, length;
     vector<string> tokens;
     string pattern = " :,";
+    line += " ";
     for (string::size_type i=0; i<line.length(); ++i){
         // If the current lastindex is a pattern char, jump to the next char
-        while(pattern.find(line[lastindex]) != -1) lastindex++;
+        while((lastindex == line.length()-1) || (pattern.find(line[lastindex]) != -1)) lastindex++;
         // If the current position on the string if one of the char in pattern, add substring
         if(pattern.find(line[i]) != -1){
             // If it has as definition of a label, include the char 
@@ -85,9 +86,7 @@ vector<string> LexicalAnalyzer::split(string line){
             i++;
         }
     }
-    // Add the last token
-    length = line.length() - lastindex;
-    tokens.push_back(line.substr(lastindex, length));
+    cout << tokens.size() << "\n";
     return tokens;
 }
 
