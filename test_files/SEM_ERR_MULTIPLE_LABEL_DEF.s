@@ -1,0 +1,6 @@
+AUX: 
+AUX2:
+add DOIS
+DOIS: 
+CONST 2
+FUN: FUN2: add DOIS
