@@ -227,7 +227,7 @@ void Assembler::run(){
                         // Save the last occurence to resolve as further reference
                         this->ObjGen->add_to_objectfile(sym.last_occurence);
                         // Update the symbol last reference to the actual position counter
-                        this->ObjGen->update_symbol(tokens[j], false, this->position_counter+1, -1);
+                        this->ObjGen->update_symbol(tokens[j], false, this->position_counter, -1);
                     }
                 }
                 // If the symbol is not defined yet, register a pendig reference to be resolved
