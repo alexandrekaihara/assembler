@@ -65,6 +65,8 @@ vector<string> LexicalAnalyzer::split(string line){
     int lastindex = 0, length;
     vector<string> tokens;
     string pattern = " :,";
+    // To make enable get the last stoken into the vector
+    line += " ";
     for (string::size_type i=0; i<line.length(); ++i){
         // If the current lastindex is a pattern char, jump to the next char
         while(pattern.find(line[lastindex]) != -1) lastindex++;
@@ -85,9 +87,6 @@ vector<string> LexicalAnalyzer::split(string line){
             i++;
         }
     }
-    // Add the last token
-    length = line.length() - lastindex;
-    tokens.push_back(line.substr(lastindex, length));
     return tokens;
 }
 
