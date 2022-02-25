@@ -129,8 +129,6 @@ void ObjectGenerator::add_spaces_to_objectfile(int position_counter){
     int value, lastoccurence;
     string label;
     for(int i=0; i<this->spacedefinition.size(); i++){
-        for(int i=0; i<this->objectfile.size(); i++) cout << this->objectfile[i] << " ";
-        cout << "\n";
         value = this->spacedefinition[i].value;
         label = this->spacedefinition[i].name;
         // Adds the spaces into the objectfile
