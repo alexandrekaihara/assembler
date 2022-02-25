@@ -246,7 +246,7 @@ void TestObjGen::tear_down(){
 
 void TestObjGen::test(){
         this->ObjGen->add_symbol("TESTE", true, -1, 5);
-        assert(this->ObjGen->SymbolsTable->count("TESTE") != 0;);
+        assert(this->ObjGen->SymbolsTable->count("TESTE") != 0);
 
         assert(this->ObjGen->symbol_exists("TESTE"));
         assert(this->ObjGen->symbol_exists("ALHO") == false);

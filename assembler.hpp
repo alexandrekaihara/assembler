@@ -29,7 +29,6 @@ class Assembler{
         vector<string> lines;
         vector<string> macrodefinition;
         
-        string read_file(char* filename);
         void load_directives(const string filename);
         void load_instructions(const string filename);
     public:
@@ -46,6 +45,7 @@ class Assembler{
         ObjectGenerator* ObjGen;
 
         void run();
+        string read_file(char* filename);
 };
 
 

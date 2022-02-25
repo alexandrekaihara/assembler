@@ -19,18 +19,18 @@ class ObjectGenerator{
         int option;
         int waiting_for_ENDMACRO = false;
         
+        ErrorDealer* Err;
+    public:
         vector<int> objectfile;
         vector<string> preprocessed_lines;
         
+        vector<Space> spacedefinition;
+
         unordered_map<string, Symbol>* SymbolsTable;
         unordered_map<string, Directive>* DirectivesTable;
         unordered_map<string, Instruction>* InstructionsTable;
         unordered_map<string, EQU> EQU_definitions;
         
-        ErrorDealer* Err;
-    public:
-        vector<Space> spacedefinition;
-
         ObjectGenerator(int option, ErrorDealer* Err, unordered_map<string, Directive>* DirectivesTable, unordered_map<string, Instruction>* InstructionsTable, unordered_map<string, Symbol>* SymbolsTable);
         void add_symbol(string symbol, bool defined, int last_occurence, int position);
         void update_symbol(string symbol, bool defined, int last_occurence, int position);
