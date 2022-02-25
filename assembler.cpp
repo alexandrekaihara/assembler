@@ -104,12 +104,10 @@ void Assembler::load_instructions(const string filename){
 // This run the algorithm to assemble the file
 void Assembler::run(){
     string auxline, line, label= "";
-    bool status, ignore_next_line = false;
+    bool status=true, ignore_next_line = false;
     
     // For each line inside the file
     for(; this->line_counter<=this->lines.size(); this->line_counter++){
-        cout << status <<" "  << this->line_counter<< "\n";
-        cout << line << "\n";
         // This variable represents when a IF directive is set to false
         if(ignore_next_line && this->option != OPTION_MAC_NUM) continue;
 
@@ -117,6 +115,7 @@ void Assembler::run(){
 
         // As the line counter starts in 1, so subtract its value when acessing the current line
         line = this->lines[this->line_counter-1];
+        cout << line << "\n";
         
         // Ignoring comments and etc, if line is empty, goes to the next
         if(this->Lex->is_empty_line(line)) continue;
@@ -133,11 +132,11 @@ void Assembler::run(){
             // In case of two labels been defined on different lines but without any commands
             if(!label.empty()){
                 this->Err->register_err(this->line_counter, SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE);
-                status = true;
+                status = false;
             }
             // Remove de double dots at the end of label
             label = tokens[0].substr(0, tokens[0].length()-1);
-            status = this->Lex->is_valid_variable_name(label, this->line_counter);
+            status &= this->Lex->is_valid_variable_name(label, this->line_counter);
             
             tokens.erase(tokens.begin());
             // If the line contains only the label, continue the process (it is equal to ignore breaks)
@@ -145,10 +144,10 @@ void Assembler::run(){
         }
         
         // Make Syntactic analysis
-        status |= this->Syn->analyze(tokens, this->line_counter);
+        status &= this->Syn->analyze(tokens, this->line_counter);
 
         // Make Semantic analysis
-        status |= this->Sem->analyze(tokens, label, this->line_counter);
+        status &= this->Sem->analyze(tokens, label, this->line_counter);
 
         // After verifying if the first position is a label, it must be a command
         string command = tokens[0];
@@ -218,7 +217,7 @@ void Assembler::run(){
                 // If any further token is a label definition and already has been identifyed a label, só there is multiple label def
                 if(this->Lex->is_label(tokens[j]) && !label.empty()){
                         this->Err->register_err(this->line_counter, SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE);
-                        status = true;
+                        status &= true;
                 }
                 // If the token is defined as EQU, substitute it
                 if(this->ObjGen->is_equ_definition(tokens[j]))
@@ -266,9 +265,9 @@ void Assembler::run(){
     }
     this->ObjGen->add_spaces_to_objectfile(this->position_counter);
     // Checks if all labels that were used in code, were defined
-    status |= this->Sem->check_if_all_labels_defined();
-    status |= this->Sem->check_if_all_EQU_used();
-    status |= this->Sem->end_check_MACRO();
+    status &= this->Sem->check_if_all_labels_defined();
+    status &= this->Sem->check_if_all_EQU_used();
+    status &= this->Sem->end_check_MACRO();
 
     // Show all errors
     this->Err->show();
