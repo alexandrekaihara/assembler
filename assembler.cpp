@@ -131,7 +131,6 @@ void Assembler::run(){
         if(this->Lex->is_label(tokens[0])){
             // In case of two labels been defined on different lines but without any commands
             if(!label.empty()){
-                cout << "Identificou erro de label em linhas diferentes";
                 this->Err->register_err(this->line_counter, SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE);
                 status = true;
             }
@@ -217,7 +216,6 @@ void Assembler::run(){
             for(int j=1; j<tokens.size(); j++){
                 // If any further token is a label definition and already has been identifyed a label, só there is multiple label def
                 if(this->Lex->is_label(tokens[j]) && !label.empty()){
-                        cout << "Identificou erro de duas labels definidas na mesma label";
                         this->Err->register_err(this->line_counter, SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE);
                         status = true;
                 }
