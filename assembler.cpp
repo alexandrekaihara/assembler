@@ -203,6 +203,11 @@ void Assembler::run(){
                 // If the token is defined as EQU, substitute it
                 if(this->ObjGen->is_equ_definition(tokens[j]))
                     tokens[j] = this->ObjGen->resolve_equ_definitions(tokens[j]);
+                // If the command is COPY, then remove the ", " from the first parameter
+                if(command.compare("COPY") == 0){
+                    int index = tokens[1].find(',');
+                    if(index != -1) tokens[1] = tokens[1].substr(0, index);
+                }
                 // If the symbol is defined, then add it to the object file
                 if(this->ObjGen->symbol_exists(tokens[j])){
                     Symbol sym = this->ObjGen->get_symbol(tokens[j]);
