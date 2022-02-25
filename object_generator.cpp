@@ -171,7 +171,6 @@ void ObjectGenerator::generate_objectfile(string filename){
     std::ofstream outfile (filename);
     outfile << objecttext;
     outfile.close();
-    cout << objecttext << "\n";
 }
 
 
