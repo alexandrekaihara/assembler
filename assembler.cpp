@@ -107,6 +107,7 @@ void Assembler::run(){
     bool status, ignore_next_line = false;
     // For each line inside the file
     for(; this->line_counter<this->lines.size(); this->line_counter++){
+        cout << line << "\n";
         // This variable represents when a IF directive is set to false
         if(ignore_next_line && this->option != OPTION_MAC_NUM) continue;
 
@@ -243,8 +244,8 @@ void Assembler::run(){
     status |= this->Sem->check_if_all_EQU_used();
     status |= this->Sem->end_check_MACRO();
     
-    cout << status << (this->option == OPTION_OBJ_NUM) << "\n";
+    cout << status << " " << (this->option == OPTION_OBJ_NUM) << "\n";
     for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
     cout << "\n";
-    if(!status && this->option == OPTION_OBJ_NUM) this->ObjGen->generate_objectfile(this->outputfile);
+    if(!status && (this->option == OPTION_OBJ_NUM)) this->ObjGen->generate_objectfile(this->outputfile);
 }
