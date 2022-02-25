@@ -21,11 +21,8 @@ bool check_vectors(vector<Error> errors, vector<int> correct){
 bool assembly_file(char* file, vector<int> correct){
     char* output = (char*)"a";
     char* input = file;
-    Assembler* A = new Assembler(OPTION_OBJ_NUM, input, output);
+    Assembler* A = new Assembler(0, input, output);
     A->run();
-    cout << A->Err->get_errors().size() << "\n";
-    for(int i=0; i<A->Err->get_errors().size(); i++) cout << A->Err->get_errors()[i].code << " ";
-    cout << "\n";
     return check_vectors(A->Err->get_errors(), correct);
 }
 
