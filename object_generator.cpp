@@ -97,7 +97,7 @@ void ObjectGenerator::further_reference_dealer(string label, int lastoccurence){
     int val;
     // While it doesn't find the -1, resolve the references with the position value of the label
     cout << label << " last occured at " << lastoccurence << " and label defined at position " << sym.position << " resolving: \n";
-    while(lastoccurence != -1){
+    for(int i=0; i<28; i++){
         sym.last_occurence = this->objectfile[lastoccurence];
         cout << sym.last_occurence << " " << sym.position << '\n';
         this->objectfile[lastoccurence] = sym.position;
@@ -129,6 +129,8 @@ void ObjectGenerator::add_spaces_to_objectfile(int position_counter){
     int value, lastoccurence;
     string label;
     for(int i=0; i<this->spacedefinition.size(); i++){
+        for(int i=0; i<this->objectfile.size(); i++) cout << this->objectfile[i] << " ";
+        cout << "\n";
         value = this->spacedefinition[i].value;
         label = this->spacedefinition[i].name;
         // Adds the spaces into the objectfile
