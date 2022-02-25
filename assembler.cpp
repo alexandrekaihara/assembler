@@ -107,8 +107,8 @@ void Assembler::run(){
     bool status, ignore_next_line = false;
     
     // For each line inside the file
-    for(; this->line_counter<this->lines.size(); this->line_counter++){
-        cout << this->lines[this->line_counter] << "\n";
+    for(; this->line_counter<=this->lines.size(); this->line_counter++){
+        cout << this->lines[this->line_counter-1] << "\n";
         // This variable represents when a IF directive is set to false
         if(ignore_next_line && this->option != OPTION_MAC_NUM) continue;
 
