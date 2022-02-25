@@ -388,9 +388,9 @@ void TestAssembler::tear_down(){
 
 void TestAssembler::test(){
     vector<Error> errors;
-    errors.push_back((1,20));
-    errors.push_back((1,2));
-    errors.push_back((1,200));
+    errors.push_back({1,20});
+    errors.push_back({1,2});
+    errors.push_back({1,200});
     vector<int> correct;
     correct.push_back(200);
     correct.push_back(20);
