@@ -142,29 +142,7 @@ void Assembler::run(){
 
         // Make Semantic analysis
         status |= this->Sem->analyze(tokens, label, this->line_counter);
-
-        // If there is a label definition, then add it to the symbols table
-        if(!label.empty()){
-            // If the label is already exists but not defined, resolve all pending references
-            if(!this->ObjGen->is_symbol_defined(label) && !this->ObjGen->is_a_space_label(label)){
-                int lastoccurence = this->ObjGen->get_last_occurence_symbol(label);
-                this->ObjGen->update_symbol(label, true, -1, this->position_counter);
-                this->ObjGen->further_reference_dealer(label, lastoccurence);
-            }
-            // Else, if the symbol is not defined, simply add it to the table
-            else this->ObjGen->add_symbol(label, true, -1, this->position_counter);
-        }
-
-        // If found a MACRO and not a ENDMACRO, save lines and continue 
-        if(this->save_macro_lines){
-            this->macrodefinition.push_back(line); 
-            this->ObjGen->add_line_pre_option(line);
-            continue;
-        }
-
-        // After verifying if the first position is a label, it must be a command
-        string command = tokens[0];
-
+        
         // If the command is a directive
         if(this->Syn->is_directive(command)){
             // If the instruction is a macro, add it to the macro definition
@@ -195,7 +173,30 @@ void Assembler::run(){
             this->position_counter += this->ObjGen->get_directive_size(command);
             this->ObjGen->add_line_mac_option(line);
         }
-        else if(this->Syn->is_instruction(command)){
+
+        // If there is a label definition, then add it to the symbols table
+        if(!label.empty()){
+            // If the label is already exists but not defined, resolve all pending references
+            if(!this->ObjGen->is_symbol_defined(label) && !this->ObjGen->is_a_space_label(label)){
+                int lastoccurence = this->ObjGen->get_last_occurence_symbol(label);
+                this->ObjGen->update_symbol(label, true, -1, this->position_counter);
+                this->ObjGen->further_reference_dealer(label, lastoccurence);
+            }
+            // Else, if the symbol is not defined, simply add it to the table
+            else this->ObjGen->add_symbol(label, true, -1, this->position_counter);
+        }
+
+        // If found a MACRO and not a ENDMACRO, save lines and continue 
+        if(this->save_macro_lines){
+            this->macrodefinition.push_back(line); 
+            this->ObjGen->add_line_pre_option(line);
+            continue;
+        }
+
+        // After verifying if the first position is a label, it must be a command
+        string command = tokens[0];
+
+        if(this->Syn->is_instruction(command)){
             this->ObjGen->add_to_objectfile(this->ObjGen->get_opcode(command));
 
             // Analyze each token
