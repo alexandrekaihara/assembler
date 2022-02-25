@@ -103,7 +103,7 @@ void Assembler::load_instructions(const string filename){
 
 // This run the algorithm to assemble the file
 void Assembler::run(){
-    string auxline, label, line;
+    string auxline, line, label= "";
     bool status, ignore_next_line = false;
     
     // For each line inside the file
@@ -132,6 +132,7 @@ void Assembler::run(){
         if(this->Lex->is_label(tokens[0])){
             // In case of two labels been defined on different lines but without any commands
             if(!label.empty()){
+                cout << "nao era pra entrar0";
                 this->Err->register_err(this->line_counter, SEM_ERR_MULTIPLE_LABEL_DEF_ON_SAME_LINE);
                 status = true;
             }
