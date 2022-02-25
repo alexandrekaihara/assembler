@@ -133,8 +133,9 @@ void Assembler::run(){
             status = this->Lex->is_valid_variable_name(label, this->line_counter);
             tokens.erase(tokens.begin());
             // If the line contains only the label, continue the process (it is equal to ignore breaks)
+            cout << tokens.size() << "\n";
             if(tokens.size() == 0) {
-                cout << "entrando";
+                cout << "entrando" << "\n";
                 continue;
             }
         }
