@@ -93,17 +93,20 @@ vector<string> LexicalAnalyzer::split(string line){
 // Check if the variable name has more than 99 char or starts with number or has a char different from underscore, number and letters
 bool LexicalAnalyzer::is_valid_variable_name(string token, int linenumber){
     int err = 0;
-    if(token.length() > 99)
+    if(token.length() > 99){
         err = LEX_ERR_99CHAR;
-    if(isdigit(token[0]))
-        err = LEX_ERR_STARTNUM;
-    for (int i=0; i<token.length(); i++)
-        if (!isalpha(token[i]) && !isdigit(token[i]) && token[i] != '_')
-            err = LEX_ERR_INVALIDCHAR;
-    if(err != 0){
-        if(this->option == OPTION_OBJ_NUM) this->Err->register_err(linenumber, err);
-        return false;
+        this->Err->register_err(linenumber, err)
     }
+    if(isdigit(token[0])){
+        err = LEX_ERR_STARTNUM;
+        this->Err->register_err(linenumber, err)
+    }
+    for (int i=0; i<token.length(); i++)
+        if (!isalpha(token[i]) && !isdigit(token[i]) && token[i] != '_'){
+            err = LEX_ERR_INVALIDCHAR;
+            this->Err->register_err(linenumber, err)
+        }
+    if(err != 0) return false;
     return true;
 }
 

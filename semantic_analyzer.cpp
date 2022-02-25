@@ -28,9 +28,7 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
     status = this->check_MACRO(tokens, label, line_counter);
 
     // If an error was encountered, register
-    if(err != 0){
-        return false;
-    }
+    if(err != 0) return false;
     return true;
 }
 
@@ -53,9 +51,7 @@ bool SemanticAnalyzer::check_EQU(vector<string> tokens, string label, int line_c
     // If it is not a definition of a EQU, then no other EQU must be defined
     else this->can_define_EQU = false;
     
-    if(err != 0){
-        return false;
-    }
+    if(err != 0) return false;
     return (true || status);
 }
 
@@ -85,9 +81,7 @@ bool SemanticAnalyzer::check_IF(vector<string> tokens, int line_counter){
         }
     }
     
-    if(err != 0){
-        return false;
-    }
+    if(err != 0) return false;
     return true;
 }
 
@@ -96,10 +90,8 @@ bool SemanticAnalyzer::check_if_all_labels_defined(){
     for(auto sym : *this->SymbolsTable){
         // If any symbol was not defined
         if(!sym.second.defined){
-            if(this->option == OPTION_OBJ_NUM){
-                this->Err->register_err(sym.second.last_occurence, SEM_ERR_LABEL_NOT_DEFINED);
-                return false;
-            }
+            this->Err->register_err(sym.second.last_occurence, SEM_ERR_LABEL_NOT_DEFINED);
+            return false;
         }
     }
     return true;
@@ -109,10 +101,8 @@ bool SemanticAnalyzer::check_if_all_labels_defined(){
 bool SemanticAnalyzer::check_if_all_EQU_used(){
     for(auto equ : this->EQU_definitions){
         if(!equ.second.used){
-            if(this->option == OPTION_OBJ_NUM){
-                this->Err->register_err(-1, SEM_ERR_EQU_NOT_USED);
-                return false;
-            }
+            this->Err->register_err(-1, SEM_ERR_EQU_NOT_USED);
+            return false;
         }
     }
     return true;
@@ -133,18 +123,15 @@ bool SemanticAnalyzer::check_MACRO(vector<string> tokens, string label, int line
     }
     else if(tokens[0].compare("ENDMACRO") == 0){
         // If there was not defined a MACRO before ENDMACRO, raise error
-        if(!this->waiting_for_ENDMACRO)
+        if(!this->waiting_for_ENDMACRO){
             err = SEM_ERR_ENDMACRO_WITHOUT_MACRO_DEF;
+            this->Err->register_err(line_counter, err);
+        }
         else
             this->waiting_for_ENDMACRO = false;
     }
     
-    // If an error was encountered, register
-    if(err != 0){
-        if(this->option == OPTION_OBJ_NUM)
-            this->Err->register_err(line_counter, err);
-        return false;
-    }
+    if(err != 0) return false;
     return true;
 }
 
@@ -153,17 +140,13 @@ bool SemanticAnalyzer::end_check_MACRO(){
     int err = 0;
 
     if(!this->macro_used){
-        if(this->option == OPTION_MAC_NUM){
-            this->Err->register_err(-1, SEM_ERR_MACRO_NOT_USED);
-        }
         err = SEM_ERR_MACRO_NOT_USED;
+        this->Err->register_err(-1, err);
     }
 
     if(this->waiting_for_ENDMACRO){
-        if(this->option == OPTION_MAC_NUM){
-            this->Err->register_err(-1, SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF);
-        }
         err = SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF;
+        this->Err->register_err(-1, err);
     }
 
     if(err != 0)

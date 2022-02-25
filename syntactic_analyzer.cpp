@@ -14,28 +14,34 @@ bool SyntacticAnalyzer::analyze(vector<string> tokens, int line_counter){
 
     if(this->is_directive(tokens[0])){
         // Check the number of operands
-        if((tokens.size()-1) != this->DirectivesTable->at(tokens[0]).operands)
+        if((tokens.size()-1) != this->DirectivesTable->at(tokens[0]).operands){
             err = SYN_ERR_INVALID_NUM_OF_PARAM;
-        else if(tokens[0].compare("CONST") == 0 && !this->is_number(tokens[1]))
+            this->Err->register_err(line_counter, err);
+        }
+        else if(tokens[0].compare("CONST") == 0 && !this->is_number(tokens[1])){
             err = SYN_ERR_INVALID_CONST_SYNTAX;
+            this->Err->register_err(line_counter, err);
+        }
     }
     else if(this->is_instruction(tokens[0])){
         // Check the number of operands
-        if(tokens.size()-1 != this->InstructionsTable->at(tokens[0]).operands)
+        if(tokens.size()-1 != this->InstructionsTable->at(tokens[0]).operands){
             err = SYN_ERR_INVALID_NUM_OF_PARAM;
+            this->Err->register_err(line_counter, err);
+        }
         // Check if the COPY instruction has ", "
-        else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(", ") == -1))
+        else if((tokens[0].compare("COPY") == 0) && (tokens[1].find(", ") == -1)){
             err = SYN_ERR_INVALID_COPY_SYNTAX;
+            this->Err->register_err(line_counter, err);
+        }
     }
-    else if(this->macroname.compare(tokens[0]) != 0)
+    else if(this->macroname.compare(tokens[0]) != 0){
         err = SYN_ERR_INST_DIR_NOT_FOUND;
+        this->Err->register_err(line_counter, err);
+    }
     
     // Register error if enabled option -o
-    if (err != 0){
-        if (this->option == OPTION_OBJ_NUM)
-            this->Err->register_err(line_counter, err);
-        return false;
-    }
+    if (err != 0) return false;
     return true;
 }
 
