@@ -131,7 +131,8 @@ void Assembler::run(){
             // Remove de double dots at the end of label
             label = tokens[0].substr(0, tokens[0].length()-1);
             status = this->Lex->is_valid_variable_name(label, this->line_counter);
-            tokens.erase(tokens.begin());
+            tokens.pop_front();
+            //tokens.erase(tokens.begin());
             // If the line contains only the label, continue the process (it is equal to ignore breaks)
             cout << tokens.size() << "\n";
             cout << tokens[0] << "\n";
