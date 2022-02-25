@@ -4,6 +4,20 @@
 #include <iostream>
 
 
+bool check_vectors(vector<Error> errors, vector<int> correct){
+    if(errors.size() != correct.size()) return false;
+    vector<int> errorscode;
+    // Get onlu the errors code
+    for(int i=0; i<errors.size(); i++)
+        errorscode.push_back(errors[i].code);
+    // sort all vectors
+    sort(errorscode.begin(), errorscode.end());
+    sort(correct.begin(), correct.end());
+    if(errorscode != correct) return false;
+    return true;
+}
+
+
 void TestLex::set_up(){
     this->Lex = new LexicalAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM));
 }
@@ -376,20 +390,6 @@ void TestAssembler::test(){
     assert(check_vectors({{1,20}, {1,2}, {1,200}}}, {2,20,200});
     string file;
 
-}
-
-
-bool check_vectors(vector<Error> errors, vector<int> correct){
-    if(errors.size() != correct.size()) return false;
-    vector<int> errorscode;
-    // Get onlu the errors code
-    for(int i=0; i<errors.size(); i++)
-        errorscode.push_back(errors[i].code);
-    // sort all vectors
-    sort(errorscode.begin(), errorscode.end());
-    sort(correct.begin(), correct.end());
-    if(errorscode != correct) return false;
-    return true;
 }
 
 
