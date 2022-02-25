@@ -399,8 +399,8 @@ void TestAssembler::test(){
     correct.push_back(20);
     correct.push_back(2);
     assert(check_vectors(errors, correct));
+    correct.clear();
     
-    vector<int> correct;
     correct.push_back(LEX_ERR_99CHAR);
     assembly_file((char*)"test_file/LEX_ERR_99CHAR.s", correct);
     correct.clear();
