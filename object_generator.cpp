@@ -168,6 +168,7 @@ void ObjectGenerator::generate_objectfile(string filename){
         if(i<this->objectfile.size()-1)
             objecttext += " ";
     }
+    cout << "era pa dar certo";
     std::ofstream outfile (filename);
     outfile << objecttext;
     outfile.close();

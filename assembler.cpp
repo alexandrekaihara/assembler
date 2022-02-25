@@ -274,6 +274,5 @@ void Assembler::run(){
     
     for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
     cout << "\n";
-    cout << status;
     if(!status && (this->option == OPTION_OBJ_NUM)) this->ObjGen->generate_objectfile(this->outputfile);
 }
