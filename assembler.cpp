@@ -252,7 +252,6 @@ void Assembler::run(){
         label.clear();
         for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
         cout << "\n";
-    
     }
     this->ObjGen->add_spaces_to_objectfile(this->position_counter);
     // Checks if all labels that were used in code, were defined
