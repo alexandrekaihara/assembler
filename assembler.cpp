@@ -142,6 +142,9 @@ void Assembler::run(){
 
         // Make Semantic analysis
         status |= this->Sem->analyze(tokens, label, this->line_counter);
+
+        // After verifying if the first position is a label, it must be a command
+        string command = tokens[0];
         
         // If the command is a directive
         if(this->Syn->is_directive(command)){
@@ -192,9 +195,6 @@ void Assembler::run(){
             this->ObjGen->add_line_pre_option(line);
             continue;
         }
-
-        // After verifying if the first position is a label, it must be a command
-        string command = tokens[0];
 
         if(this->Syn->is_instruction(command)){
             this->ObjGen->add_to_objectfile(this->ObjGen->get_opcode(command));
