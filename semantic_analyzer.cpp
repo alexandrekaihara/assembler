@@ -13,7 +13,7 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
     bool status = false;
     
     // If the label is already defined, raise error
-    if(!label.empty() && this->SymbolsTable->count(label) != 0){
+    if((!label.empty()) && (this->SymbolsTable->count(label) != 0) && (*this->SymbolsTable)[label].defined){
         err = SEM_ERR_MULTIPLE_LABEL_DEF;
         this->Err->register_err(line_counter, err);
     }
