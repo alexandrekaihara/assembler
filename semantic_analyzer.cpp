@@ -13,8 +13,10 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
     bool status = false;
     
     // If the label is already defined, raise error
-    if(!label.empty() && this->SymbolsTable->count(label) != 0)
+    if(!label.empty() && this->SymbolsTable->count(label) != 0){
         err = SEM_ERR_MULTIPLE_LABEL_DEF;
+        this->Err->register_err(line_counter, err);
+    }
     // If label was not defined
     else{
         status = this->check_EQU(tokens, label, line_counter);
@@ -27,8 +29,6 @@ bool SemanticAnalyzer::analyze(vector<string> tokens, string label, int line_cou
 
     // If an error was encountered, register
     if(err != 0){
-        if(this->option == OPTION_OBJ_NUM)
-            this->Err->register_err(line_counter, err);
         return false;
     }
     return true;
@@ -45,14 +45,15 @@ bool SemanticAnalyzer::check_EQU(vector<string> tokens, string label, int line_c
         // If define EQU is true, so enable the definition of EQU
         if(this->can_define_EQU)
             this->EQU_definitions[label] = {tokens[1], false};
-        else err = SEM_ERR_MISPLACED_EQU_DEF;
+        else {
+            err = SEM_ERR_MISPLACED_EQU_DEF;
+            this->Err->register_err(line_counter, err);
+        }
     }
     // If it is not a definition of a EQU, then no other EQU must be defined
     else this->can_define_EQU = false;
     
     if(err != 0){
-        if (this->option == OPTION_OBJ_NUM)
-            this->Err->register_err(line_counter, err);
         return false;
     }
     return (true || status);
@@ -65,22 +66,26 @@ bool SemanticAnalyzer::check_IF(vector<string> tokens, int line_counter){
     // If the directive is IF
     if(tokens[0].compare("IF") == 0){
         // If there is no definition of EQU on first parameter of IF, raise error
-        if (this->EQU_definitions.count(tokens[1]) == 0)
+        if (this->EQU_definitions.count(tokens[1]) == 0){
             err = SEM_ERR_IF_WITHOUT_EQU_DEF;
+            this->Err->register_err(line_counter, err);
+        }
         else{
             EQU equ = this->EQU_definitions[tokens[1]];
             try {
-                if(stoi(equ.token) > 1 || stoi(equ.token) < 0) err = SEM_ERR_IF_WITH_INCORRECT_EQU_VAL;
+                if(stoi(equ.token) > 1 || stoi(equ.token) < 0){
+                    err = SEM_ERR_IF_WITH_INCORRECT_EQU_VAL;
+                    this->Err->register_err(line_counter, err);
+                }
             }
             catch(...){
+                this->Err->register_err(line_counter, err);
                 err = SEM_ERR_IF_WITH_NON_NUMERICAL_ARG;
             } 
         }
     }
     
     if(err != 0){
-        if(this->option == OPTION_OBJ_NUM)  
-            this->Err->register_err(line_counter, err);
         return false;
     }
     return true;
