@@ -21,8 +21,8 @@ bool check_vectors(vector<Error> errors, vector<int> correct){
 bool assembly_file(char* file, vector<int> correct){
     char* output = (char*)"a";
     char* input = file;
-    this->A = new Assembler(OPTION_MAC_NUM, input, output);
-    this->A.run();
+    Assembler* A = new Assembler(OPTION_MAC_NUM, input, output);
+    A.run();
     return check_vectors(this->A->Err->get_errors(), correct);
 }
 
