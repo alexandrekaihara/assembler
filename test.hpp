@@ -71,4 +71,15 @@ class TestObjGen{
 };
 
 
+class TestAssembler{
+    private:
+        Assembler* A;
+    public:
+        void set_up();
+        void tear_down();
+        void test();
+        int run();
+};
+
+
 #endif

@@ -362,11 +362,35 @@ void TestObjGen::test(){
 }
 
 
-//void TestLex::set_up(){}
+void TestAssembler::set_up(){
+    char* input =(char*)"factorial.s";
+    char* output = (char*)"output";
+    this->A = new Assembler(OPTION_MAC_NUM, input, output);
+}
 
-//void TestLex::tear_down(){}
+void TestAssembler::tear_down(){
+    delete this->A;
+}
 
-//void TestLex::success_test(){}
+void TestAssembler::test(){
+    assert(check_vectors({{1,20}, {1,2}, {1,200}}), {2,20,200});
+    string file;
+
+}
+
+
+bool check_vectors(vector<Error> errors, vector<int> correct){
+    if(errors.size() != correct.size()) return false;
+    vector<int> errorscode;
+    // Get onlu the errors code
+    for(int i=0; i<errors.size(); i++)
+        errorscode.push_back(errors[i].code);
+    // sort all vectors
+    sort(errorscode.begin(), errorscode.end());
+    sort(correct.begin(), correct.end());
+    if(errorscode != correct) return false;
+    return true;
+}
 
 
 int main(){
@@ -389,5 +413,10 @@ int main(){
     TObjGen->set_up();
     TObjGen->test();
     TObjGen->tear_down();
+
+    TestAssembler* TAssembler = new TestAssembler();
+    TAssembler->set_up();
+    TAssembler->test();
+    TAssembler->tear_down();
     return 0;
 }
