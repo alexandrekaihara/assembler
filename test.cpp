@@ -325,7 +325,7 @@ void TestObjGen::test(){
 
         for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
         cout << "\n";
-
+        cout << this->ObjGen->get_symbol("TESTE").position << "\n";
         this->ObjGen->further_reference_dealer("TESTE", 9);
         for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
         cout << "\n";
