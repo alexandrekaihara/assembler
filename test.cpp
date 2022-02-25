@@ -405,6 +405,10 @@ void TestAssembler::test(){
     assembly_file((char*)"test_file/LEX_ERR_99CHAR.s", correct);
     correct.clear();
 
+    correct.push_back(LEX_ERR_INVALIDCHAR);
+    assembly_file((char*)"test_file/LEX_ERR_INVALIDCHAR.s", correct);
+    correct.clear();
+
 }
 
 
