@@ -243,5 +243,6 @@ void Assembler::run(){
     status |= this->Sem->check_if_all_EQU_used();
     status |= this->Sem->end_check_MACRO();
     
+    cout << status << "\n";
     if(!status && this->option == OPTION_OBJ_NUM) this->ObjGen->generate_objectfile(this->outputfile);
 }

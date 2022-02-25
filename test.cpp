@@ -327,14 +327,7 @@ void TestObjGen::test(){
         assert(this->ObjGen->objectfile[9] == 5);
         assert(this->ObjGen->objectfile[6] == 5);
 
-        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
-        cout << "\n";
-        cout << this->ObjGen->get_symbol("TESTE").position << "\n";
         this->ObjGen->add_spaces_to_objectfile(position_counter);
-        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
-        cout << "\n";
-        cout << this->ObjGen->get_symbol("TESTE").position << "\n";
-
         // Check AUX references
         assert(this->ObjGen->objectfile[8] == 10);
         assert(this->ObjGen->objectfile[4] == 10);
@@ -348,7 +341,7 @@ void TestObjGen::test(){
         
         // Test if the content is the right one and the file is created
         string filename = "test.out";
-        this->ObjGen->generate_objectfile(filename);
+        this->ObjGen->generatae_objectfile(filename);
         string file = this->A->read_file((char*)filename.c_str());
         string outfile = "20 10 11 12 10 11 5 12 10 5 0 2 0";
         assert(file.compare(outfile) == 0);
