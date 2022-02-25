@@ -105,16 +105,20 @@ void Assembler::load_instructions(const string filename){
 void Assembler::run(){
     string auxline, label, line;
     bool status, ignore_next_line = false;
+    for(int i = 0; i<this->lines.size(); i++)
+        cout << this->lines[i] << "\n";
+
+
     // For each line inside the file
     for(; this->line_counter<this->lines.size(); this->line_counter++){
-        cout << line << "\n";
+        cout << this->lines[this->line_counter] << "\n";
         // This variable represents when a IF directive is set to false
         if(ignore_next_line && this->option != OPTION_MAC_NUM) continue;
 
         ignore_next_line = false;
 
         // As the line counter starts in 1, so subtract its value when acessing the current line
-        line = lines[this->line_counter-1];
+        line = this->lines[this->line_counter-1];
         
         // Ignoring comments and etc, if line is empty, goes to the next
         if(this->Lex->is_empty_line(line)) continue;
