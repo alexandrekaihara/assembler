@@ -233,7 +233,7 @@ void Assembler::run(){
                 // If the symbol is not defined yet, register a pendig reference to be resolved
                 else{
                     // Sums +1 on position counter because of the opcode size
-                    this->ObjGen->add_symbol(tokens[j], false, this->position_counter+1, -1);
+                    this->ObjGen->add_symbol(tokens[j], false, this->position_counter, -1);
                     this->ObjGen->add_to_objectfile(-1);
                 }
                 position_counter++;
