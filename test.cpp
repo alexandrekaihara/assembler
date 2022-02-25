@@ -329,6 +329,8 @@ void TestObjGen::test(){
         this->ObjGen->further_reference_dealer("TESTE", 9);
         for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
         cout << "\n";
+        Symbol aux = (*this->SymbolsTable)[label];
+        cout << aux.position << "\n";
         assert(this->ObjGen->objectfile[9] == 5);
         assert(this->ObjGen->objectfile[6] == 5);
 
@@ -348,7 +350,7 @@ void TestObjGen::test(){
         string filename = "test.out";
         this->ObjGen->generate_objectfile(filename);
         string file = this->A->read_file((char*)filename.c_str());
-        string outfile = "10 10 11 12 10 11 5 12 10 5 0 2 0";
+        string outfile = "20 10 11 12 10 11 5 12 10 5 0 2 0";
         assert(file.compare(outfile) == 0);
 }
 
