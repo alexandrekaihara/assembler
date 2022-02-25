@@ -139,7 +139,8 @@ bool SemanticAnalyzer::check_MACRO(vector<string> tokens, string label, int line
 bool SemanticAnalyzer::end_check_MACRO(){
     int err = 0;
 
-    if(!this->macro_label.empty() &&!this->macro_used){
+    cout << this->macro_used << ' ' << this->macro_label;
+    if(!this->macro_label.empty() && !this->macro_used){
         err = SEM_ERR_MACRO_NOT_USED;
         this->Err->register_err(-1, err);
     }

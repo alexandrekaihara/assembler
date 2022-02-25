@@ -248,11 +248,11 @@ void TestSem::test(){
     // Define a ENDMACRO without macro is illegal
     assert(this->Sem->check_MACRO({"ENDMACRO"}, "", 4) == false);
     // Define macro
-    assert(this->Sem->check_MACRO({"MACRO"}, "", 4));
+    assert(this->Sem->check_MACRO({"MACRO"}, "MACRONAME", 4));
     // Will fail because the ENDMACRO was not defined
     assert(this->Sem->end_check_MACRO() == false);
     // Test it gives no error after defining ENDMACRO correctly
-    assert(this->Sem->check_MACRO({"ENDMACRO"}, "", 5));
+    assert(this->Sem->check_MACRO({"ENDMACRO"}, "MACRONAME", 5));
     // May fail because the macro was not used
     assert(this->Sem->end_check_MACRO() == false);
     // Will accept because ENDMACRO WAS DEFINED AND MACRO WAS USED
