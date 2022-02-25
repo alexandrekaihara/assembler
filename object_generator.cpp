@@ -141,14 +141,14 @@ void ObjectGenerator::add_spaces_to_objectfile(int position_counter){
 
 
 // Adds the line if option -p was given
-bool ObjectGenerator::add_line_pre_option(string line){
+void ObjectGenerator::add_line_pre_option(string line){
     if(this->option == OPTION_PRE_NUM)
         this->preprocessed_lines.push_back(line);
 }
 
 
 // Adds the line if option -m was given
-bool ObjectGenerator::add_line_mac_option(string line){
+void ObjectGenerator::add_line_mac_option(string line){
     if(this->option == OPTION_MAC_NUM)
         this->preprocessed_lines.push_back(line);
 }

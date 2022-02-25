@@ -50,8 +50,8 @@ class ObjectGenerator{
         bool is_equ_definition(string label);
         void add_space_definition(string label, int value);
         void add_spaces_to_objectfile(int position_counter);
-        bool add_line_pre_option(string line);
-        bool add_line_mac_option(string line);
+        void add_line_pre_option(string line);
+        void add_line_mac_option(string line);
         int get_last_occurence_symbol(string label);
         void generate_objectfile(string filename);
         
