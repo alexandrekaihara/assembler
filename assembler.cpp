@@ -244,5 +244,7 @@ void Assembler::run(){
     status |= this->Sem->end_check_MACRO();
     
     cout << status << "\n";
+    for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
+    cout << "\n";
     if(!status && this->option == OPTION_OBJ_NUM) this->ObjGen->generate_objectfile(this->outputfile);
 }
