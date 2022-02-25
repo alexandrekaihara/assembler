@@ -145,8 +145,8 @@ void Assembler::run(){
 
         // If there is a label definition, then add it to the symbols table
         if(!label.empty()){
-            // If the label is already defined, resolve all pending references
-            if(this->ObjGen->is_symbol_defined(label)){
+            // If the label is already exists but not defined, resolve all pending references
+            if(!this->ObjGen->is_symbol_defined(label)){
                 int lastoccurence = this->ObjGen->get_last_occurence_symbol(label);
                 this->ObjGen->update_symbol(label, true, -1, this->position_counter);
                 this->ObjGen->further_reference_dealer(label, lastoccurence);
