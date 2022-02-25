@@ -10,6 +10,7 @@
 #include "semantic_analyzer.hpp"
 #include "syntactic_analyzer.hpp"
 #include <string>
+#include <cassert>
 #include <vector>
 
 

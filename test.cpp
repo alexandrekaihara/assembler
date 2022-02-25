@@ -373,7 +373,7 @@ void TestAssembler::tear_down(){
 }
 
 void TestAssembler::test(){
-    assert(check_vectors({{1,20}, {1,2}, {1,200}}), {2,20,200});
+    assert(check_vectors({{1,20}, {1,2}, {1,200}}}, {2,20,200});
     string file;
 
 }
