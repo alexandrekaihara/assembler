@@ -299,9 +299,9 @@ void TestObjGen::test(){
         this->ObjGen->add_space_definition("TEMP", 0);
         assert(this->ObjGen->spacedefinition[2].name.compare("TEMP") == 0);
 
-        this->ObjGen->add_symbol("AUX", true, -1, -1);
-        this->ObjGen->add_symbol("AUX2", true, -1, -1);
-        this->ObjGen->add_symbol("TEMP", true, -1, -1);
+        this->ObjGen->add_symbol("AUX", true, 8, -1);
+        this->ObjGen->add_symbol("AUX2", true, 5, -1);
+        this->ObjGen->add_symbol("TEMP", true, 7, -1);
         
         int position_counter = 1;
         this->ObjGen->add_to_objectfile(-1); // pos 1 / AUX: -1
