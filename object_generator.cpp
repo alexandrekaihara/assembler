@@ -11,23 +11,33 @@ ObjectGenerator::ObjectGenerator(int option, ErrorDealer* Err, unordered_map<str
 
 
 // Adds a new symbol to the SymbolsTable
-void ObjectGenerator::add_symbol(string symbol, bool defined, int last_occurence, int position){}
+void ObjectGenerator::add_symbol(string symbol, bool defined, int last_occurence, int position){
+    this->SymbolsTable[symbol] = {defined, last_occurence, position};
+}
 
 
 // Update the data of a existing symbol
-void ObjectGenerator::update_symbol(string symbol, bool defined, int last_occurence, int position){}
+void ObjectGenerator::update_symbol(string symbol, bool defined, int last_occurence, int position){
+    *this->SymbolsTable[symbol] = {defined, last_occurence, position};
+}
 
 
 // Returns a existing Symbol object
-Symbol ObjectGenerator::get_symbol(string symbol){} 
+Symbol ObjectGenerator::get_symbol(string symbol){
+    return *this->SymbolsTable[symbol];
+} 
 
 
 // Verifies if the symbol is already defined 
-bool ObjectGenerator::is_symbol_defined(string symbol){}
+bool ObjectGenerator::is_symbol_defined(string symbol){
+    return *this->SymbolsTable[symbol].defined;
+}
 
 
 // Verifies if teh symbol exists on SymbolsTable
-bool ObjectGenerator::symbol_exists(string symbol){}
+bool ObjectGenerator::symbol_exists(string symbol){
+    return 
+}
 
 
 // Adds a EQU definition to the EQUdefinition map
