@@ -395,7 +395,7 @@ void TestAssembler::test(){
     correct.push_back(200);
     correct.push_back(20);
     correct.push_back(2);
-    assert(check_vectors({{1,20}, {1,2}, {1,200}}, {2,20,200});
+    assert(check_vectors(errors, correct));
     string file;
 
 }
