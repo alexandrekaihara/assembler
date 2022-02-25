@@ -49,37 +49,37 @@ void TestLex::test(){
     // Test if it splits commands correctly
     vector<string> tokens = this->Lex->split("COPY A, B");
     vector<string> answer = {"COPY", "A, ", "B"};
+    assert(tokens.size() == 3);
     for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
-    assert(tokens.size() == 3);
 
     // Test if it splits commands correctly with label
     tokens = this->Lex->split("LABEL: COPY A, B");
     answer = {"LABEL:", "COPY", "A, ", "B"};
+    assert(tokens.size() == 4);
     for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
-    assert(tokens.size() == 4);
 
     // Test if it splits commands correctly with one parameter only
     tokens = this->Lex->split("CONST -48");
     answer = {"CONST", "-48"};
+    assert(tokens.size() == 2);
     for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
-    assert(tokens.size() == 2);
 
     // Test if it splits commands correctly with no parameters
     tokens = this->Lex->split("STOP");
     answer = {"STOP"};
+    assert(tokens.size() == 1);
     for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);  
-    assert(tokens.size() == 1);
 
     // Test if it splits commands correctly with no parameters
     tokens = this->Lex->split("TEST:");
     answer = {"TEST:"};
+    assert(tokens.size() == 1);
     for(int i=0; i<tokens.size(); i++)
         assert(tokens[i] == answer[i]);    
-    assert(tokens.size() == 1);
 
     // Test if it detects if there is more than 99 chars
     assert(this->Lex->is_valid_variable_name("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 0) == false);
