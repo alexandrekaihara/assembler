@@ -162,6 +162,7 @@ int ObjectGenerator::get_last_occurence_symbol(string label){
 }
 
 
+// Creates a file with the object file content separated by a single whitespace
 void ObjectGenerator::generate_objectfile(string filename){
     string objecttext;
     for(int i=0; i<this->objectfile.size(); i++){
@@ -173,4 +174,13 @@ void ObjectGenerator::generate_objectfile(string filename){
     outfile << objecttext;
     outfile.close();
     cout << objecttext << "\n";
+}
+
+
+// Returns if the label represents the definition of a space
+bool ObjectGenerator::is_a_space_label(string label){
+    for(int i=0; i<this->spacedefinition.size(); i++)
+        if(this->spacedefinition[i].name.compare(label) == 0)
+            return true;
+    return false;
 }

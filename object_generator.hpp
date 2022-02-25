@@ -54,6 +54,7 @@ class ObjectGenerator{
         void add_line_mac_option(string line);
         int get_last_occurence_symbol(string label);
         void generate_objectfile(string filename);
+        bool is_a_space_label(string label);
         
 };
 

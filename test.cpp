@@ -302,6 +302,9 @@ void TestObjGen::test(){
         this->ObjGen->add_symbol("AUX", true, 8, -1);
         this->ObjGen->add_symbol("AUX2", true, 5, -1);
         this->ObjGen->add_symbol("TEMP", true, 7, -1);
+
+        assert(this->ObjGen->is_a_space_label("AUX"));
+        assert(this->ObjGen->is_a_space_label("TESTE") == false);
         
         int position_counter = 1;
         this->ObjGen->add_to_objectfile(-1); // pos 1 / AUX: -1
