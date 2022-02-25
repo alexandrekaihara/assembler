@@ -324,6 +324,8 @@ void TestObjGen::test(){
         position_counter++;
 
         this->ObjGen->further_reference_dealer("TESTE", 9);
+        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
+        cout << "\n";
         assert(this->ObjGen->objectfile[9] == 5);
         assert(this->ObjGen->objectfile[6] == 5);
 
