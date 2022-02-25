@@ -109,7 +109,7 @@ void Assembler::run(){
     // For each line inside the file
     for(; this->line_counter<=this->lines.size(); this->line_counter++){
         cout << status <<" "  << this->line_counter<< "\n";
-        //cout << line << "\n";
+        cout << line << "\n";
         // This variable represents when a IF directive is set to false
         if(ignore_next_line && this->option != OPTION_MAC_NUM) continue;
 
