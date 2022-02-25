@@ -86,7 +86,7 @@ vector<string> LexicalAnalyzer::split(string line){
             i++;
         }
     }
-    for(int i =0 ; i<tokens.size(); i++) cout << tokens[i] << " ";
+    for(int i =0 ; i<tokens.size(); i++) cout << tokens[i] << "|";
     cout << "\n";
     return tokens;
 }
