@@ -1,3 +1,2 @@
-FATORIAL!:
-add aux
+FATORIAL!: add aux
 aux: space
