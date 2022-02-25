@@ -412,6 +412,16 @@ void TestAssembler::test(){
     correct.push_back(LEX_ERR_STARTNUM);
     assert(assembly_file((char*)"test_files/LEX_ERR_STARTNUM.s", correct));
     correct.clear();
+
+    correct.push_back(SEM_ERR_MULTIPLE_LABEL_DEF);
+    assert(assembly_file((char*)"test_files/SEM_ERR_MULTIPLE_LABEL_DEF.s", correct));
+    correct.clear();
+
+    correct.push_back(SEM_ERR_MULTIPLE_LABEL_DEF);
+    assert(assembly_file((char*)"test_files/SEM_ERR_MULTIPLE_LABEL_DEF2.s", correct));
+    correct.clear();
+
+    
 }
 
 
