@@ -268,6 +268,9 @@ void Assembler::run(){
     status |= this->Sem->check_if_all_labels_defined();
     status |= this->Sem->check_if_all_EQU_used();
     status |= this->Sem->end_check_MACRO();
+
+    // Show all errors
+    this->Err->show();
     
     for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
     cout << "\n";

@@ -15,6 +15,9 @@ using namespace std;
 #define OPTION_OBJ_NUM 1
 #define OPTION_MAC "-m"
 #define OPTION_MAC_NUM 2
+#define PRINT_OM 1000
+#define PRINT_OP 2000
+#define PRINT_O 3000
 #define INSTRUCTIONS "Assembler - Software Básico\nAlexandre Kaihara - 18/0029690\n\nCommands:\n./montador -o [program_name].asm [output_name].obj\n./montador -p [program_name].asm [output_name].obj\n./montador -m [program_name].asm [output_name].obj\n"
 #define INSTRUCTIONFILE "instructions.txt"
 #define DIRECTIVEFILE "directives.txt"
@@ -40,6 +43,11 @@ using namespace std;
 #define SEM_ERR_MACRO_NOT_USED 380
 #define SEM_ERR_MACRO_WITHOUT_ENDMACRO_DEF 390
 
+
+struct Error{
+    int line;
+    int code;
+};
 
 
 struct EQU{
