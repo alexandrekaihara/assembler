@@ -323,6 +323,9 @@ void TestObjGen::test(){
         this->ObjGen->add_to_objectfile(6); // pos 9 / TESTE: -1/6
         position_counter++;
 
+        for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
+        cout << "\n";
+
         this->ObjGen->further_reference_dealer("TESTE", 9);
         for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
         cout << "\n";
