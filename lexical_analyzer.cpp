@@ -95,16 +95,16 @@ bool LexicalAnalyzer::is_valid_variable_name(string token, int linenumber){
     int err = 0;
     if(token.length() > 99){
         err = LEX_ERR_99CHAR;
-        this->Err->register_err(linenumber, err)
+        this->Err->register_err(linenumber, err);
     }
     if(isdigit(token[0])){
         err = LEX_ERR_STARTNUM;
-        this->Err->register_err(linenumber, err)
+        this->Err->register_err(linenumber, err);
     }
     for (int i=0; i<token.length(); i++)
         if (!isalpha(token[i]) && !isdigit(token[i]) && token[i] != '_'){
             err = LEX_ERR_INVALIDCHAR;
-            this->Err->register_err(linenumber, err)
+            this->Err->register_err(linenumber, err);
         }
     if(err != 0) return false;
     return true;
