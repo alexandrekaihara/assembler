@@ -123,7 +123,8 @@ void Assembler::run(){
         // Clean comments, double whitespaces, tabs, breaklines
         auxline = this->Lex->to_upper(line);
         auxline = this->Lex->clean_line(auxline);
-        
+        cout << "antes do segfault";
+    
         // Split line into tokens
         vector<string> tokens = this->Lex->split(auxline);
         cout << "seg fault is not on split";
