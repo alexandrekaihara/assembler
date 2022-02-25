@@ -23,6 +23,9 @@ bool assembly_file(char* file, vector<int> correct){
     char* input = file;
     Assembler* A = new Assembler(OPTION_MAC_NUM, input, output);
     A->run();
+    cout << A->Err->get_errors().size() << "\n";
+    for(int i=0; i<A->Err->get_errors().size(); i++) cout << A->Err->get_errors()[i] << " ";
+    cout << "\n";
     return check_vectors(A->Err->get_errors(), correct);
 }
 
