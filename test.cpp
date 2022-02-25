@@ -340,8 +340,9 @@ void TestObjGen::test(){
         assert(this->ObjGen->objectfile[3] == 12);
         
         // Test if the content is the right one and the file is created
-        this->ObjGen->generate_objectfile("test.out");
-        string file = this->A->read_file("test.out");
+        string filename = "test.out";
+        this->ObjGen->generate_objectfile(filename);
+        string file = this->A->read_file(filename.c_str());
         string outfile = "10 10 11 12 10 11 5 12 10 5 0 2 0";
         assert(file.compare(outfile) == 0);
         
