@@ -18,6 +18,15 @@ bool check_vectors(vector<Error> errors, vector<int> correct){
 }
 
 
+bool assembly_file(char* file, vector<int> correct){
+    char* output = (*char)"a";
+    char* input = (*char)"test_file/LEX_ERR_99CHAR.s";
+    this->A = new Assembler(OPTION_MAC_NUM, input, output);
+    this->A.run();
+    return check_vectors(this->A->Err->get_errors(), correct);
+}
+
+
 void TestLex::set_up(){
     this->Lex = new LexicalAnalyzer(OPTION_MAC_NUM, new ErrorDealer(OPTION_MAC_NUM));
 }
@@ -376,15 +385,9 @@ void TestObjGen::test(){
 }
 
 
-void TestAssembler::set_up(){
-    char* input =(char*)"factorial.s";
-    char* output = (char*)"output";
-    this->A = new Assembler(OPTION_MAC_NUM, input, output);
-}
+void TestAssembler::set_up(){}
 
-void TestAssembler::tear_down(){
-    delete this->A;
-}
+void TestAssembler::tear_down(){}
 
 void TestAssembler::test(){
     vector<Error> errors;
@@ -396,7 +399,8 @@ void TestAssembler::test(){
     correct.push_back(20);
     correct.push_back(2);
     assert(check_vectors(errors, correct));
-    string file;
+    
+    assembly_file((char*)"test_file/LEX_ERR_99CHAR.s", [LEX_ERR_99CHAR]);
 
 }
 
