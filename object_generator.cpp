@@ -171,7 +171,7 @@ void ObjectGenerator::generate_file(string filename){
         outfile << objecttext;
         outfile.close();
     }
-    else{
+    else if(this->option == OPTION_MAC_NUM || this->option == OPTION_PRE_NUM){
         std::ofstream outfile (filename);
         outfile << this->preprocessed_lines;
         outfile.close();   
