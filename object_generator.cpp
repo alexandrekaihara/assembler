@@ -51,14 +51,6 @@ EQU ObjectGenerator::get_equ(string equlabel){
     return this->EQU_definitions[equlabel];
 }
 
-        
-// Set the used value to true on a EQU definition
-void ObjectGenerator::set_equ_used(string equlabel){
-    EQU equ = this->EQU_definitions[equlabel];
-    equ.used = true;
-    this->EQU_definitions[equlabel] = equ;
-}
-
 
 // Get opcode of a token
 int ObjectGenerator::get_opcode(string token){

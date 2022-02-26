@@ -174,7 +174,7 @@ void Assembler::run(){
                 // Get the symbol defined on IF
                 EQU equ = this->ObjGen->get_equ(tokens[1]); 
                 // Register that a EQU definition was used
-                this->ObjGen->set_equ_used(tokens[1]);
+                this->Sem->set_equ_used(tokens[1]);
                 // If the EQU value is not 1 (true), ignore the next line
                 if(stoi(equ.token) != 1) ignore_next_line = true;
             }
@@ -226,6 +226,7 @@ void Assembler::run(){
                 }
                 // If the token is defined as EQU, substitute it
                 if(this->ObjGen->is_equ_definition(tokens[j]))
+                this->
                     tokens[j] = this->ObjGen->resolve_equ_definitions(tokens[j]);
                 // If the command is COPY, then remove the ", " from the first parameter
                 if(command.compare("COPY") == 0){

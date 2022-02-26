@@ -109,6 +109,14 @@ bool SemanticAnalyzer::check_if_all_EQU_used(){
 }
 
 
+// Set the used value to true on a EQU definition
+void SemanticAnalyzer::set_equ_used(string equlabel){
+    EQU equ = this->EQU_definitions[equlabel];
+    equ.used = true;
+    this->EQU_definitions[equlabel] = equ;
+}
+
+
 bool SemanticAnalyzer::check_MACRO(vector<string> tokens, string label, int line_counter){
     int err = 0;
 

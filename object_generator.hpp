@@ -39,7 +39,6 @@ class ObjectGenerator{
         bool symbol_exists(string symbol);
         void add_equ_definition(string equlabel, string token, bool used);
         EQU get_equ(string equlabel);
-        void set_equ_used(string equlabel);
         int get_opcode(string token);
         void update_objectfile(int value, int position);
         void add_to_objectfile(int value);

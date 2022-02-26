@@ -28,6 +28,7 @@ class SemanticAnalyzer{
         bool check_EQU(vector<string> tokens, string label, int line_counter);
         bool check_IF(vector<string> tokens, int line_counter);
         bool check_MACRO(vector<string> tokens, string label, int line_counter);
+        void set_equ_used(string equlabel);
         bool check_if_all_labels_defined();
         bool check_if_all_EQU_used();
         bool end_check_MACRO();
