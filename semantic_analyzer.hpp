@@ -17,10 +17,10 @@ class SemanticAnalyzer{
         int option;
         bool can_define_EQU = true;
         bool waiting_for_ENDMACRO = false;
-        bool macro_used = false;
         string macro_label;
         ErrorDealer* Err;
     public:
+        bool macro_used = false;
         unordered_map<string, EQU> EQU_definitions;
         unordered_map<string, Symbol>* SymbolsTable;
         SemanticAnalyzer(int option, ErrorDealer* Err, unordered_map<string, Symbol>* SymbolsTable);
