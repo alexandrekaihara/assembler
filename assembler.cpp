@@ -291,9 +291,5 @@ void Assembler::run(){
     for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
     cout << "\n";
 
-    if((this->Err->get_errors().size() == 0) && (this->option == OPTION_OBJ_NUM))this->ObjGen->generate_objectfile(this->outputfile);
-    if(this->option == OPTION_MAC_NUM || this->option == OPTION_PRE_NUM){
-        for(int i=0; i< this->ObjGen->preprocessed_lines.size(); i++)
-            cout << this->ObjGen->preprocessed_lines[i] << "\n";
-    }
+    if(this->Err->get_errors().size() == 0) this->ObjGen->generate_file(this->outputfile);
 }

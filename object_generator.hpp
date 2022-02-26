@@ -53,7 +53,7 @@ class ObjectGenerator{
         void remove_line_mac_option();
         void add_line_preprocessed_file(string line);
         int get_last_occurence_symbol(string label);
-        void generate_objectfile(string filename);
+        void generate_file(string filename);
         bool is_a_space_label(string label);
         void substitute_equ_pre_file(string token, string str_to_be_replaced);
 };

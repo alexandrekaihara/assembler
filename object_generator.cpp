@@ -159,16 +159,23 @@ int ObjectGenerator::get_last_occurence_symbol(string label){
 
 
 // Creates a file with the object file content separated by a single whitespace
-void ObjectGenerator::generate_objectfile(string filename){
-    string objecttext;
-    for(int i=0; i<this->objectfile.size(); i++){
-        objecttext += to_string(this->objectfile[i]);
-        if(i<this->objectfile.size()-1)
-            objecttext += " ";
+void ObjectGenerator::generate_file(string filename){
+    if(this->option == OPTION_OBJ_NUM){
+        string objecttext;
+        for(int i=0; i<this->objectfile.size(); i++){
+            objecttext += to_string(this->objectfile[i]);
+            if(i<this->objectfile.size()-1)
+                objecttext += " ";
+        }
+        std::ofstream outfile (filename);
+        outfile << objecttext;
+        outfile.close();
     }
-    std::ofstream outfile (filename);
-    outfile << objecttext;
-    outfile.close();
+    else{
+        std::ofstream outfile (filename);
+        outfile << this->preprocessed_lines;
+        outfile.close();   
+    }
 }
 
 
