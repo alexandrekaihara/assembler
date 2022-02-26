@@ -204,7 +204,7 @@ void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_rep
         for(; i<sz; i++)
             if(pattern.find(this->preprocessed_lines[sz-1]) == 0) break;
         // If the string to be replaced is at the end of the string, just add it
-        cout << this->preprocessed_lines[sz-1] << " " << index << " " << i << " " << this->preprocessed_lines[sz-1][i] << ' ';
+        cout << this->preprocessed_lines[sz-1] << " " << index << " " << i << " " << this->preprocessed_lines[sz-1][i]<< " " << this->preprocessed_lines[sz-1][i+1] << ' ';
         if(i == sz)
             this->preprocessed_lines[sz-1] = this->preprocessed_lines[sz-1].substr(0, index) + token;
         else{
