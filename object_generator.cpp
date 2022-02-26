@@ -195,7 +195,7 @@ void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_rep
     //int sz = this->preprocessed_lines.size();
     //int index = this->preprocessed_lines[sz-1].find(str_to_be_replaced);
     //this->preprocessed_lines[sz-1].replace(index, token.length(), token);
-    if(this->option == OPTION_MAC_NUM){
+    if(this->option == OPTION_PRE_NUM){
         int sz = this->preprocessed_lines.size();
         int index = this->preprocessed_lines[sz-1].find(str_to_be_replaced);
         string pattern = ", :";
