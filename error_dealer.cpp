@@ -98,13 +98,13 @@ void ErrorDealer::print_error(int line, int code){
         cout << "Error on line " << line << ": Multiple label definition for the same line. Only supported ona label for each line (Semantic)\n";
         break;
     case SEM_ERR_EQU_NOT_USED:
-        cout << "Error on line " << line << "EQU not used (Semantic)\n";
+        cout << "Error on line " << line << ": EQU not used (Semantic)\n";
         break;
     case SEM_ERR_IF_WITH_INCORRECT_EQU_VAL:
-        cout << "Error on line " << line << "IF directive expects as value only 1 or 0 (Semantic)\n";
+        cout << "Error on line " << line << ": IF directive expects as value only 1 or 0 (Semantic)\n";
         break;
     case SEM_ERR_IF_WITH_NON_NUMERICAL_ARG:
-        cout << "Error on line " << line << "IF directive accept only numerical arguments. Non-numerical given (Semantic)\n";
+        cout << "Error on line " << line << ": IF directive accept only numerical arguments. Non-numerical given (Semantic)\n";
         break;
     case SEM_ERR_MULTIPLE_MACRO_DEF:
         cout << "Error on line " << line << ": Multiple MACRO definitions. Only one supported by program (Semantic)\n";
