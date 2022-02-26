@@ -133,16 +133,23 @@ void ObjectGenerator::add_spaces_to_objectfile(int position_counter){
 
 
 // Adds the line if option -p was given
-void ObjectGenerator::add_line_pre_option(string line){
+void ObjectGenerator::add_line_preprocessed_file(string line){
     if(this->option == OPTION_PRE_NUM)
-        this->preprocessed_lines.push_back(line);
+        this->preprocessed_lines.pop_back(line);
+}
+
+
+// Adds the line if option -p was given
+void ObjectGenerator::remove_line_pre_option(){
+    if(this->option == OPTION_PRE_NUM)
+        this->preprocessed_lines.pop_back();
 }
 
 
 // Adds the line if option -m was given
-void ObjectGenerator::add_line_mac_option(string line){
+void ObjectGenerator::remove_line_mac_option(){
     if(this->option == OPTION_MAC_NUM)
-        this->preprocessed_lines.push_back(line);
+        this->preprocessed_lines.pop_back();
 }
 
 
@@ -172,4 +179,11 @@ bool ObjectGenerator::is_a_space_label(string label){
         if(this->spacedefinition[i].name.compare(label) == 0)
             return true;
     return false;
+}
+
+
+void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_replaced){
+    int sz = this->preprocessed_lines.size();
+    int index = this->preprocessed_lines[sz].find(str_to_be_replaced);
+    this->preprocessed_lines[sz].replace(index, token.length(), token);
 }

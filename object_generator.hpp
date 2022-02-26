@@ -49,12 +49,13 @@ class ObjectGenerator{
         bool is_equ_definition(string label);
         void add_space_definition(string label, int value);
         void add_spaces_to_objectfile(int position_counter);
-        void add_line_pre_option(string line);
-        void add_line_mac_option(string line);
+        void remove_line_pre_option();
+        void remove_line_mac_option();
+        void add_line_preprocessed_file(string line);
         int get_last_occurence_symbol(string label);
         void generate_objectfile(string filename);
         bool is_a_space_label(string label);
-        
+        void substitute_equ_pre_file(string token, string str_to_be_replaced);
 };
 
 

@@ -116,6 +116,8 @@ void Assembler::run(){
 
         // As the line counter starts in 1, so subtract its value when acessing the current line
         line = this->lines[this->line_counter-1];
+        // Adds the line into the preprocessed final file, if this line cannot be part of the preprocessed file, the following lines will remove it
+        this->ObjGen->add_line_preprocessed_file(line);
         cout << line << "\n";
         
         // Ignoring comments and etc, if line is empty, goes to the next
@@ -170,6 +172,8 @@ void Assembler::run(){
             // If finds the EQU add a definition to the EQU table
             else if(command.compare("EQU") == 0)
                 this->ObjGen->add_equ_definition(label, tokens[1], false);
+                // This directive must not be on preprocessed file
+                this->ObjGen->remove_line_pre_option();
             else if(command.compare("IF") == 0){
                 // Get the symbol defined on IF
                 EQU equ = this->ObjGen->get_equ(tokens[1]); 
@@ -177,6 +181,8 @@ void Assembler::run(){
                 this->Sem->set_equ_used(tokens[1]);
                 // If the EQU value is not 1 (true), ignore the next line
                 if(stoi(equ.token) != 1) ignore_next_line = true;
+                // This directive must not be on preprocessed file
+                this->ObjGen->remove_line_pre_option();
             }
             else if(command.compare("SPACE") == 0)
                 this->ObjGen->add_space_definition(label, 0);
@@ -208,7 +214,6 @@ void Assembler::run(){
         // If found a MACRO and not a ENDMACRO, save lines and continue 
         if(this->save_macro_lines){
             this->macrodefinition.push_back(line); 
-            this->ObjGen->add_line_pre_option(line);
             label.clear();
             continue;
         }
@@ -227,7 +232,9 @@ void Assembler::run(){
                 // If the token is defined as EQU, substitute it
                 if(this->ObjGen->is_equ_definition(tokens[j])){
                     this->Sem->set_equ_used(tokens[j]);
-                    tokens[j] = this->ObjGen->resolve_equ_definitions(tokens[j]);
+                    string equtoken = this->ObjGen->resolve_equ_definitions(tokens[j]);
+                    this->ObjGen->substitute_equ_pre_file(equtoken, tokens[j]);
+                    tokens[j] = equtoken;
                 }
                 // If the command is COPY, then remove the ", " from the first parameter
                 if(command.compare("COPY") == 0){
@@ -266,8 +273,6 @@ void Assembler::run(){
                 this->Sem->set_macro_used();
             }
         }
-
-        this->ObjGen->add_line_pre_option(line);
 
         // Limpar a definição de label 
         label.clear();
