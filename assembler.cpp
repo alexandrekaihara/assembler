@@ -170,10 +170,11 @@ void Assembler::run(){
             else if(command.compare("ENDMACRO") == 0)
                 this->save_macro_lines = false;
             // If finds the EQU add a definition to the EQU table
-            else if(command.compare("EQU") == 0)
+            else if(command.compare("EQU") == 0){
                 this->ObjGen->add_equ_definition(label, tokens[1], false);
                 // This directive must not be on preprocessed file
                 this->ObjGen->remove_line_pre_option();
+            |}
             else if(command.compare("IF") == 0){
                 // Get the symbol defined on IF
                 EQU equ = this->ObjGen->get_equ(tokens[1]); 
