@@ -114,12 +114,12 @@ void Assembler::run(){
         this->ObjGen->add_line_preprocessed_file(this->Lex->to_upper(line));
         
         // This variable represents when a IF directive is set to false
-        if(ignore_next_line && this->option != OPTION_MAC_NUM){
+        if(ignore_next_line){
             ignore_next_line = false;
             this->ObjGen->remove_line_mac_option();
             continue;
         }
-        
+
         cout << line << "\n";
         
         // Ignoring comments and etc, if line is empty, goes to the next
@@ -269,8 +269,9 @@ void Assembler::run(){
         // If is not a directive or a instruction, it must be a MACRO definition
         else if(!this->Syn->is_directive(command)){
             // If is a macrolabel and option is different from -p, replace it with the lines
-            if(command.compare(this->macrolabel) == 0 && this->option != OPTION_PRE_NUM){
-                lines.insert(lines.begin()+this->line_counter, this->macrodefinition.begin(), this->macrodefinition.end());
+            if(command.compare(this->macrolabel) == 0){
+                if (this->option != OPTION_PRE_NUM)
+                    lines.insert(lines.begin()+this->line_counter, this->macrodefinition.begin(), this->macrodefinition.end());
                 this->Sem->set_macro_used();
             }
         }
