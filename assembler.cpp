@@ -161,6 +161,8 @@ void Assembler::run(){
                 this->macrolabel = label;
                 // Must set the macro name, because the semantic analyzer must know that if a word is not a directive or a instruction, it may be a macro definition
                 this->Syn->set_macro_name(label);
+                label.clear();
+                continue
             }
             // If finds the ENDMACRO, stop adding lines
             else if(command.compare("ENDMACRO") == 0)
