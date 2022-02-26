@@ -274,6 +274,7 @@ void Assembler::run(){
         else if(!this->Syn->is_directive(command)){
             // If is a macrolabel and option is different from -p, replace it with the lines
             if(command.compare(this->macrolabel) == 0){
+                this->ObjGen->remove_line_mac_option();
                 if (this->option != OPTION_PRE_NUM)
                     lines.insert(lines.begin()+this->line_counter, this->macrodefinition.begin(), this->macrodefinition.end());
                 this->Sem->set_macro_used();
