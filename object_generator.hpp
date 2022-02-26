@@ -56,6 +56,7 @@ class ObjectGenerator{
         void generate_file(string filename);
         bool is_a_space_label(string label);
         void substitute_equ_pre_file(string token, string str_to_be_replaced);
+        void substitute_equ_variables_in_macro_definitions(vector<string> tokens);
 };
 
 

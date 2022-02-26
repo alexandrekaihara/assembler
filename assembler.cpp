@@ -220,6 +220,8 @@ void Assembler::run(){
         if(this->save_macro_lines){
             this->macrodefinition.push_back(line); 
             this->ObjGen->remove_line_mac_option();
+            // If the pre option was given, the EQU definitions must be changed inside the macro
+            this->ObjGen->substitute_equ_variables_in_macro_definitions(tokens);
             label.clear();
             continue;
         }

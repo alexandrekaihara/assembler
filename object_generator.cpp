@@ -213,3 +213,18 @@ void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_rep
         }
     }
 }
+
+
+
+// This function substitutes the equ definitions inside the parameter of instructions or directives
+void substitute_equ_variables_in_macro_definitions(vector<string> tokens){
+    if(this->option == OPTION_PRE_NUM){
+        for(int j=1; j<tokens.size(); j++){
+        // If the token is defined as EQU, substitute it
+            if(this->->is_equ_definition(tokens[j])){
+                string equtoken = this->resolve_equ_definitions(tokens[j]);
+                this->substitute_equ_pre_file(equtoken, tokens[j]);
+            }
+        }
+    }
+}
