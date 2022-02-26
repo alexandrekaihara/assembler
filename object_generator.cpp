@@ -135,7 +135,7 @@ void ObjectGenerator::add_spaces_to_objectfile(int position_counter){
 // Adds the line if option -p was given
 void ObjectGenerator::add_line_preprocessed_file(string line){
     if(this->option == OPTION_PRE_NUM)
-        this->preprocessed_lines.pop_back(line);
+        this->preprocessed_lines.pop_back();
 }
 
 
