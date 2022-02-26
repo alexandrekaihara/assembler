@@ -122,3 +122,12 @@ void ErrorDealer::print_error(int line, int code){
         break;
     }
 }
+
+
+vector<Error> ErrorDealer::get_errors(){
+    vector<Error> errfinal;
+    for(int i=0; i<this->errors.size(); i++)
+        if(this->print_options[this->errors[i].code] == this->option)
+            errfinal.push_back(this->errors[i]);
+    return errfinal;
+}

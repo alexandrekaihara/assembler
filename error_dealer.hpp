@@ -24,7 +24,7 @@ class ErrorDealer{
         void clean_errors();
         void show();
         void show_all();
-        vector<Error> get_errors(){ return this->errors; };
+        vector<Error> get_errors();
 };
 
 

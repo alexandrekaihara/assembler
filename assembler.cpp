@@ -296,5 +296,5 @@ void Assembler::run(){
     for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
     cout << "\n";
 
-    if(this->Err->get_errors().size() == 0) this->ObjGen->generate_file(this->outputfile);
+    this->ObjGen->generate_file(this->outputfile);
 }
