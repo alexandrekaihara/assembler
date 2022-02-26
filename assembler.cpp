@@ -116,7 +116,7 @@ void Assembler::run(){
         // This variable represents when a IF directive is set to false
         if(ignore_next_line){
             ignore_next_line = false;
-            this->ObjGen->remove_line_mac_option();
+            this->ObjGen->remove_line_pre_option();
             continue;
         }
 
