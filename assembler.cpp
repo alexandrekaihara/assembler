@@ -252,7 +252,7 @@ void Assembler::run(){
             this->ObjGen->add_line_mac_option(line);
         }
         // If is not a directive or a instruction, it must be a MACRO definition
-        else{
+        else if(!this->Syn->is_directive(command)){
             // If is a macrolabel and option is different from -p, replace it with the lines
             if(command.compare(this->macrolabel) && this->option != OPTION_PRE_NUM)
                 lines.insert(lines.begin()+this->line_counter, this->macrodefinition.begin(), this->macrodefinition.end());
