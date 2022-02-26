@@ -114,8 +114,6 @@ void Assembler::run(){
             continue;
         }
 
-        ignore_next_line = false;
-
         // As the line counter starts in 1, so subtract its value when acessing the current line
         line = this->lines[this->line_counter-1];
         cout << line << "\n";
@@ -209,6 +207,7 @@ void Assembler::run(){
         if(this->save_macro_lines){
             this->macrodefinition.push_back(line); 
             this->ObjGen->add_line_pre_option(line);
+            label.clear();
             continue;
         }
 
@@ -258,7 +257,7 @@ void Assembler::run(){
         // If is not a directive or a instruction, it must be a MACRO definition
         else if(!this->Syn->is_directive(command)){
             // If is a macrolabel and option is different from -p, replace it with the lines
-            if(command.compare(this->macrolabel) && this->option != OPTION_PRE_NUM)
+            if(command.compare(this->macrolabel) == 0 && this->option != OPTION_PRE_NUM)
                 lines.insert(lines.begin()+this->line_counter, this->macrodefinition.begin(), this->macrodefinition.end());
         }
 
