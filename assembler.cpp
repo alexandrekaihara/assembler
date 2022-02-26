@@ -117,7 +117,7 @@ void Assembler::run(){
         // As the line counter starts in 1, so subtract its value when acessing the current line
         line = this->lines[this->line_counter-1];
         // Adds the line into the preprocessed final file, if this line cannot be part of the preprocessed file, the following lines will remove it
-        this->ObjGen->add_line_preprocessed_file(line);
+        this->ObjGen->add_line_preprocessed_file(this->Lex->to_upper(line));
         cout << line << "\n";
         
         // Ignoring comments and etc, if line is empty, goes to the next
