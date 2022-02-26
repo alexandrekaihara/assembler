@@ -108,17 +108,18 @@ void Assembler::run(){
     
     // For each line inside the file
     for(; this->line_counter<=this->lines.size(); this->line_counter++){
-        // This variable represents when a IF directive is set to false
-        if(ignore_next_line && this->option != OPTION_MAC_NUM){
-            ignore_next_line = false;
-            continue;
-        }
-
         // As the line counter starts in 1, so subtract its value when acessing the current line
         line = this->lines[this->line_counter-1];
         // Adds the line into the preprocessed final file, if this line cannot be part of the preprocessed file, the following lines will remove it
         this->ObjGen->add_line_preprocessed_file(this->Lex->to_upper(line));
         cout << line << "\n";
+        
+        // This variable represents when a IF directive is set to false
+        if(ignore_next_line && this->option != OPTION_MAC_NUM){
+            ignore_next_line = false;
+            this->ObjGen->remove_line_mac_option();
+            continue;
+        }
         
         // Ignoring comments and etc, if line is empty, goes to the next
         if(this->Lex->is_empty_line(line)) continue;
