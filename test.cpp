@@ -421,6 +421,16 @@ void TestAssembler::test(){
     assert(assembly_file((char*)"test_files/SEM_ERR_MULTIPLE_LABEL_DEF2.s", correct));
     correct.clear();
 
+    assert(assembly_file((char*)"test_files/ACCEPT_COMMENTS.s", correct));
+    correct.clear();
+
+    assert(assembly_file((char*)"test_files/TEST_CONST.s", correct));
+    correct.clear();
+
+    correct.push_back(SYN_ERR_INVALID_COPY_SYNTAX);
+    assert(assembly_file((char*)"test_files/TEST_COPY_SYNTAX.s", correct));
+    correct.clear();
+
     
 }
 
