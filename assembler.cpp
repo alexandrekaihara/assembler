@@ -174,7 +174,7 @@ void Assembler::run(){
                 this->ObjGen->add_equ_definition(label, tokens[1], false);
                 // This directive must not be on preprocessed file
                 this->ObjGen->remove_line_pre_option();
-            |}
+            }
             else if(command.compare("IF") == 0){
                 // Get the symbol defined on IF
                 EQU equ = this->ObjGen->get_equ(tokens[1]); 
