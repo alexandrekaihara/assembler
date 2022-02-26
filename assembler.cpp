@@ -109,7 +109,10 @@ void Assembler::run(){
     // For each line inside the file
     for(; this->line_counter<=this->lines.size(); this->line_counter++){
         // This variable represents when a IF directive is set to false
-        if(ignore_next_line && this->option != OPTION_MAC_NUM) continue;
+        if(ignore_next_line && this->option != OPTION_MAC_NUM){
+            ignore_next_line = false;
+            continue;
+        }
 
         ignore_next_line = false;
 
