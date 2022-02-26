@@ -200,18 +200,15 @@ void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_rep
         int i=index+1;
         for(; i<sz; i++) if(pattern.find(line[i]) != -1) break;
         // If the string to be replaced is at the end of the string, just add it
-        cout << line << " " << index << " " << i << " " << line[i]<< " " << line[i+1] << ' ';
-        if(i == sz){
-            line = line.substr(0, index) + token;
-            cout << "entrou no if " << token << "\n";
-        } 
+        cout << line << " " << index << " " << i << " " << line[i]<< " " << line[i+1] << ' ' <<  pattern.find(line[i]) << "\n";
+        if(i == sz) line = line.substr(0, index) + token;
         else{
             string start = line.substr(0, index);
             string end = line.substr(i, sz-i);
             line = start + token + end; 
-            cout << "entrou no else " << start << "|" << token << "|" << end << "\n"; 
         }
         cout << line << "\n";
+        line = this->preprocessed_lines[sz-1] = line;
     }
 }
 
