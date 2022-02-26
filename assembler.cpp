@@ -193,7 +193,6 @@ void Assembler::run(){
             // SPACE and CONST will be added on position counter at the end of execution
             if(!(command.compare("SPACE") == 0) && !(command.compare("CONST") == 0))
                 this->position_counter += this->ObjGen->get_directive_size(command);
-            this->ObjGen->add_line_mac_option(line);
         }
 
         // If there is a label definition, then add it to the symbols table
@@ -264,7 +263,6 @@ void Assembler::run(){
                 }
                 position_counter++;
             }
-            this->ObjGen->add_line_mac_option(line);
         }
         // If is not a directive or a instruction, it must be a MACRO definition
         else if(!this->Syn->is_directive(command)){
