@@ -161,6 +161,7 @@ void Assembler::run(){
         if(this->Syn->is_directive(command)){
             // If the instruction is a macro, add it to the macro definition
             if(command.compare("MACRO") == 0){
+                this->ObjGen->remove_line_mac_option();
                 this->save_macro_lines = true;
                 this->macrolabel = label;
                 // Must set the macro name, because the semantic analyzer must know that if a word is not a directive or a instruction, it may be a macro definition
@@ -169,8 +170,10 @@ void Assembler::run(){
                 continue;
             }
             // If finds the ENDMACRO, stop adding lines
-            else if(command.compare("ENDMACRO") == 0)
+            else if(command.compare("ENDMACRO") == 0){
+                this->ObjGen->remove_line_mac_option();
                 this->save_macro_lines = false;
+            }
             // If finds the EQU add a definition to the EQU table
             else if(command.compare("EQU") == 0){
                 this->ObjGen->add_equ_definition(label, tokens[1], false);
@@ -216,6 +219,7 @@ void Assembler::run(){
         // If found a MACRO and not a ENDMACRO, save lines and continue 
         if(this->save_macro_lines){
             this->macrodefinition.push_back(line); 
+            this->ObjGen->remove_line_mac_option();
             label.clear();
             continue;
         }
