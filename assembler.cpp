@@ -279,9 +279,10 @@ void Assembler::run(){
     status &= this->Sem->end_check_MACRO();
 
     // Show all errors
-    this->Err->show();
+    this->Err->show_all();
     
     for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
     cout << "\n";
+
     if((this->Err->get_errors().size() == 0) && (this->option == OPTION_OBJ_NUM))this->ObjGen->generate_objectfile(this->outputfile);
 }

@@ -23,6 +23,7 @@ class ErrorDealer{
         void print_error(int line, int code);
         void clean_errors();
         void show();
+        void show_all();
         vector<Error> get_errors(){ return this->errors; };
 };
 

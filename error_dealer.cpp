@@ -48,6 +48,15 @@ void ErrorDealer::show(){
 }
 
 
+// printas all errors
+void ErrorDealer::show_all(){
+    for(int i=0; i<this->errors.size(); i++){
+        Error err = this->errors[i];
+        this->print_error(err.line, err.code);
+    }
+}
+
+
 // Prints the error according to the code
 void ErrorDealer::print_error(int line, int code){
     switch (code)
