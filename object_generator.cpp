@@ -183,6 +183,6 @@ bool ObjectGenerator::is_a_space_label(string label){
 
 void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_replaced){
     int sz = this->preprocessed_lines.size();
-    int index = this->preprocessed_lines[sz].find(str_to_be_replaced);
+    int index = this->preprocessed_lines[sz-1].find(str_to_be_replaced);
     this->preprocessed_lines[sz].replace(index, token.length(), token);
 }
