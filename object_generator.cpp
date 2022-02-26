@@ -200,7 +200,7 @@ void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_rep
         int i=index+1;
         for(; i<sz; i++) if(line[i] == ',' || line[i] == ' ' || line[i] == ';') break;
         // If the string to be replaced is at the end of the string, just add it
-        cout << line << " " << index << " " << i << " " << line[i]<< " " << line[i+1] << ' ' <<  pattern.find(line[i+1]) << "\n";
+        cout << line << " " << index << " " << i << " " << line[i]<< " " << line[i+1] << "\n";
         if(i == sz) line = line.substr(0, index) + token;
         else{
             string start = line.substr(0, index);
