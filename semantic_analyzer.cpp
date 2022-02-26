@@ -161,3 +161,6 @@ bool SemanticAnalyzer::end_check_MACRO(){
         return false;
     return true;
 }
+
+
+void SemanticAnalyzer::set_macro_used(){ this->macro_used = true; }

@@ -32,7 +32,7 @@ class SemanticAnalyzer{
         bool check_if_all_labels_defined();
         bool check_if_all_EQU_used();
         bool end_check_MACRO();
-        void set_macro_used(){ this->macro_used = true; };
+        void set_macro_used();
 };
 
 
