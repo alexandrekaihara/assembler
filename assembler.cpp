@@ -225,9 +225,10 @@ void Assembler::run(){
                         status &= true;
                 }
                 // If the token is defined as EQU, substitute it
-                if(this->ObjGen->is_equ_definition(tokens[j]))
-                this->
+                if(this->ObjGen->is_equ_definition(tokens[j])){
                     tokens[j] = this->ObjGen->resolve_equ_definitions(tokens[j]);
+                    this->Sem->set_equ_used(tokens[j]);
+                }
                 // If the command is COPY, then remove the ", " from the first parameter
                 if(command.compare("COPY") == 0){
                     int index = tokens[1].find(',');
