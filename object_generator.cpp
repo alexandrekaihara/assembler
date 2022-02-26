@@ -192,7 +192,24 @@ bool ObjectGenerator::is_a_space_label(string label){
 
 
 void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_replaced){
-    int sz = this->preprocessed_lines.size();
-    int index = this->preprocessed_lines[sz-1].find(str_to_be_replaced);
-    this->preprocessed_lines[sz-1].replace(index, token.length(), token);
+    //int sz = this->preprocessed_lines.size();
+    //int index = this->preprocessed_lines[sz-1].find(str_to_be_replaced);
+    //this->preprocessed_lines[sz-1].replace(index, token.length(), token);
+    if(this->option == OPTION_MAC_NUM){
+        int sz = this->preprocessed_lines.size();
+        int index = this->preprocessed_lines[sz-1].find(str_to_be_replaced);
+        string pattern = ", :";
+        // Find the end of the token
+        int i=index;
+        for(; i<sz; i++)
+            if(pattern.find(this->preprocessed_lines[sz-1]) == 0) break;
+        // If the string to be replaced is at the end of the string, just add it
+        if(i == sz)
+            this->preprocessed_lines[sz-1] = this->preprocessed_lines[sz-1].substr(0, index) + token;
+        else{
+            string start = this->preprocessed_lines[sz-1].substr(0, index);
+            string end = this->preprocessed_lines[sz-1].substr(i, sz-i);
+            this->preprocessed_lines[sz-1] = start + token + end; 
+        }
+    }
 }
