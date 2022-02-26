@@ -176,7 +176,7 @@ void ObjectGenerator::generate_file(string filename){
         for(int i=0; i<this->preprocessed_lines.size(); i++)
             text += this->preprocessed_lines[i] + "\n";
         std::ofstream outfile (filename);
-        outfile << this->preprocessed_lines;
+        outfile << text;
         outfile.close();   
     }
 }
