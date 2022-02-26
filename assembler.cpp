@@ -263,7 +263,7 @@ void Assembler::run(){
             // If is a macrolabel and option is different from -p, replace it with the lines
             if(command.compare(this->macrolabel) == 0 && this->option != OPTION_PRE_NUM){
                 lines.insert(lines.begin()+this->line_counter, this->macrodefinition.begin(), this->macrodefinition.end());
-                this->Sem->macro_used();
+                this->Sem->set_macro_used();
             }
         }
 
