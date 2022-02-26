@@ -188,8 +188,11 @@ void Assembler::run(){
 
         // If there is a label definition, then add it to the symbols table
         if(!label.empty()){
+            // Else, if the symbol is not defined, simply add it to the table
+            if(!this->ObjGen->symbol_exists(label))
+                this->ObjGen->add_symbol(label, true, -1, this->position_counter);
             // If the label is already exists but not defined, resolve all pending references
-            if(!this->ObjGen->is_symbol_defined(label)){
+            else if(!this->ObjGen->is_symbol_defined(label)){
                 // If it is not a space labels, they will be resolved at the end of execution
                 if(!this->ObjGen->is_a_space_label(label)){
                     int lastoccurence = this->ObjGen->get_last_occurence_symbol(label);
@@ -197,8 +200,6 @@ void Assembler::run(){
                     this->ObjGen->further_reference_dealer(label, lastoccurence);
                 }
             }
-            // Else, if the symbol is not defined, simply add it to the table
-            else this->ObjGen->add_symbol(label, true, -1, this->position_counter);
         }
 
         // If found a MACRO and not a ENDMACRO, save lines and continue 
