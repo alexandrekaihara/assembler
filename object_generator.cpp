@@ -207,7 +207,7 @@ void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_rep
             string end = line.substr(i, sz-i);
             line = start + token + end; 
         }
-        line = this->preprocessed_lines[last_line] = line;
+        this->preprocessed_lines[last_line] = line;
     }
 }
 
