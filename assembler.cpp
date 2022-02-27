@@ -120,8 +120,6 @@ void Assembler::run(){
             continue;
         }
 
-        cout << line << "\n";
-        
         // Ignoring comments and etc, if line is empty, goes to the next
         if(this->Lex->is_empty_line(line)) continue;
 
@@ -293,10 +291,7 @@ void Assembler::run(){
     status &= this->Sem->end_check_MACRO();
 
     // Show all errors
-    this->Err->show_all();
-    
-    for(int i=0; i<this->ObjGen->objectfile.size(); i++) cout << this->ObjGen->objectfile[i] << " ";
-    cout << "\n";
+    this->Err->show();
 
     this->ObjGen->generate_file(this->outputfile);
 }
