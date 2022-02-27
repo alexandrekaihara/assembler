@@ -194,13 +194,15 @@ bool ObjectGenerator::is_a_space_label(string label){
 void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_replaced){
     if(this->option == OPTION_PRE_NUM){
         int sz = this->preprocessed_lines.size();
-        string  line = this->preprocessed_lines[sz-1];
+        string pattern = ", ;", line = this->preprocessed_lines[sz-1];
         int index = line.find(str_to_be_replaced);
         // Find the end of the token
         int i=index+1;
-        for(; i<sz; i++) if(line[i] == ',' || line[i] == ' ' || line[i] == ';') break;
+        for(; i<sz; i++) cout << +line[i] << "|" << line[i] << " ";
+        cout << "\n";
+        for(; i<sz; i++) if(pattern.find(line[i]) != -1) break;
         // If the string to be replaced is at the end of the string, just add it
-        cout << line << " " << index << " " << i << " " << line[i]<< " " << line[i+1] << "\n";
+        cout << line << " " << index << " " << i << " " << line[i]<< " " << line[i+1] << ' ' <<  pattern.find(line[i+1]) << "\n";
         if(i == sz) line = line.substr(0, index) + token;
         else{
             string start = line.substr(0, index);
