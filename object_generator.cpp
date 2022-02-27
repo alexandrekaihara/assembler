@@ -193,8 +193,7 @@ bool ObjectGenerator::is_a_space_label(string label){
 
 void ObjectGenerator::substitute_equ_pre_file(string token, string str_to_be_replaced){
     if(this->option == OPTION_PRE_NUM){
-        int sz = this->preprocessed_lines.size();
-        string pattern = ", ;", line = this->preprocessed_lines[sz-1];
+        string pattern = ", ;", line = this->preprocessed_lines[this->preprocessed_lines.size()-1];
         int sz = line.length();
         int index = line.find(str_to_be_replaced);
         // Find the end of the token
